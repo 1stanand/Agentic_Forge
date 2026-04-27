@@ -159,6 +159,13 @@ Respond with JSON only.
             logger.warning(f"LLM title parse failed: {e}, using default titles")
             title_map = {}
 
+        # Convert scenarios list to dict keyed by logical_id
+        scenarios_raw = title_map.get("scenarios", [])
+        if isinstance(scenarios_raw, list):
+            llm_titles = {s.get("logical_id"): s.get("title") for s in scenarios_raw if s.get("logical_id")}
+        else:
+            llm_titles = scenarios_raw if isinstance(scenarios_raw, dict) else {}
+
         # Compose scenarios
         scenarios = []
         all_markers = set()
@@ -171,7 +178,6 @@ Respond with JSON only.
             retrieved_dict = seq_data.get("retrieved_steps", {})
 
             # Get title from LLM or use fallback
-            llm_titles = title_map.get("scenarios", {})
             title = llm_titles.get(logical_id)
             if not title:
                 if flow_type == "ordered":
