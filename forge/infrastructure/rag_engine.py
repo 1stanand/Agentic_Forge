@@ -34,12 +34,12 @@ def load_cas_knowledge_index():
         return None
 
 
-def get_context(screen: str = None, stage: str = None, lob: str = None, query: str = None, top_k: int = 5) -> str:
-    """Retrieve and synthesize CAS knowledge using RAG."""
+def get_context(screen: str = None, stage: str = None, lob: str = None, query: str = None, top_k: int = 5, module: str = "cas") -> str:
+    """Retrieve and synthesize knowledge using RAG. Module-scoped to support CAS, LMS, etc."""
     settings = get_settings()
 
     # Cache check
-    cache_key = f"{screen}_{stage}_{lob}".replace(" ", "_")
+    cache_key = f"{module}_{screen}_{stage}_{lob}".replace(" ", "_")
     conn = get_conn()
     try:
         with get_cursor(conn) as cur:
@@ -67,7 +67,7 @@ def get_context(screen: str = None, stage: str = None, lob: str = None, query: s
         query_embedding = query_embedding.astype(np.float32)
         distances, indices = index.search(np.array([query_embedding], dtype=np.float32), top_k * 2)
 
-        # Fetch chunk metadata
+        # Fetch chunk metadata (module-scoped)
         conn = get_conn()
         chunks = []
         try:
@@ -75,12 +75,16 @@ def get_context(screen: str = None, stage: str = None, lob: str = None, query: s
                 if idx >= 0:
                     with get_cursor(conn) as cur:
                         cur.execute(
-                            "SELECT text, stage_hint, screen_hint FROM doc_chunks WHERE faiss_pos = %s",
-                            (int(idx),)
+                            "SELECT text, stage_hint, screen_hint, lob_hint FROM doc_chunks WHERE faiss_pos = %s AND source_module = %s",
+                            (int(idx), module)
                         )
                         row = cur.fetchone()
                         if row:
-                            chunks.append(row["text"])
+                            # Optional LOB boost: if lob parameter provided and matches chunk, boost weight
+                            text = row["text"]
+                            if lob and row.get("lob_hint") and row["lob_hint"].lower() == lob.lower():
+                                text = f"[LOB-MATCH] {text}"
+                            chunks.append(text)
         finally:
             release_conn(conn)
 

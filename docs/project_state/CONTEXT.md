@@ -21,10 +21,10 @@
 
 ## Current State
 
-**Last updated:** 2026-04-27 21:15  
+**Last updated:** 2026-04-27 22:45  
 **Updated by:** Claude Code  
-**Current active task:** PHASE 5 — KNOWLEDGE WIKI ARCHITECTURE DESIGN  
-**Status:** ✅ PHASE 1-4 verified (37/37 tests passing). ✅ Agent 07 runtime bug fixed. 🔄 Designing CAS knowledge wiki infrastructure (TOML-based LOB→Stage→Screen hierarchy, markdown wiki generation).
+**Current active task:** PHASE 5 — KNOWLEDGE WIKI INFRASTRUCTURE IMPLEMENTATION  
+**Status:** ✅ PHASE 1-4 verified (37/37 tests passing). ✅ Agent 07 runtime bug fixed. ✅ Wiki infrastructure implemented (taxonomy-driven chunking, markdown generation, module-scoped FAISS). 🔄 Awaiting PDF placement in data/knowledge/cas/_source/ and first build run.
 
 ---
 
@@ -80,7 +80,7 @@ Do not rely on chat history as the source of truth.
 
 | Task | Name | Status |
 | ---- | ---- | ------ |
-| 1 (NEXT) | Knowledge Wiki Infrastructure | 🔄 In Planning (TOML manifest design with Anand) |
+| 1 | Knowledge Wiki Infrastructure | ✅ Complete (Implementation done. Await PDF input.) |
 
 ---
 
@@ -214,7 +214,7 @@ Run these commands to verify each system before launch:
 
 ---
 
-## Next Steps — Knowledge Wiki Infrastructure
+## Next Steps — Knowledge Wiki Implementation Complete
 
 **Completed (Previous Session):**
 1. ✅ Root folder cleanup — moved 12 doc/script files to appropriate folders
@@ -223,20 +223,22 @@ Run these commands to verify each system before launch:
 4. ✅ Tests folder reorganized — conftest.py, unit/, integration/, acceptance/
 5. ✅ Comprehensive acceptance tests written — **37 tests** covering all PHASE 1-4 fixes
 6. ✅ Full test execution — 37/37 tests passing (2 E2E tests with real LLM pipeline)
+7. ✅ Identified Agent 07 runtime bug (scenarios list → dict conversion)
+8. ✅ Fixed and committed Agent 07 bug
 
-**Current (This Session):**
-1. ✅ Identified Agent 07 runtime bug (scenarios list → dict conversion)
-2. ✅ Fixed and committed Agent 07 bug
-3. 🔄 **Designing Knowledge Wiki Infrastructure** — Collaborative planning with Anand
-   - TOML-based LOB → Stage → Screen hierarchy (Anand to generate via Gemini + PDFs)
-   - Python wiki-building script using TOML as input
-   - Markdown wiki files (`data/knowledge/cas/{screens,stages,concepts}/`)
-   - Incremental PDF support for future modules (LMS, collections, etc.)
+**Current Session (This Session) — COMPLETE:**
+1. ✅ DB schema migration — 4 new columns (`lob_hint`, `chunk_type`, `hint_confidence`, `source_module`)
+2. ✅ Rewrote `build_knowledge.py` — taxonomy-driven chunking, markdown wiki generation, hybrid LLM hints
+3. ✅ Updated `rag_engine.py` — module-scoped retrieval, optional LOB boost
+4. ✅ Created `tools/user/build_knowledge.bat` — standard build tool
+5. ✅ Updated docs — How_to_Maintain.md, How_to_Setup.md, CLAUDE.md, CONTEXT.md
+6. ✅ Module-scoped FAISS — separate `{module}_knowledge.faiss` files (CAS, LMS, etc.)
 
-**Anand (Next):**
-1. Generate TOML manifest from CAS PDFs using Gemini
-2. Provide TOML structure to Claude Code
-3. Implement Python wiki-builder using TOML
+**Next (Anand):**
+1. Place CAS PDFs in `data/knowledge/cas/_source/` folder
+2. Run `python -m forge.scripts.build_knowledge --module cas --rebuild`
+3. Review wiki output in `data/knowledge/cas/{screens,stages,concepts}/`
+4. Review unknowns in `data/knowledge/cas/cas_review_candidates.toml`
 
 **Running Tests:**
 ```bash

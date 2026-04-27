@@ -161,9 +161,25 @@ python -m forge.scripts.build_step_index
 
 ### Rebuild CAS Knowledge Index (After Doc Update)
 
+Run when you add/update CAS PDFs or refine the seed taxonomy:
+
 ```bash
-# If new CAS PDFs added to data/knowledge/cas/
-python -m forge.scripts.build_knowledge
+# Via batch file (Windows)
+tools\user\build_knowledge.bat
+
+# Or with Python directly
+python -m forge.scripts.build_knowledge --module cas --rebuild
+```
+
+**After completion, verify:**
+- Wiki pages in `data/knowledge/cas/{screens,stages,concepts}/`
+- Unknown sections in `data/knowledge/cas/cas_review_candidates.toml` (review for new screens)
+- FAISS index at `data/indices/cas_knowledge.faiss`
+- `doc_chunks` table populated with module-scoped rows
+
+**For future modules (LMS, collections):**
+```bash
+python -m forge.scripts.build_knowledge --module lms --rebuild
 ```
 
 ### Verify Index Integrity

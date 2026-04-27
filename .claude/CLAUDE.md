@@ -189,9 +189,14 @@ D:\Code\Agentic_Forge\
 ├── reference/                 ← V2 code — PORT from here, do not modify
 │
 ├── data/
-│   ├── knowledge/cas/         ← CAS PDFs go here
-│   ├── knowledge/lms/
-│   ├── knowledge/collections/
+│   ├── knowledge/cas/         ← CAS module
+│   │   ├── _source/           ← CAS PDFs go here
+│   │   ├── taxanomy_source/   ← Seed taxonomy TOML files
+│   │   ├── screens/           ← Generated wiki (screens)
+│   │   ├── stages/            ← Generated wiki (stages)
+│   │   └── concepts/          ← Generated wiki (concepts)
+│   ├── knowledge/lms/         ← Future LMS module (same structure)
+│   ├── knowledge/collections/ ← Future collections module (same structure)
 │   └── indices/               ← FAISS indices built here
 │
 ├── logs/

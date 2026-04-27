@@ -207,6 +207,7 @@ function setActiveNav(page) {
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
+  const shell = document.querySelector(".app-shell");
   if (!sidebar) {
     return;
   }
@@ -217,6 +218,7 @@ function toggleSidebar() {
   }
 
   sidebar.classList.toggle("collapsed");
+  shell?.classList.toggle("sidebar-collapsed", sidebar.classList.contains("collapsed"));
 }
 
 function closeSidebar() {

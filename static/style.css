@@ -65,6 +65,9 @@
   --glass-bg: rgba(34, 31, 29, 0.8);
   --glass-border: rgba(163, 140, 124, 0.22);
   --glass-blur: blur(16px);
+  --sidebar-gradient: linear-gradient(180deg, rgba(34, 31, 29, 0.98), rgba(28, 25, 23, 0.98));
+  --topbar-bg: rgba(28, 25, 23, 0.86);
+  --composer-fade: linear-gradient(180deg, rgba(22, 19, 17, 0.2), rgba(22, 19, 17, 0.96) 18%);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.42);
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
@@ -131,6 +134,9 @@
   --glass-bg: rgba(245, 245, 244, 0.85);
   --glass-border: rgba(120, 113, 108, 0.2);
   --glass-blur: blur(14px);
+  --sidebar-gradient: linear-gradient(180deg, rgba(250, 248, 246, 0.98), rgba(239, 235, 231, 0.98));
+  --topbar-bg: rgba(245, 241, 237, 0.88);
+  --composer-fade: linear-gradient(180deg, rgba(245, 245, 244, 0.15), rgba(245, 245, 244, 0.97) 18%);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -256,12 +262,16 @@ svg {
   background: var(--background);
 }
 
+.app-shell.sidebar-collapsed {
+  grid-template-columns: var(--sidebar-collapsed) 1fr;
+}
+
 .sidebar-backdrop {
   display: none;
 }
 
 .sidebar {
-  background: linear-gradient(180deg, rgba(34, 31, 29, 0.98), rgba(28, 25, 23, 0.98));
+  background: var(--sidebar-gradient);
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -285,9 +295,35 @@ svg {
   display: none;
 }
 
+.sidebar:not(.collapsed) .brand-mark {
+  display: none;
+}
+
 .sidebar.collapsed .brand-mark {
+  display: block;
   width: 36px;
   height: 36px;
+}
+
+.sidebar.collapsed .brand-lockup {
+  justify-content: center;
+  width: 100%;
+}
+
+.sidebar.collapsed .sidebar-header,
+.sidebar.collapsed .sidebar-footer {
+  padding-inline: 10px;
+}
+
+.sidebar.collapsed .sidebar-header {
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-collapse-btn {
+  position: absolute;
+  right: 8px;
+  top: 16px;
 }
 
 .sidebar-header,
@@ -321,7 +357,7 @@ svg {
 }
 
 .brand-wordmark {
-  width: 150px;
+  width: 170px;
   max-width: 100%;
   height: auto;
 }
@@ -435,7 +471,7 @@ svg {
 
 .topbar {
   height: var(--topbar-height);
-  background: rgba(28, 25, 23, 0.86);
+  background: var(--topbar-bg);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -939,7 +975,7 @@ svg {
   padding: 12px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-container-low);
   cursor: pointer;
   transition:
     border-color 150ms ease,
@@ -980,7 +1016,7 @@ svg {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--surface-container-low);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1098,7 +1134,7 @@ svg {
 .composer-shell {
   position: sticky;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(22, 19, 17, 0.2), rgba(22, 19, 17, 0.96) 18%);
+  background: var(--composer-fade);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--border-subtle);
@@ -1122,6 +1158,8 @@ svg {
   resize: none;
   border: none;
   background: transparent;
+  color: var(--on-surface);
+  caret-color: var(--primary);
   padding: 0;
   font-family: "Inter", system-ui, sans-serif;
   line-height: 22px;
@@ -1129,6 +1167,11 @@ svg {
 
 .composer textarea:focus {
   border: none;
+  outline: none;
+}
+
+.composer textarea::placeholder {
+  color: var(--on-surface-variant);
 }
 
 .composer-footer {
@@ -1793,6 +1836,10 @@ svg {
     grid-template-columns: 1fr;
   }
 
+  .app-shell.sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
   .sidebar-backdrop {
     display: block;
     position: fixed;
@@ -1815,6 +1862,10 @@ svg {
     left: 0;
     width: min(82vw, 300px);
     transform: translateX(-100%);
+  }
+
+  .sidebar:not(.collapsed) .brand-mark {
+    display: block;
   }
 
   body.sidebar-open .sidebar {

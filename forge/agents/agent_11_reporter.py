@@ -27,14 +27,25 @@ def agent_11_reporter(state: ForgeState) -> ForgeState:
         # Collect outputs from all prior agents
         jira_facts = state['jira_facts'] or {}
         domain_brief = state['domain_brief'] or {}
-        scope = state['scope'] or {}
-        coverage_plan = state['coverage_plan'] or {}
-        action_sequences = state['action_sequences'] or {}
-        retrieved_steps = state['retrieved_steps'] or {}
-        composed_scenarios = state['composed_scenarios'] or {}
-        validation_result = state['validation_result'] or {}
-        feature_output = state['feature_file'] or {}
-        critic_review = state['critic_review'] or {}
+        # Handle both dict and TypedDict state formats
+        if isinstance(state, dict):
+            scope = state.get('scope') or {}
+            coverage_plan = state.get('coverage_plan') or {}
+            action_sequences = state.get('action_sequences') or {}
+            retrieved_steps = state.get('retrieved_steps') or {}
+            composed_scenarios = state.get('composed_scenarios') or {}
+            validation_result = state.get('validation_result') or {}
+            feature_output = state.get('feature_file') or {}
+            critic_review = state.get('critic_review') or {}
+        else:
+            scope = getattr(state, 'scope', None) or {}
+            coverage_plan = getattr(state, 'coverage_plan', None) or {}
+            action_sequences = getattr(state, 'action_sequences', None) or {}
+            retrieved_steps = getattr(state, 'retrieved_steps', None) or {}
+            composed_scenarios = getattr(state, 'composed_scenarios', None) or {}
+            validation_result = getattr(state, 'validation_result', None) or {}
+            feature_output = getattr(state, 'feature_file', None) or {}
+            critic_review = getattr(state, 'critic_review', None) or {}
 
         issue_key = jira_facts.get("issue_key", "UNKNOWN")
         flow_type = state['flow_type'] or "unordered"

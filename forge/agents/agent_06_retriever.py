@@ -135,21 +135,21 @@ def agent_06_retriever(state: ForgeState) -> ForgeState:
             # Given
             for action_text in given:
                 candidates = retrieved_map.get(action_text, [])
-                if not candidates or all(c.get("ce_score", 0) < 0.3 for c in candidates):
+                if not candidates or all(float(c.get("ce_score", 0)) < 0.3 for c in candidates):
                     retrieval_gaps.append(f"{logical_id} Given: {action_text[:50]}")
                 retrieved_by_phase[action_text] = candidates
 
             # When
             for action_text in when:
                 candidates = retrieved_map.get(action_text, [])
-                if not candidates or all(c.get("ce_score", 0) < 0.3 for c in candidates):
+                if not candidates or all(float(c.get("ce_score", 0)) < 0.3 for c in candidates):
                     retrieval_gaps.append(f"{logical_id} When: {action_text[:50]}")
                 retrieved_by_phase[action_text] = candidates
 
             # Then
             for action_text in then:
                 candidates = retrieved_map.get(action_text, [])
-                if not candidates or all(c.get("ce_score", 0) < 0.3 for c in candidates):
+                if not candidates or all(float(c.get("ce_score", 0)) < 0.3 for c in candidates):
                     retrieval_gaps.append(f"{logical_id} Then: {action_text[:50]}")
                 retrieved_by_phase[action_text] = candidates
 
@@ -164,7 +164,7 @@ def agent_06_retriever(state: ForgeState) -> ForgeState:
         # Compute confidence: percent of actions with ce_score >= 0.7
         confident_count = 0
         for action_text, candidates in retrieved_map.items():
-            if candidates and candidates[0].get("ce_score", 0) >= 0.7:
+            if candidates and float(candidates[0].get("ce_score", 0)) >= 0.7:
                 confident_count += 1
 
         confidence = confident_count / len(retrieved_map) if retrieved_map else 0.0

@@ -102,17 +102,31 @@ def retrieve(action_text: str, top_k: int = 20, screen_filter: str = None, stage
                     ce = get_cross_encoder()
                     if ce:
                         try:
-                            ce_score = ce.predict([(action_text, row["step_text"])])[0]
-                            step_data["ce_score"] = float(ce_score)
+                            import numpy as np
+                            ce_result = ce.predict([(action_text, row["step_text"])])
+                            # Aggressively convert to Python float
+                            if isinstance(ce_result, np.ndarray):
+                                # Extract scalar value from any numpy array shape
+                                scalar = ce_result.item() if ce_result.size == 1 else float(ce_result.flat[0])
+                                ce_score = float(scalar)
+                            elif isinstance(ce_result, (list, tuple)):
+                                ce_score = float(ce_result[0])
+                            elif isinstance(ce_result, (np.floating, np.integer)):
+                                ce_score = float(ce_result)
+                            else:
+                                ce_score = float(ce_result)
+                            step_data["ce_score"] = ce_score
                         except Exception as e:
                             logger.warning(f"Cross-encoder error: {e}")
                             step_data["ce_score"] = 0.5
 
                     # Assign marker based on ce_score
-                    if step_data["ce_score"] is not None:
-                        if step_data["ce_score"] >= 0.7:
+                    ce_score_val = step_data.get("ce_score")
+                    if ce_score_val is not None:
+                        ce_score_val = float(ce_score_val)  # Ensure it's a Python float
+                        if ce_score_val >= 0.7:
                             step_data["marker"] = None
-                        elif step_data["ce_score"] >= 0.3:
+                        elif ce_score_val >= 0.3:
                             step_data["marker"] = "[LOW_MATCH]"
                         else:
                             step_data["marker"] = "[NEW_STEP_NOT_IN_REPO]"
@@ -127,10 +141,13 @@ def retrieve(action_text: str, top_k: int = 20, screen_filter: str = None, stage
                     final_results.append(step_data)
 
         # Self-RAG gate
-        if final_results and final_results[0].get("ce_score", 0) < get_settings().low_match_threshold and retry_count == 0:
-            logger.info("Self-RAG: top match below threshold, retrying with expanded query...")
-            expanded = expand_for_vector(action_text) + " " + action_text
-            return retrieve(expanded, top_k, screen_filter, stage_hint, retry_count=1)
+        if final_results:
+            top_ce_score = final_results[0].get("ce_score", 0)
+            top_ce_score = float(top_ce_score) if top_ce_score is not None else 0
+            if top_ce_score < get_settings().low_match_threshold and retry_count == 0:
+                logger.info("Self-RAG: top match below threshold, retrying with expanded query...")
+                expanded = expand_for_vector(action_text) + " " + action_text
+                return retrieve(expanded, top_k, screen_filter, stage_hint, retry_count=1)
 
         return final_results
 

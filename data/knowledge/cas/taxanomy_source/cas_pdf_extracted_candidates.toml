@@ -1,0 +1,3431 @@
+# CAS seed taxonomy extracted from FinnOne Neo CAS - Online Help_1.pdf
+# Purpose: bootstrap RAPTOR/PDF chunk labelling for Forge.
+# Important: workflow is configurable; treat these as documented defaults/hints, not runtime law.
+
+[meta]
+source_pdf = "FinnOne Neo CAS - Online Help_1.pdf"
+source_type = "online_help"
+extraction_mode = "font-heading + text-pattern heuristic"
+workflow_configurable = true
+confidence = "seed"
+page_count = 766
+
+[lobs]
+canonical = ["Any Finance Product Type", "Commercial Vehicle", "Consumer Durable Finance", "Consumer Vehicle", "Credit Card", "FAS", "Finance Product", "Gold Loan", "Home Loan", "JLG", "Loan Against Property", "Personal Loan", "SHG", "SHG/JLG", "All Product Types"]
+
+[lobs.aliases]
+"Any Finance Product Type" = "Finance Product"
+"CC" = "Credit Card"
+"CD" = "Consumer Durable Finance"
+"Consumer Durable" = "Consumer Durable Finance"
+"Credit Card Product Type" = "Credit Card"
+"Finance Product Type" = "Finance Product"
+"Finance Product Types" = "Finance Product"
+"HL" = "Home Loan"
+"JLG" = "SHG/JLG"
+"LAP" = "Loan Against Property"
+"PL" = "Personal Loan"
+"SHG" = "SHG/JLG"
+
+[manual_corrections]
+applied_to = "cas_bootstrap_taxonomy_corrected.toml"
+source = "domain_expert_correction_2026-04-27"
+summary = "PDF-extracted product hints were replaced by authoritative CAS business LOB taxonomy in the clean bootstrap taxonomy."
+
+[manual_corrections.lobs]
+canonical = [
+  "Home Loan",
+  "Personal Loan",
+  "Auto Loan",
+  "Commercial Vehicle Loan",
+  "Commercial Equipment Loan",
+  "Farm Equipment Loan",
+  "Agriculture Loan",
+  "Education Loan",
+  "Loan Against Property",
+  "Micro Housing Finance",
+  "Finance Against Property",
+  "Corporate Loan",
+  "Self Help Group",
+  "Joint Liability Group",
+  "Gold Loan",
+  "Omni Loan",
+  "Consumer Durable",
+  "Credit Card",
+]
+
+[manual_corrections.facility_types]
+parent_lob = "Corporate Loan"
+values = ["Bill Discounting", "Bank Guarantee", "Letter of Credit", "Business Loans", "Cash Credit"]
+
+[manual_corrections.omni_loan]
+type = "composite_lob"
+allowed_sub_lobs = ["Auto Loan", "Home Loan", "Personal Loan", "Commercial Vehicle Loan", "Credit Card"]
+note = "Omni Loan can contain multiple sub-loans and should preserve sub_lob_hint during chunking."
+
+
+[stages]
+canonical = ["Leads", "Proposals", "Lead Conversion Stage", "Lead Details", "Login Acceptance", "Sales Queue", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Credit Bureau Referral Activity", "Detailed Data Entry (DDE)", "DDEQC", "Gold Valuation", "Pre Sanction Visit (PSV)", "Account Updation", "Policy Referral/Execution", "Collateral Investigation Initiation (CII)", "Collateral Investigation Verification", "Valuation Completion", "Collateral Investigation Completion (CIC)", "Field Investigation Initiation (FII)", "FI Allocation Grid", "Agent Field Investigation Verification", "Field Investigation Verification (FIV)", "Field Investigation Completion (FIC)", "Recommendation (Loans)", "Recommendation (Credit Card)", "Credit Approval (Loans)", "Credit Approval (Consumer Finance)", "Credit Approval (Credit Card)", "Asset Validation Stage", "Incomplete Collateral Details Activity (ICD)", "Reconsideration", "Operations Check", "Post Approval Activity", "Facility Initiation", "FDE", "Tranche Initiation", "Tranche Approval", "Curing", "Application Tranche VAP Linking", "RCU Initiation", "RCU Verification", "RCU Referral", "Disbursal Initiation", "Disbursal Author", "Subsequent Disbursal", "DCC Scheduling", "DCC Execution", "Sales Queue Disbursal", "Send To Card Management System", "Raise Query", "Response Query", "Unquery", "Reassign Query", "Deviation Approval Sheet", "Renewal Recommendation", "Renewal Approval"]
+
+[stages.aliases]
+"CIC" = "Collateral Investigation Completion (CIC)"
+"Collateral Investigation Completion" = "Collateral Investigation Completion (CIC)"
+"CII" = "Collateral Investigation Initiation (CII)"
+"Collateral Investigation Initiation" = "Collateral Investigation Initiation (CII)"
+"CCDE" = "Credit Card Data Entry (CCDE)"
+"Credit Card Data Entry" = "Credit Card Data Entry (CCDE)"
+"DDE" = "Detailed Data Entry (DDE)"
+"Detailed Data Entry" = "Detailed Data Entry (DDE)"
+"FIC" = "Field Investigation Completion (FIC)"
+"Field Investigation Completion" = "Field Investigation Completion (FIC)"
+"FII" = "Field Investigation Initiation (FII)"
+"Field Investigation Initiation" = "Field Investigation Initiation (FII)"
+"FIV" = "Field Investigation Verification (FIV)"
+"Field Investigation Verification" = "Field Investigation Verification (FIV)"
+"ICD" = "Incomplete Collateral Details Activity (ICD)"
+"Incomplete Collateral Details" = "Incomplete Collateral Details Activity (ICD)"
+"KYC" = "Know Your Customer (KYC)"
+"Know Your Customer" = "Know Your Customer (KYC)"
+"PSV" = "Pre Sanction Visit (PSV)"
+"Pre Sanction Visit" = "Pre Sanction Visit (PSV)"
+
+[workflows.finance_product]
+source = "online_help_sample_diagram_and_stage_sections"
+configurable = true
+stages = ["Leads", "Lead Conversion Stage", "Lead Details", "Login Acceptance", "Sales Queue", "Know Your Customer (KYC)", "Credit Bureau Referral Activity", "Detailed Data Entry (DDE)", "DDEQC", "Gold Valuation", "Pre Sanction Visit (PSV)", "Account Updation", "Policy Referral/Execution", "Collateral Investigation Initiation (CII)", "Collateral Investigation Verification", "Valuation Completion", "Collateral Investigation Completion (CIC)", "Field Investigation Initiation (FII)", "FI Allocation Grid", "Agent Field Investigation Verification", "Field Investigation Verification (FIV)", "Field Investigation Completion (FIC)", "Recommendation (Loans)", "Credit Approval (Loans)", "Credit Approval (Consumer Finance)", "Asset Validation Stage", "Incomplete Collateral Details Activity (ICD)", "Reconsideration", "Operations Check", "Post Approval Activity", "Facility Initiation", "FDE", "Tranche Initiation", "Tranche Approval", "Curing", "Application Tranche VAP Linking", "RCU Initiation", "RCU Verification", "RCU Referral", "Disbursal Initiation", "Disbursal Author", "Subsequent Disbursal", "DCC Scheduling", "DCC Execution", "Sales Queue Disbursal", "Renewal Recommendation", "Renewal Approval"]
+
+[workflows.credit_card]
+source = "online_help_sample_diagram_and_stage_sections"
+configurable = true
+stages = ["Leads", "Lead Conversion Stage", "Login Acceptance", "Sales Queue", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Credit Bureau Referral Activity", "Recommendation (Credit Card)", "Credit Approval (Credit Card)", "Operations Check", "Post Approval Activity", "Send To Card Management System"]
+
+[workflows.query_subflow]
+configurable = true
+stages = ["Raise Query", "Response Query", "Unquery", "Reassign Query"]
+
+[screens]
+canonical = [">> Address section", "Account Balance and Inward", "Account Name*", "Account Number*", "Account Number*, Repayment", "Account Type*", "Account Updation", "Account(s) Summary", "Adhaar Identification Type. In case of", "Administrator >>Collateral Type Dynamic Form Mapping", "Agreement Details section of Property Details", "Amount, First Disbursal Date and Finance Account No", "Applicable only for Credit Card Product Type", "Applicable Only for Multi-Assets Finance with VAP Product", "Applicant accordion", "Applicant Details", "Applicant Information", "Applicant information", "Applicant Information section (Editable)", "Applicant's Profile", "Applicants grid", "Application Details", "Application Tranche VAP Linking", "Application Tranches", "Application Type, Identification No., Application Status, Overdue Amount,", "Approval Checklist", "Approval Checklist section (Editable)", "Approval Sheet", "Approve Deviations", "Approve Deviations tab >> Assigned To Me child", "Approve Deviations tab >> Pending Deviations child", "Approve Deviations tab >>All Deviations child", "Asset Approval Decision List", "Asset Details", "Asset Details >> Accessories Details", "Asset Details >> Address Details", "Asset Details >> Body Details", "Asset Details >> Collateral Details", "Asset Details >> Consolidated Summary", "Asset Details >> Insurance", "Asset Details >> Insurance Details", "Asset Details >> Investigation", "Asset Details >> Investigation >> Valuation", "Asset Details >> Investigation >> Verification", "Asset Details >> Investigation Details", "Asset Details >> Investigation Details tab >> Valuation", "Asset Details >> Investigation Details tab >> Verification", "Asset Details >> Invoice Details", "Asset Details >> Lien Details", "Asset Details >> Nominee Details Grid", "Asset Details >> Other Components To Be Funded", "Asset Details >> RC Authentication Details", "Asset Details >> Summary", "Asset Details >> Vehicle Details", "Asset Details >>Asset Details", "Asset Details accordion", "Asset Requested Details", "Asset Validation Stage", "Attachments Details section.)", "Average Account Balance and Inward", "Balance Transfer Details", "Bank Details", "Bank Parameters", "Bank, Bank Branch and Banking Location fields", "Bank/Credit Card Details", "Bank/Credit Card Details >> Bank Details", "Bank/Credit Card Details >> Card Details", "Bill Details", "Body Funding Details", "Branch*, Banking", "Branch*, Banking Location*,", "Break Up Details", "BSA Details", "Business Details", "Card Details", "Card Management System gets stored in the Archived", "Cattle Details", "CERSAI Details", "CERSAI tab>> Security Interest Details", "Charge Details", "Code*, Bar Code, Banking", "Collateral Details", "Collateral Details >> Investigation Details", "Collateral Details >> Investigation Details tab >> Valuation", "Collateral Details >> Investigation Details tab >> Verification", "Collateral Details Activity stage", "Collateral Details tab >> Address Details", "Collateral Details tab >> Builder Details", "Collateral Details tab >> CERSAI", "Collateral Details tab >> Insurance", "Collateral Details tab >> Lien Details", "Collateral Details tab >> Other Details", "Collateral Details tab >> Ownership Details", "Collateral Details tab >> Property & Registration Details", "Collateral Details tab >> Property Address", "Collateral Details tab >> Seller Details", "Collateral Investigation Completion (CIC)", "Collateral Investigation Initiation (CII)", "Collateral Investigation Verification", "Collateral Sub Type is Plot + Self", "Collateral tab >> Collateral Details", "Collateral Valuation Completion", "Collateral Verification Completion", "Collateral Verification/Valuation", "Commercial Card Details", "Commercial Vehicle Loan Product Type. It is", "Commercial/Consumer Vehicle Valuation", "Communication Details", "Communication Details >> Additional Communication Details", "Communication Details >> Communication Preferences", "Communication History", "Consumer Information", "Contact Person & Key Employee Details", "Contact Persons details", "Course Details", "Course Details tab >> Address", "Course Details tab >> Bank Account", "Course Details tab >> Component Wise Fee", "Course Details tab >> Component Wise Fee Structure", "Course Details tab >> Education Histories", "Course Details tab >> Employment Potential Post", "Course Details tab >> Employment Potential Post Course Completion", "Course Details tab >> Summary", "Course Details tab >> Tentative Disbursal", "Course Details tab >> Tentative Disbursal schedule Entry", "Covenant History", "Credit Approval (Consumer Finance)", "Credit Approval (Credit Card)", "Credit Approval (Loans)", "Credit Bureau", "Credit Bureau Referral Activity", "Credit Card Data Entry (CCDE)", "Credit Card Details", "Credit Card Product Type", "Creditor/Debtor Details", "Curing", "Customer Communication History", "Customer Details", "Customer Details >> Electricity Bill Authentication Info", "Customer Details >> Identification", "Customer Details >> Organization Address", "Customer Details child", "DCC Execution", "DCC Scheduling", "Deal Details", "Deal Limit Details", "Deals & Facility Details", "Decision Details", "Decision Details section >> Future Limit Decision", "Decision Details section >> Special Conditions sub", "Decision History", "Decision/Forward History", "Decision/Forward History section (Read-Only)", "Dedupe Summary", "Depository Participant Details", "Details Mapping master", "Details section", "Details tab", "Deviation Approval Sheet", "Deviation Details", "Disbursal Amount*", "Disbursal Author", "Disbursal Checklist", "Disbursal Date*", "Disbursal Details", "Disbursal Details >> Disbursal Schedule", "Disbursal Details >> Disbursal Schedule section >> Disbursal Payee Details sub", "Disbursal Entry", "Disbursal Initiation", "Disbursal stage", "Disbursal Summary", "Documents", "Documents Details", "Drawee Account Name*,", "Drawee Details", "Education", "Education Details", "Eligibility Policy", "Eligibility Policy Setup", "Embossing Details", "Employment Details", "Employment Details >> Assets", "Employment Details >> Income", "Employment Details >> Liabilities", "Employment/ Finance Details", "Employment/Finance Details", "Enquiry(s) Summary", "Exposure Details", "External Deviation", "External Maintenance VAP Types", "Facility Details", "Facility Initiation", "Facility Limit Details", "Family", "Family Details", "FAS Details", "FI Allocation Grid", "Finance Details", "Financial Details", "Financial Details > Income Details", "Financial Details >> Agriculture Expense", "Financial Details >> Agriculture Income", "Financial Details >> Asset Details", "Financial Details >> Balance Sheet", "Financial Details >> Crop Income", "Financial Details >> Deductions", "Financial Details >> Expenditure Details", "Financial Details >> Expense Details", "Financial Details >> File Upload and Preview", "Financial Details >> Funds Flow", "Financial Details >> Income Details", "Financial Details >> Income Statement", "Financial Details >> Lease Land Details", "Financial Details >> Liability Details", "Financial Details >> Other Income Details", "Financial Details >> Previous", "Financial Details >> Previous Files", "Financial Details >> Ratio Analysis", "Financial Details >> Statement of Cash Flow", "Financial Details >>Expense Details", "Future Limit Details", "Generate Application Summary", "Gold Details", "Gold Valuation", "Group Details", "Group Information", "GST Details", "Identification", "Identification >> Identification", "Identification >> Identification No*, Issue Date,", "Identification >> Identification Type*", "Identification Details", "Identification Type row", "Identification Type, Identification", "Incomplete Collateral Details Activity (ICD)", "Information >> Address", "Insta Cards Archived", "Instrument Details", "Insurance Company*", "Insurance Details", "Internal Deviation", "Know Your Customer (KYC)", "KYC Check", "KYC Checklist", "KYC Details", "LAN Linking Details", "Land Address", "Land Holding Details", "Lead Details", "Lease Details", "Lessor Details", "Lien Details", "Limit Details", "Link VAP", "Loan Details", "Loan Details >> Course Details", "Loan Details >> Property Details", "Loan Information", "Loan Information section (Editable)", "Lodgement Scrip Details", "Lodgement Security Details", "Maintenance and External Maintenance VAP Types", "Maker stage through Deviation Approval Sheet", "Mandate Cancellation Details", "Market Information details", "Member Approval Decision List", "Member Information", "MICR Code, Bank, Bank Branch and Banking Location", "Miscellaneous Information", "More Actions on Application", "Mudra Loan", "Multiple Asset Details", "Multiple Loans pop", "Name*, Account", "Need Analysis", "Number* and Fund Transfer Reference Number*", "Number*, Account", "Offline KYC", "Omni Product Details", "Only Additional Address, Office", "Ornament Details", "Partners & Directors Details", "Payee Details", "Penalty Details", "Personal Details", "Personal Discussion", "Personal Information", "Personal Information >>", "Personal Information >> Address", "Personal Information >> Communication Details", "Personal Information >> Education", "Personal Information >> Family", "Personal Information >> Identification", "Phone Number (Mobile/ Landline), Identification Type, Id", "Policy Referral/Execution", "Post Approval Activity", "Pricing Details", "Property Address section in Property Details", "Property Details", "Property Details >> CERSAI tab>> Security Interest Details", "Property Details >> Investigation Details", "Property Details >> Investigation Details tab >> Valuation", "Property Details >> Investigation Details tab >> Verification", "Property Details tab >> Builder Details", "Property Details tab >> CERSAI", "Property Details tab >> Insurance", "Property Details tab >> Other Details", "Property Details tab >> Ownership Details", "Property Details tab >> Property & Registration Details", "Property Details tab >> Property Address", "Property Details tab >> Seller Details", "Property Details tab >> Subvention Details", "Property Details tab >> Summary", "Property Details tab >> Summary Details", "Property Valuation", "Property Verification", "Raise Query", "RCU Initiation", "RCU Referral", "RCU Verification", "Re- Validate Account", "Reassign Query", "Receipt Details", "Receipt Details >> Instrument Details", "Receipt Details >> Instrument Details For Previously", "Receipt Details >> Instrument Details For Previously Collected Receivables", "Receipt Details >> Receivables To Be Collected", "Recommendation (Credit Card)", "Recommendation (Loans)", "Recommendation stage", "References", "Renewal Approval", "Renewal Recommendation", "Repayment Instrument", "Repayment Instrument Details", "Repayment Parameters >> Insurance Details", "Repayment Schedule", "Response Query", "Sales Personal Discussion", "Sales Queue", "Sales Queue Disbursal", "Send To Card Management", "Send To Card Management System", "Shareholding Details", "Source Account Number*", "Source Branch, Assigned To, Product, Scheme/Card Type etc", "Sourcing Details", "Sourcing Details >> Omni Product Details", "Sourcing Details >> Promo Code Details", "Sourcing Details >> Subsidy", "Stock Details", "Subsequent Disbursal", "Summary Analysis", "TAN Report in a new", "Task Status and History", "Tentative Disbursal Schedule Details", "Tentative Disbursal Schedule Entry", "Tentative Tranche Disbursal Schedule", "Tentative Tranche History", "Tranche Approval", "Tranche Approval Decision", "Tranche Details", "Tranche Initiation", "Tranche VAP Linking stage", "Transaction Report History", "Type is Used Asset", "Underwriter Decision tab >> Exposure Details", "Underwriter Decision tab >> Miscellaneous Information", "Valuation Completion", "VAP Details", "VAP details", "VAP Product*", "Video KYC", "Waive Off Other Valuations", "Workflow History Records"]
+
+[screens.aliases]
+"Applicant Info" = "Applicant Information"
+"Application Grid" = "Applications Grid"
+"Bank/Credit Card Details" = "Bank Details"
+"CAM" = "CAM Report"
+"Docs" = "Documents"
+"Document" = "Documents"
+"Employment/ Finance Details" = "Employment Details"
+"Employment/Finance Details" = "Employment Details"
+"FI Allocation" = "FI Allocation Grid"
+"MTNS" = "Move To Next Stage"
+"Ratio Analysis" = "Financial Details >> Ratio Analysis"
+"Ration Analysis" = "Financial Details >> Ratio Analysis"
+
+[[stage]]
+id = "leads"
+name = "Leads"
+aliases = []
+page_start = 4
+page_end = 8
+applicability_hints = ["Credit Card", "Finance Product"]
+screens = []
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "proposals"
+name = "Proposals"
+aliases = []
+page_start = 8
+page_end = 26
+applicability_hints = ["Consumer Durable Finance"]
+screens = ["VAP Details", "Bank/Credit Card Details", "Details Mapping master", "Sourcing Details", "Asset Details", "Loan Details", "Finance Details", "Applicant Details", "Phone Number (Mobile/ Landline), Identification Type, Id", "Personal Details", "Family Details", "Communication Details", "Identification Details", "Identification", "Adhaar Identification Type. In case of", "Identification Type row", "Education Details", "Video KYC", "Employment/Finance Details", "Employment/ Finance Details", "Employment Details >> Income", "Employment Details >> Assets", "Employment Details >> Liabilities", "Bank/Credit Card Details >> Bank Details", "Bank/Credit Card Details >> Card Details", "References", "Documents", "Curing"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "lead_conversion_stage"
+name = "Lead Conversion Stage"
+aliases = []
+page_start = 26
+page_end = 40
+applicability_hints = ["All Product Types", "Finance Product"]
+screens = ["Sourcing Details", "Documents", "Customer Communication History", "Personal Information", "More Actions on Application"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "lead_details"
+name = "Lead Details"
+aliases = []
+page_start = 40
+page_end = 173
+applicability_hints = ["FAS"]
+screens = ["Financial Details", "Sourcing Details", "Identification", "Financial Details >> Other Income Details", "Financial Details >> Liability Details", "Lien Details", "Workflow History Records", "Personal Information", "Communication Details", "Employment Details", "Financial Details >> File Upload and Preview", "Land Address", "Bank/Credit Card Details", "Bank/Credit Card Details >> Bank Details", "Customer Details child", "Customer Details", "Creditor/Debtor Details", "Bank Details", "Loan Details", "Type is Used Asset", "Asset Details >> Vehicle Details", "Asset Details >> Invoice Details", "Asset Details >> Address Details", "Asset Details >> Summary", "CERSAI tab>> Security Interest Details", "Maintenance and External Maintenance VAP Types", "Collateral Sub Type is Plot + Self", "Receipt Details", "Collateral Details", "Collateral Details tab >> Other Details", "Summary Analysis", "Transaction Report History", "Lead Details", "Repayment Instrument", "Need Analysis", "Applicant Information", "Identification Type row", "Only Additional Address, Office", "Family", "Family Details", "Education", "Information >> Address", "Financial Details >> Income Statement", "Financial Details >> Balance Sheet", "Financial Details >> Funds Flow", "Financial Details >> Statement of Cash Flow", "Financial Details >> Ratio Analysis", "Financial Details >> Previous Files", "Financial Details >> Income Details", "Financial Details >> Agriculture Income", "Financial Details >> Crop Income", "Financial Details >>Expense Details", "Financial Details >> Deductions", "Financial Details >> Expense Details", "Financial Details >> Agriculture Expense", "Financial Details >> Asset Details", "Financial Details >> Lease Land Details", "Lessor Details", "Re- Validate Account", "Bank/Credit Card Details >> Card Details", "KYC Details", "Customer Details >> Identification", "Customer Details >> Organization Address", "Customer Details >> Electricity Bill Authentication Info", "Contact Person & Key Employee Details", "Partners & Directors Details", "Identification Details", "Business Details", "Market Information details", "Financial Details >> Previous", "Communication Details >> Additional Communication Details", "Communication Details >> Communication Preferences", "Shareholding Details", "Offline KYC", "Commercial Vehicle Loan Product Type. It is", "Sourcing Details >> Subsidy", "Sourcing Details >> Omni Product Details", "Credit Card Details", "Sourcing Details >> Promo Code Details", "LAN Linking Details"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "login_acceptance"
+name = "Login Acceptance"
+aliases = []
+page_start = 174
+page_end = 176
+applicability_hints = ["Any Finance Product Type", "Credit Card", "Finance Product"]
+screens = []
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "sales_queue"
+name = "Sales Queue"
+aliases = []
+page_start = 177
+page_end = 179
+applicability_hints = []
+screens = ["Sales Queue"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "credit_card_data_entry_ccde"
+name = "Credit Card Data Entry (CCDE)"
+aliases = ["CCDE", "Credit Card Data Entry"]
+page_start = 179
+page_end = 225
+applicability_hints = ["Credit Card"]
+screens = ["Sourcing Details", "Personal Information", "Financial Details", "Card Details", "Collateral Details tab >> Other Details", "Applicant Information", "Employment Details", "Financial Details >> File Upload and Preview", "Financial Details >> Liability Details", "Bank/Credit Card Details", "Identification >> Identification", "Identification", "Bank Details", "Embossing Details", "Pricing Details", "Documents", "Video KYC", "Credit Card Data Entry (CCDE)", "Commercial Card Details", "Collateral Details", "Asset Details >> Vehicle Details", "Asset Details >> Address Details", "Asset Details >> Invoice Details", "Collateral Details tab >> Builder Details", "Collateral Details tab >> Property Address", "Collateral Details tab >> Seller Details", "Collateral Details tab >> Property & Registration Details", "Collateral Details tab >> Ownership Details", "Collateral Details tab >> Address Details", "Collateral Details tab >> Lien Details", "Collateral Details tab >> Insurance", "Collateral Details tab >> CERSAI", "Collateral Details >> Investigation Details", "Collateral Details >> Investigation Details tab >> Verification", "Collateral Details >> Investigation Details tab >> Valuation", "Applicant information", "Need Analysis", "Personal Information >> Identification", "Personal Information >> Address", "Personal Information >> Communication Details", "Personal Information >> Family", "Personal Information >> Education", ">> Address section", "Financial Details > Income Details", "Financial Details >> Income Details", "Financial Details >> Expenditure Details", "Financial Details >> Asset Details", "Bank/Credit Card Details >> Bank Details", "Account Balance and Inward", "Bank/Credit Card Details >> Card Details", "Customer Details", "Customer Details >> Identification", "Customer Details >> Organization Address", "Contact Persons details", "Identification Type, Identification", "Partners & Directors Details", "Business Details", "Market Information details", "Financial Details >> Previous", "Financial Details >> Other Income Details", "Communication Details", "Customer Details child", "Communication Details >> Additional Communication Details", "Communication Details >> Communication Preferences", "References", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "know_your_customer_kyc"
+name = "Know Your Customer (KYC)"
+aliases = ["KYC", "Know Your Customer"]
+page_start = 225
+page_end = 269
+applicability_hints = ["Credit Card", "FAS", "JLG", "SHG"]
+screens = ["Financial Details", "Identification", "Financial Details >> Liability Details", "Communication Details", "Employment Details", "Financial Details >> File Upload and Preview", "Financial Details >> Other Income Details", "Land Address", "Bank/Credit Card Details", "Identification >> Identification", "Bank Details", "Know Your Customer (KYC)", "Personal Information", "Applicant Information", "Family", "Education", "Financial Details >> Income Statement", "Financial Details >> Balance Sheet", "Financial Details >> Funds Flow", "Financial Details >> Statement of Cash Flow", "Financial Details >> Ratio Analysis", "Financial Details >> Previous Files", "Financial Details >> Income Details", "Financial Details >> Agriculture Income", "Financial Details >> Crop Income", "Financial Details >>Expense Details", "Financial Details >> Deductions", "Financial Details >> Agriculture Expense", "Financial Details >> Asset Details", "Financial Details >> Lease Land Details", "Lessor Details", "Bank/Credit Card Details >> Bank Details", "Account Balance and Inward", "Bank/Credit Card Details >> Card Details", "Customer Details", "Customer Details >> Identification", "Customer Details >> Organization Address", "Contact Persons details", "Identification Type, Identification", "Partners & Directors Details", "Business Details", "Market Information details", "Financial Details >> Previous", "Customer Details child", "Communication Details >> Additional Communication Details", "Communication Details >> Communication Preferences", "Documents", "Dedupe Summary", "KYC Checklist", "TAN Report in a new", "Video KYC", "More Actions on Application", "References", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "credit_bureau_referral_activity"
+name = "Credit Bureau Referral Activity"
+aliases = []
+page_start = 269
+page_end = 275
+applicability_hints = []
+screens = ["Applicant accordion", "Enquiry(s) Summary", "Credit Bureau Referral Activity", "Consumer Information", "Account(s) Summary", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "detailed_data_entry_dde"
+name = "Detailed Data Entry (DDE)"
+aliases = ["DDE", "Detailed Data Entry"]
+page_start = 276
+page_end = 372
+applicability_hints = ["Commercial Vehicle", "Consumer Vehicle", "FAS", "Home Loan"]
+screens = ["Sourcing Details", "Loan Details", "Asset Details >> Vehicle Details", "Asset Details >> Invoice Details", "Asset Details >> Address Details", "Asset Details >> Summary", "VAP Details", "External Maintenance VAP Types", "Deal Limit Details", "Facility Details", "Documents", "Collateral Details", "Collateral Details tab >> Other Details", "Summary Analysis", "Mudra Loan", "Card Details", "Commercial Vehicle Loan Product Type. It is", "Sourcing Details >> Subsidy", "Sourcing Details >> Omni Product Details", "Sourcing Details >> Promo Code Details", "LAN Linking Details", "Depository Participant Details", "Asset Details", "Asset Details >> Body Details", "Asset Details >> RC Authentication Details", "Asset Details >> Accessories Details", "Asset Details >> Other Components To Be Funded", "Asset Details >> Insurance Details", "Insurance Company*", "Asset Details >> Nominee Details Grid", "Asset Details >> Investigation Details", "Asset Details >> Investigation Details tab >> Verification", "Asset Details >> Investigation Details tab >> Valuation", "Asset Requested Details", "Body Funding Details", "Asset Details >> Collateral Details", "Asset Details >> Consolidated Summary", "Loan Details >> Property Details", "Property Details tab >> Builder Details", "Property Details tab >> Other Details", "Property Details tab >> Property Address", "Property Details tab >> Seller Details", "Property Details tab >> Property & Registration Details", "Property Details tab >> Ownership Details", "Property Details tab >> Subvention Details", "Property Details tab >> Summary Details", "Property Details tab >> Insurance", "Property Details tab >> CERSAI", "Agreement Details section of Property Details", "Property Address section in Property Details", "Property Details >> CERSAI tab>> Security Interest Details", "Property Details >> Investigation Details", "Property Details >> Investigation Details tab >> Verification", "Property Details >> Investigation Details tab >> Valuation", "Loan Details >> Course Details", "Course Details tab >> Address", "Course Details tab >> Bank Account", "Course Details tab >> Component Wise Fee Structure", "Course Details tab >> Employment Potential Post Course Completion", "Course Details tab >> Education Histories", "Course Details tab >> Tentative Disbursal schedule Entry", "Course Details tab >> Summary", "Repayment Parameters >> Insurance Details", "Insurance Details", "Multiple Asset Details", "FAS Details", "Lease Details", "Receipt Details", "Receipt Details >> Receivables To Be Collected", "Receipt Details >> Instrument Details", "Dedupe Summary", "KYC Checklist", "Collateral Details tab >> Builder Details", "Collateral Details tab >> Property Address", "Collateral Details tab >> Seller Details", "Collateral Details tab >> Property & Registration Details", "Collateral Details tab >> Ownership Details", "Collateral Details tab >> Address Details", "Collateral Details tab >> Lien Details", "Collateral Details tab >> Insurance"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "ddeqc"
+name = "DDEQC"
+aliases = []
+page_start = 372
+page_end = 381
+applicability_hints = ["FAS"]
+screens = ["Documents", "Bank Parameters", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "gold_valuation"
+name = "Gold Valuation"
+aliases = []
+page_start = 381
+page_end = 384
+applicability_hints = ["FAS"]
+screens = ["Gold Valuation", "Ornament Details", "Waive Off Other Valuations"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "pre_sanction_visit_psv"
+name = "Pre Sanction Visit (PSV)"
+aliases = ["PSV", "Pre Sanction Visit"]
+page_start = 385
+page_end = 388
+applicability_hints = ["SHG"]
+screens = ["Sales Personal Discussion", "Personal Discussion", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "account_updation"
+name = "Account Updation"
+aliases = []
+page_start = 388
+page_end = 392
+applicability_hints = ["SHG"]
+screens = ["Account Updation", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "policy_referral_execution"
+name = "Policy Referral/Execution"
+aliases = []
+page_start = 392
+page_end = 396
+applicability_hints = []
+screens = ["Policy Referral/Execution", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "collateral_investigation_initiation_cii"
+name = "Collateral Investigation Initiation (CII)"
+aliases = ["CII", "Collateral Investigation Initiation"]
+page_start = 396
+page_end = 398
+applicability_hints = []
+screens = ["Collateral Investigation Initiation (CII)", "Administrator >>Collateral Type Dynamic Form Mapping"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "collateral_investigation_verification"
+name = "Collateral Investigation Verification"
+aliases = []
+page_start = 398
+page_end = 402
+applicability_hints = ["Commercial Vehicle", "Consumer Vehicle"]
+screens = ["Collateral Investigation Verification", "Property Verification", "Property Valuation", "Commercial/Consumer Vehicle Valuation", "Collateral Verification/Valuation"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "valuation_completion"
+name = "Valuation Completion"
+aliases = []
+page_start = 402
+page_end = 404
+applicability_hints = []
+screens = ["Valuation Completion"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "collateral_investigation_completion_cic"
+name = "Collateral Investigation Completion (CIC)"
+aliases = ["CIC", "Collateral Investigation Completion"]
+page_start = 404
+page_end = 405
+applicability_hints = []
+screens = ["Raise Query", "Collateral Investigation Completion (CIC)", "Collateral Verification Completion", "Collateral Valuation Completion"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "field_investigation_initiation_fii"
+name = "Field Investigation Initiation (FII)"
+aliases = ["FII", "Field Investigation Initiation"]
+page_start = 406
+page_end = 411
+applicability_hints = []
+screens = ["More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "fi_allocation_grid"
+name = "FI Allocation Grid"
+aliases = []
+page_start = 411
+page_end = 412
+applicability_hints = []
+screens = ["FI Allocation Grid", "Source Branch, Assigned To, Product, Scheme/Card Type etc"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "agent_field_investigation_verification"
+name = "Agent Field Investigation Verification"
+aliases = []
+page_start = 412
+page_end = 413
+applicability_hints = []
+screens = []
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "field_investigation_verification_fiv"
+name = "Field Investigation Verification (FIV)"
+aliases = ["FIV", "Field Investigation Verification"]
+page_start = 413
+page_end = 415
+applicability_hints = []
+screens = []
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "field_investigation_completion_fic"
+name = "Field Investigation Completion (FIC)"
+aliases = ["FIC", "Field Investigation Completion"]
+page_start = 415
+page_end = 419
+applicability_hints = []
+screens = ["More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "recommendation_loans"
+name = "Recommendation (Loans)"
+aliases = []
+page_start = 419
+page_end = 431
+applicability_hints = []
+screens = ["Recommendation (Loans)", "Loan Information", "Applicant Information", "Exposure Details", "Underwriter Decision tab >> Miscellaneous Information", "Decision/Forward History", "Approval Checklist", "Approve Deviations", "Eligibility Policy Setup", "Member Approval Decision List", "Eligibility Policy", "Decision Details", "Decision Details section >> Special Conditions sub", "Decision Details section >> Future Limit Decision", "Course Details tab >> Tentative Disbursal", "Group Information", "Member Information", "Mudra Loan", "Repayment Schedule", "Applicants grid", "Bank/Credit Card Details >> Bank Details", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "recommendation_credit_card"
+name = "Recommendation (Credit Card)"
+aliases = []
+page_start = 431
+page_end = 435
+applicability_hints = ["Credit Card"]
+screens = ["Recommendation (Credit Card)", "Applicant Information", "More Actions on Application", "Communication History"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "credit_approval_loans"
+name = "Credit Approval (Loans)"
+aliases = []
+page_start = 435
+page_end = 468
+applicability_hints = ["All Product Types", "Consumer Durable Finance"]
+screens = ["Deal Limit Details", "Deals & Facility Details", "Facility Details", "Credit Approval (Loans)", "Application Details", "Deal Details", "Details tab", "Applicant's Profile", "Credit Bureau", "Bank/Credit Card Details", "Lodgement Security Details", "Lodgement Scrip Details", "Group Details", "Course Details", "Course Details tab >> Address", "Course Details tab >> Bank Account", "Course Details tab >> Component Wise Fee", "Course Details tab >> Employment Potential Post", "Course Details tab >> Education Histories", "Course Details tab >> Tentative Disbursal", "Course Details tab >> Summary", "Property Details", "Gold Details", "Asset Details", "Collateral Details", "BSA Details", "Stock Details", "Bill Details", "Documents Details", "Cattle Details", "Land Holding Details", "Deviation Details", "Asset Approval Decision List", "Miscellaneous Information", "Decision History", "Limit Details", "Documents", "Personal Discussion", "Group Information", "Member Information", "Mudra Loan", "Repayment Schedule", "Applicants grid", "Bank/Credit Card Details >> Bank Details", "Penalty Details", "Charge Details", "Covenant History", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "credit_approval_consumer_finance"
+name = "Credit Approval (Consumer Finance)"
+aliases = []
+page_start = 468
+page_end = 472
+applicability_hints = []
+screens = ["Credit Approval (Consumer Finance)", "Decision Details", "Personal Discussion", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "credit_approval_credit_card"
+name = "Credit Approval (Credit Card)"
+aliases = []
+page_start = 472
+page_end = 480
+applicability_hints = ["Credit Card"]
+screens = ["Credit Approval (Credit Card)", "Applicant Details", "Applicant's Profile", "Credit Bureau", "Bank/Credit Card Details", "Credit Card Details", "Documents Details", "Deviation Details", "Decision History", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "asset_validation_stage"
+name = "Asset Validation Stage"
+aliases = []
+page_start = 480
+page_end = 485
+applicability_hints = ["FAS"]
+screens = ["Asset Validation Stage", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "incomplete_collateral_details_activity_icd"
+name = "Incomplete Collateral Details Activity (ICD)"
+aliases = ["ICD", "Incomplete Collateral Details"]
+page_start = 485
+page_end = 495
+applicability_hints = ["Personal Loan"]
+screens = ["Documents", "Incomplete Collateral Details Activity (ICD)", "Collateral Details Activity stage", "Loan Details >> Property Details", "Property Details tab >> Builder Details", "Property Details tab >> Other Details", "Property Details tab >> Property Address", "Property Details tab >> Seller Details", "Property Details tab >> Property & Registration Details", "Property Details tab >> Ownership Details", "Property Details tab >> Summary", "Property Details tab >> Insurance", "Property Details tab >> CERSAI", "Property Details >> Investigation Details", "Property Details >> Investigation Details tab >> Verification", "Property Details >> Investigation Details tab >> Valuation", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "reconsideration"
+name = "Reconsideration"
+aliases = []
+page_start = 495
+page_end = 506
+applicability_hints = []
+screens = ["Group Information", "Loan Information section (Editable)", "Applicant Information section (Editable)", "Underwriter Decision tab >> Exposure Details", "Underwriter Decision tab >> Miscellaneous Information", "Decision/Forward History section (Read-Only)", "Approval Checklist section (Editable)", "Eligibility Policy", "Decision Details", "Future Limit Details", "Customer Communication History", "Tentative Disbursal Schedule Entry", "Member Information", "Mudra Loan", "Repayment Schedule", "Applicants grid", "Bank/Credit Card Details >> Bank Details", "Finance Details", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "operations_check"
+name = "Operations Check"
+aliases = []
+page_start = 506
+page_end = 510
+applicability_hints = ["Credit Card"]
+screens = ["Applicable only for Credit Card Product Type", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "post_approval_activity"
+name = "Post Approval Activity"
+aliases = []
+page_start = 510
+page_end = 550
+applicability_hints = ["Finance Product", "Gold Loan"]
+screens = ["VAP Details", "Asset Details", "Sourcing Details", "External Maintenance VAP Types", "Post Approval Activity", "Finance Details", "Repayment Parameters >> Insurance Details", "Insurance Details", "FAS Details", "Receipt Details", "Receipt Details >> Receivables To Be Collected", "Receipt Details >> Instrument Details For Previously Collected Receivables", "MICR Code, Bank, Bank Branch and Banking Location", "Source Account Number*", "Number* and Fund Transfer Reference Number*", "Property Details", "Asset Details accordion", "Asset Details >>Asset Details", "Asset Details >> Invoice Details", "Asset Details >> Vehicle Details", "Asset Details >> Lien Details", "Asset Details >> Insurance", "Asset Details >> Investigation", "Asset Details >> Investigation >> Verification", "Asset Details >> Investigation >> Valuation", "Asset Requested Details", "Asset Details >> Summary", "Asset Details >> Collateral Details", "Asset Details >> Consolidated Summary", "VAP details", "Collateral tab >> Collateral Details", "Collateral Details tab >> Builder Details", "Collateral Details tab >> Other Details", "Collateral Details tab >> Property Address", "Collateral Details tab >> Seller Details", "Collateral Details tab >> Property & Registration Details", "Collateral Details tab >> Ownership Details", "Collateral Details tab >> Lien Details", "Collateral Details tab >> Insurance", "Collateral Details tab >> CERSAI", "Collateral Details >> Investigation Details", "Collateral Details >> Investigation Details tab >> Verification", "Collateral Details >> Investigation Details tab >> Valuation", "Documents", "GST Details", "Repayment Instrument Details", "Multiple Loans pop", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "facility_initiation"
+name = "Facility Initiation"
+aliases = []
+page_start = 550
+page_end = 557
+applicability_hints = []
+screens = ["Facility Initiation", "Deal Limit Details", "Facility Limit Details", "Facility Details", "Documents", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "fde"
+name = "FDE"
+aliases = []
+page_start = 557
+page_end = 563
+applicability_hints = []
+screens = ["Deal Limit Details", "Facility Details", "Documents", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "tranche_initiation"
+name = "Tranche Initiation"
+aliases = []
+page_start = 563
+page_end = 590
+applicability_hints = []
+screens = ["Tranche Details", "Credit Card Product Type", "Tentative Tranche Disbursal Schedule", "Tentative Tranche History", "Sourcing Details", "VAP Details", "Insurance Details", "Tranche Initiation", "Applicant Information", "Finance Details", "Commercial Vehicle Loan Product Type. It is", "Sourcing Details >> Subsidy", "Omni Product Details", "Sourcing Details >> Promo Code Details", "LAN Linking Details", "Details section", "Repayment Parameters >> Insurance Details", "FAS Details", "Documents", "Asset Details", "Lien Details", "CERSAI Details", "Receipt Details >> Receivables To Be Collected", "Receipt Details >> Instrument Details For Previously", "Stock Details", "VAP Product*"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "tranche_approval"
+name = "Tranche Approval"
+aliases = []
+page_start = 590
+page_end = 602
+applicability_hints = ["Credit Card", "JLG", "SHG"]
+screens = ["Tranche Approval", "Application Details", "Applicant's Profile", "Credit Bureau", "Group Details", "Course Details", "Course Details tab >> Address", "Course Details tab >> Bank Account", "Course Details tab >> Component Wise Fee", "Course Details tab >> Employment Potential Post", "Course Details tab >> Education Histories", "Course Details tab >> Tentative Disbursal", "Course Details tab >> Summary", "Property Details", "Asset Details", "Collateral Details", "Documents Details", "Deviation Details", "Asset Approval Decision List", "Miscellaneous Information", "Decision History", "Tranche Approval Decision", "Tranche Details"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "curing"
+name = "Curing"
+aliases = []
+page_start = 602
+page_end = 647
+applicability_hints = []
+screens = ["Personal Information >>", "Financial Details", "VAP Details", "Instrument Details", "Account Type*", "Personal Information", "Employment Details", "Financial Details >> File Upload and Preview", "Financial Details >> Other Income Details", "Financial Details >> Liability Details", "Bank/Credit Card Details", "Bank Details", "Sourcing Details", "Asset Details", "External Maintenance VAP Types", "Number*, Account", "Name*, Account", "Documents", "References", "Curing", "Applicant information", "Personal Information >> Identification", "Personal Information >> Address", "Personal Information >> Communication Details", "Personal Information >> Family", "Personal Information >> Education", "Financial Details >> Income Details", "Financial Details >> Deductions", "Financial Details >> Asset Details", "Bank/Credit Card Details >> Bank Details", "Average Account Balance and Inward", "Bank/Credit Card Details >> Card Details", "Customer Details", "Customer Details >> Identification", "Identification >> Identification Type*", "Identification >> Identification No*, Issue Date,", "Customer Details >> Organization Address", "Contact Persons details", "Partners & Directors Details", "Business Details", "Market Information details", "Financial Details >> Previous", "Communication Details", "Customer Details child", "Communication Details >> Additional Communication Details", "Communication Details >> Communication Preferences", "Finance Details", "Sourcing Details >> Subsidy", "Sourcing Details >> Omni Product Details", "Sourcing Details >> Promo Code Details", "LAN Linking Details", "Depository Participant Details", "Repayment Parameters >> Insurance Details", "Insurance Details", "FAS Details", "Receipt Details >> Receivables To Be Collected", "Receipt Details >> Instrument Details For Previously Collected Receivables", "MICR Code, Bank, Bank Branch and Banking Location", "Receipt Details", "Source Account Number*", "Number* and Fund Transfer Reference Number*", "Asset Details >> Invoice Details", "Asset Details >> Vehicle Details", "Asset Requested Details", "Asset Details >> Summary", "Asset Details >> Collateral Details", "Asset Details >> Consolidated Summary", "Branch*, Banking", "Bank, Bank Branch and Banking Location fields", "Drawee Details", "Drawee Account Name*,", "KYC Check", "Application Type, Identification No., Application Status, Overdue Amount,", "More Actions on Application"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "application_tranche_vap_linking"
+name = "Application Tranche VAP Linking"
+aliases = []
+page_start = 647
+page_end = 651
+applicability_hints = []
+screens = ["Application Tranche VAP Linking", "Applicable Only for Multi-Assets Finance with VAP Product", "Tranche VAP Linking stage", "Applicant information", "Link VAP", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "rcu_initiation"
+name = "RCU Initiation"
+aliases = []
+page_start = 651
+page_end = 655
+applicability_hints = ["All Product Types"]
+screens = ["RCU Initiation", "Documents"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "rcu_verification"
+name = "RCU Verification"
+aliases = []
+page_start = 655
+page_end = 656
+applicability_hints = ["All Product Types"]
+screens = ["RCU Verification"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "rcu_referral"
+name = "RCU Referral"
+aliases = []
+page_start = 656
+page_end = 657
+applicability_hints = ["All Product Types"]
+screens = ["RCU Referral"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "disbursal_initiation"
+name = "Disbursal Initiation"
+aliases = []
+page_start = 657
+page_end = 715
+applicability_hints = ["All Product Types", "Home Loan"]
+screens = ["Disbursal Details", "Collateral Details", "VAP Details", "Account Type*", "Repayment Schedule", "Application Details", "Limit Details", "Asset Details >> Vehicle Details", "Asset Details >> Invoice Details", "Collateral Details tab >> Other Details", "Asset Details", "Asset Requested Details", "Account Name*", "Balance Transfer Details", "Customer Details", "Break Up Details", "Disbursal Initiation", "Tentative Disbursal Schedule Details", "Application Tranches", "Disbursal Checklist", "Approval Sheet", "Generate Application Summary", "Disbursal Entry", "Disbursal Date*", "Disbursal Amount*", "Payee Details", "Disbursal Summary", "Asset Details >> Address Details", "Collateral Details tab >> Builder Details", "Collateral Details tab >> Property Address", "Collateral Details tab >> Seller Details", "Collateral Details tab >> Property & Registration Details", "Collateral Details tab >> Ownership Details", "Collateral Details tab >> Address Details", "Collateral Details tab >> Lien Details", "Collateral Details tab >> Insurance", "Collateral Details tab >> CERSAI", "Collateral Details >> Investigation Details", "Collateral Details >> Investigation Details tab >> Verification", "Collateral Details >> Investigation Details tab >> Valuation", "Attachments Details section.)", "Asset Details >> Summary", "Asset Details >> Collateral Details", "Asset Details >> Consolidated Summary", "Receipt Details >> Receivables To Be Collected", "Receipt Details >> Instrument Details For Previously", "Repayment Parameters >> Insurance Details", "Insurance Details", "FAS Details", "Documents", "Repayment Instrument Details", "Repayment Instrument", "Mandate Cancellation Details", "Account Number*", "Account Number*, Repayment", "Code*, Bar Code, Banking", "Branch*, Banking Location*,", "Drawee Account Name*,", "Link VAP", "Property Details", "Group Information", "Member Information", "Mudra Loan", "Applicants grid", "Bank Details", "Approve Deviations tab >> Assigned To Me child", "Approve Deviations tab >>All Deviations child", "Approve Deviations tab >> Pending Deviations child", "Applicant Details", "Communication Details", "Communication History", "Tranche Details", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "disbursal_author"
+name = "Disbursal Author"
+aliases = []
+page_start = 715
+page_end = 721
+applicability_hints = ["Credit Card", "JLG", "SHG"]
+screens = ["Disbursal Author", "Repayment Schedule", "Application Details", "Tentative Disbursal Schedule Details", "Application Tranches", "Disbursal Details", "Disbursal Entry", "Disbursal Date*", "Disbursal Amount*", "Payee Details", "Disbursal Summary"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "subsequent_disbursal"
+name = "Subsequent Disbursal"
+aliases = []
+page_start = 721
+page_end = 724
+applicability_hints = []
+screens = ["Subsequent Disbursal", "Amount, First Disbursal Date and Finance Account No", "Disbursal Details >> Disbursal Schedule", "Disbursal Details >> Disbursal Schedule section >> Disbursal Payee Details sub"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "dcc_scheduling"
+name = "DCC Scheduling"
+aliases = []
+page_start = 724
+page_end = 727
+applicability_hints = ["FAS", "JLG", "SHG", "SHG/JLG"]
+screens = ["DCC Scheduling", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "dcc_execution"
+name = "DCC Execution"
+aliases = []
+page_start = 727
+page_end = 730
+applicability_hints = ["FAS", "JLG", "SHG", "SHG/JLG"]
+screens = ["DCC Execution", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "sales_queue_disbursal"
+name = "Sales Queue Disbursal"
+aliases = []
+page_start = 731
+page_end = 751
+applicability_hints = ["FAS", "Finance Product"]
+screens = ["Disbursal Details", "Documents", "Sales Queue Disbursal", "Disbursal stage", "Application Details", "Tentative Disbursal Schedule Details", "Application Tranches", "Disbursal Checklist", "Approval Sheet", "Generate Application Summary", "Disbursal Entry", "Disbursal Date*", "Disbursal Amount*", "Payee Details", "Disbursal Summary", "VAP Details", "Repayment Parameters >> Insurance Details", "Insurance Details", "FAS Details", "Communication History", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "send_to_card_management_system"
+name = "Send To Card Management System"
+aliases = []
+page_start = 751
+page_end = 752
+applicability_hints = ["Credit Card"]
+screens = ["Send To Card Management System", "Applicable only for Credit Card Product Type", "Send To Card Management", "Card Management System gets stored in the Archived", "Insta Cards Archived"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "raise_query"
+name = "Raise Query"
+aliases = []
+page_start = 752
+page_end = 754
+applicability_hints = []
+screens = ["Raise Query", "Documents"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "response_query"
+name = "Response Query"
+aliases = []
+page_start = 754
+page_end = 754
+applicability_hints = []
+screens = ["Response Query"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "unquery"
+name = "Unquery"
+aliases = []
+page_start = 754
+page_end = 755
+applicability_hints = []
+screens = []
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "reassign_query"
+name = "Reassign Query"
+aliases = []
+page_start = 755
+page_end = 756
+applicability_hints = []
+screens = ["Reassign Query"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "deviation_approval_sheet"
+name = "Deviation Approval Sheet"
+aliases = []
+page_start = 756
+page_end = 757
+applicability_hints = []
+screens = ["Deviation Approval Sheet", "Maker stage through Deviation Approval Sheet", "Approval Sheet", "External Deviation", "Internal Deviation", "Task Status and History"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "renewal_recommendation"
+name = "Renewal Recommendation"
+aliases = []
+page_start = 757
+page_end = 762
+applicability_hints = ["Finance Product"]
+screens = ["Renewal Recommendation", "Recommendation stage", "Loan Information", "Applicant Information", "Exposure Details", "Underwriter Decision tab >> Miscellaneous Information", "Decision/Forward History", "Approval Checklist", "Approve Deviations", "Eligibility Policy Setup", "Eligibility Policy", "Decision Details", "Decision Details section >> Special Conditions sub", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[stage]]
+id = "renewal_approval"
+name = "Renewal Approval"
+aliases = []
+page_start = 762
+page_end = 766
+applicability_hints = ["Finance Product"]
+screens = ["Renewal Approval", "Loan Information", "Applicant Information", "Exposure Details", "Underwriter Decision tab >> Miscellaneous Information", "Decision/Forward History", "Approval Checklist", "Approve Deviations", "Eligibility Policy Setup", "Eligibility Policy", "Decision Details", "Decision Details section >> Special Conditions sub", "More Actions on Application", "Workflow History Records"]
+source = "online_help"
+confidence = "extracted_seed"
+configurable = true
+
+[[screen]]
+id = "address_section"
+name = ">> Address section"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_balance_and_inward"
+name = "Account Balance and Inward"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_name"
+name = "Account Name*"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_number"
+name = "Account Number*"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_number_repayment"
+name = "Account Number*, Repayment"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_type"
+name = "Account Type*"
+appears_in_stages = ["Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_updation"
+name = "Account Updation"
+appears_in_stages = ["Account Updation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "account_s_summary"
+name = "Account(s) Summary"
+appears_in_stages = ["Credit Bureau Referral Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "adhaar_identification_type_in_case_of"
+name = "Adhaar Identification Type. In case of"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "administrator_collateral_type_dynamic_form_mapping"
+name = "Administrator >>Collateral Type Dynamic Form Mapping"
+appears_in_stages = ["Collateral Investigation Initiation (CII)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "agreement_details_section_of_property_details"
+name = "Agreement Details section of Property Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "amount_first_disbursal_date_and_finance_account_no"
+name = "Amount, First Disbursal Date and Finance Account No"
+appears_in_stages = ["Subsequent Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicable_only_for_credit_card_product_type"
+name = "Applicable only for Credit Card Product Type"
+appears_in_stages = ["Operations Check", "Send To Card Management System"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicable_only_for_multi_assets_finance_with_vap_product"
+name = "Applicable Only for Multi-Assets Finance with VAP Product"
+appears_in_stages = ["Application Tranche VAP Linking"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_accordion"
+name = "Applicant accordion"
+appears_in_stages = ["Credit Bureau Referral Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_details"
+name = "Applicant Details"
+appears_in_stages = ["Proposals", "Credit Approval (Credit Card)", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_information"
+name = "Applicant Information"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Recommendation (Loans)", "Recommendation (Credit Card)", "Tranche Initiation", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_information"
+name = "Applicant information"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing", "Application Tranche VAP Linking"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_information_section_editable"
+name = "Applicant Information section (Editable)"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicant_s_profile"
+name = "Applicant's Profile"
+appears_in_stages = ["Credit Approval (Loans)", "Credit Approval (Credit Card)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "applicants_grid"
+name = "Applicants grid"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "application_details"
+name = "Application Details"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval", "Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "application_tranche_vap_linking"
+name = "Application Tranche VAP Linking"
+appears_in_stages = ["Application Tranche VAP Linking"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "application_tranches"
+name = "Application Tranches"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "application_type_identification_no_application_status_overdue_amount"
+name = "Application Type, Identification No., Application Status, Overdue Amount,"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approval_checklist"
+name = "Approval Checklist"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approval_checklist_section_editable"
+name = "Approval Checklist section (Editable)"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approval_sheet"
+name = "Approval Sheet"
+appears_in_stages = ["Disbursal Initiation", "Sales Queue Disbursal", "Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approve_deviations"
+name = "Approve Deviations"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approve_deviations_tab_assigned_to_me_child"
+name = "Approve Deviations tab >> Assigned To Me child"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approve_deviations_tab_pending_deviations_child"
+name = "Approve Deviations tab >> Pending Deviations child"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "approve_deviations_tab_all_deviations_child"
+name = "Approve Deviations tab >>All Deviations child"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_approval_decision_list"
+name = "Asset Approval Decision List"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details"
+name = "Asset Details"
+appears_in_stages = ["Proposals", "Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Post Approval Activity", "Tranche Initiation", "Tranche Approval", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_accessories_details"
+name = "Asset Details >> Accessories Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_address_details"
+name = "Asset Details >> Address Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_body_details"
+name = "Asset Details >> Body Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_collateral_details"
+name = "Asset Details >> Collateral Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_consolidated_summary"
+name = "Asset Details >> Consolidated Summary"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_insurance"
+name = "Asset Details >> Insurance"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_insurance_details"
+name = "Asset Details >> Insurance Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation"
+name = "Asset Details >> Investigation"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation_valuation"
+name = "Asset Details >> Investigation >> Valuation"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation_verification"
+name = "Asset Details >> Investigation >> Verification"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation_details"
+name = "Asset Details >> Investigation Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation_details_tab_valuation"
+name = "Asset Details >> Investigation Details tab >> Valuation"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_investigation_details_tab_verification"
+name = "Asset Details >> Investigation Details tab >> Verification"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_invoice_details"
+name = "Asset Details >> Invoice Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_lien_details"
+name = "Asset Details >> Lien Details"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_nominee_details_grid"
+name = "Asset Details >> Nominee Details Grid"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_other_components_to_be_funded"
+name = "Asset Details >> Other Components To Be Funded"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_rc_authentication_details"
+name = "Asset Details >> RC Authentication Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_summary"
+name = "Asset Details >> Summary"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_vehicle_details"
+name = "Asset Details >> Vehicle Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_asset_details"
+name = "Asset Details >>Asset Details"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_details_accordion"
+name = "Asset Details accordion"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_requested_details"
+name = "Asset Requested Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "asset_validation_stage"
+name = "Asset Validation Stage"
+appears_in_stages = ["Asset Validation Stage"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "attachments_details_section"
+name = "Attachments Details section.)"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "average_account_balance_and_inward"
+name = "Average Account Balance and Inward"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "balance_transfer_details"
+name = "Balance Transfer Details"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_details"
+name = "Bank Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_parameters"
+name = "Bank Parameters"
+appears_in_stages = ["DDEQC"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_bank_branch_and_banking_location_fields"
+name = "Bank, Bank Branch and Banking Location fields"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_credit_card_details"
+name = "Bank/Credit Card Details"
+appears_in_stages = ["Proposals", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Credit Approval (Loans)", "Credit Approval (Credit Card)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_credit_card_details_bank_details"
+name = "Bank/Credit Card Details >> Bank Details"
+appears_in_stages = ["Proposals", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bank_credit_card_details_card_details"
+name = "Bank/Credit Card Details >> Card Details"
+appears_in_stages = ["Proposals", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bill_details"
+name = "Bill Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "body_funding_details"
+name = "Body Funding Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "branch_banking"
+name = "Branch*, Banking"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "branch_banking_location"
+name = "Branch*, Banking Location*,"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "break_up_details"
+name = "Break Up Details"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "bsa_details"
+name = "BSA Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "business_details"
+name = "Business Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "card_details"
+name = "Card Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "card_management_system_gets_stored_in_the_archived"
+name = "Card Management System gets stored in the Archived"
+appears_in_stages = ["Send To Card Management System"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "cattle_details"
+name = "Cattle Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "cersai_details"
+name = "CERSAI Details"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "cersai_tab_security_interest_details"
+name = "CERSAI tab>> Security Interest Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "charge_details"
+name = "Charge Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "code_bar_code_banking"
+name = "Code*, Bar Code, Banking"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details"
+name = "Collateral Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Tranche Approval", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_investigation_details"
+name = "Collateral Details >> Investigation Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_investigation_details_tab_valuation"
+name = "Collateral Details >> Investigation Details tab >> Valuation"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_investigation_details_tab_verification"
+name = "Collateral Details >> Investigation Details tab >> Verification"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_activity_stage"
+name = "Collateral Details Activity stage"
+appears_in_stages = ["Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_address_details"
+name = "Collateral Details tab >> Address Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_builder_details"
+name = "Collateral Details tab >> Builder Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_cersai"
+name = "Collateral Details tab >> CERSAI"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_insurance"
+name = "Collateral Details tab >> Insurance"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_lien_details"
+name = "Collateral Details tab >> Lien Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_other_details"
+name = "Collateral Details tab >> Other Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_ownership_details"
+name = "Collateral Details tab >> Ownership Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_property_registration_details"
+name = "Collateral Details tab >> Property & Registration Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_property_address"
+name = "Collateral Details tab >> Property Address"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_details_tab_seller_details"
+name = "Collateral Details tab >> Seller Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_investigation_completion_cic"
+name = "Collateral Investigation Completion (CIC)"
+appears_in_stages = ["Collateral Investigation Completion (CIC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_investigation_initiation_cii"
+name = "Collateral Investigation Initiation (CII)"
+appears_in_stages = ["Collateral Investigation Initiation (CII)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_investigation_verification"
+name = "Collateral Investigation Verification"
+appears_in_stages = ["Collateral Investigation Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_sub_type_is_plot_self"
+name = "Collateral Sub Type is Plot + Self"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_tab_collateral_details"
+name = "Collateral tab >> Collateral Details"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_valuation_completion"
+name = "Collateral Valuation Completion"
+appears_in_stages = ["Collateral Investigation Completion (CIC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_verification_completion"
+name = "Collateral Verification Completion"
+appears_in_stages = ["Collateral Investigation Completion (CIC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "collateral_verification_valuation"
+name = "Collateral Verification/Valuation"
+appears_in_stages = ["Collateral Investigation Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "commercial_card_details"
+name = "Commercial Card Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "commercial_vehicle_loan_product_type_it_is"
+name = "Commercial Vehicle Loan Product Type. It is"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "commercial_consumer_vehicle_valuation"
+name = "Commercial/Consumer Vehicle Valuation"
+appears_in_stages = ["Collateral Investigation Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "communication_details"
+name = "Communication Details"
+appears_in_stages = ["Proposals", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "communication_details_additional_communication_details"
+name = "Communication Details >> Additional Communication Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "communication_details_communication_preferences"
+name = "Communication Details >> Communication Preferences"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "communication_history"
+name = "Communication History"
+appears_in_stages = ["Recommendation (Credit Card)", "Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "consumer_information"
+name = "Consumer Information"
+appears_in_stages = ["Credit Bureau Referral Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "contact_person_key_employee_details"
+name = "Contact Person & Key Employee Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "contact_persons_details"
+name = "Contact Persons details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details"
+name = "Course Details"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_address"
+name = "Course Details tab >> Address"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_bank_account"
+name = "Course Details tab >> Bank Account"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_component_wise_fee"
+name = "Course Details tab >> Component Wise Fee"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_component_wise_fee_structure"
+name = "Course Details tab >> Component Wise Fee Structure"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_education_histories"
+name = "Course Details tab >> Education Histories"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_employment_potential_post"
+name = "Course Details tab >> Employment Potential Post"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_employment_potential_post_course_completion"
+name = "Course Details tab >> Employment Potential Post Course Completion"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_summary"
+name = "Course Details tab >> Summary"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_tentative_disbursal"
+name = "Course Details tab >> Tentative Disbursal"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "course_details_tab_tentative_disbursal_schedule_entry"
+name = "Course Details tab >> Tentative Disbursal schedule Entry"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "covenant_history"
+name = "Covenant History"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_approval_consumer_finance"
+name = "Credit Approval (Consumer Finance)"
+appears_in_stages = ["Credit Approval (Consumer Finance)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_approval_credit_card"
+name = "Credit Approval (Credit Card)"
+appears_in_stages = ["Credit Approval (Credit Card)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_approval_loans"
+name = "Credit Approval (Loans)"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_bureau"
+name = "Credit Bureau"
+appears_in_stages = ["Credit Approval (Loans)", "Credit Approval (Credit Card)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_bureau_referral_activity"
+name = "Credit Bureau Referral Activity"
+appears_in_stages = ["Credit Bureau Referral Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_card_data_entry_ccde"
+name = "Credit Card Data Entry (CCDE)"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_card_details"
+name = "Credit Card Details"
+appears_in_stages = ["Lead Details", "Credit Approval (Credit Card)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "credit_card_product_type"
+name = "Credit Card Product Type"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "creditor_debtor_details"
+name = "Creditor/Debtor Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "curing"
+name = "Curing"
+appears_in_stages = ["Proposals", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_communication_history"
+name = "Customer Communication History"
+appears_in_stages = ["Lead Conversion Stage", "Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_details"
+name = "Customer Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_details_electricity_bill_authentication_info"
+name = "Customer Details >> Electricity Bill Authentication Info"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_details_identification"
+name = "Customer Details >> Identification"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_details_organization_address"
+name = "Customer Details >> Organization Address"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "customer_details_child"
+name = "Customer Details child"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "dcc_execution"
+name = "DCC Execution"
+appears_in_stages = ["DCC Execution"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "dcc_scheduling"
+name = "DCC Scheduling"
+appears_in_stages = ["DCC Scheduling"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "deal_details"
+name = "Deal Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "deal_limit_details"
+name = "Deal Limit Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Facility Initiation", "FDE"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "deals_facility_details"
+name = "Deals & Facility Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_details"
+name = "Decision Details"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Consumer Finance)", "Reconsideration", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_details_section_future_limit_decision"
+name = "Decision Details section >> Future Limit Decision"
+appears_in_stages = ["Recommendation (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_details_section_special_conditions_sub"
+name = "Decision Details section >> Special Conditions sub"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_history"
+name = "Decision History"
+appears_in_stages = ["Credit Approval (Loans)", "Credit Approval (Credit Card)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_forward_history"
+name = "Decision/Forward History"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "decision_forward_history_section_read_only"
+name = "Decision/Forward History section (Read-Only)"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "dedupe_summary"
+name = "Dedupe Summary"
+appears_in_stages = ["Know Your Customer (KYC)", "Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "depository_participant_details"
+name = "Depository Participant Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "details_mapping_master"
+name = "Details Mapping master"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "details_section"
+name = "Details section"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "details_tab"
+name = "Details tab"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "deviation_approval_sheet"
+name = "Deviation Approval Sheet"
+appears_in_stages = ["Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "deviation_details"
+name = "Deviation Details"
+appears_in_stages = ["Credit Approval (Loans)", "Credit Approval (Credit Card)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_amount"
+name = "Disbursal Amount*"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_author"
+name = "Disbursal Author"
+appears_in_stages = ["Disbursal Author"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_checklist"
+name = "Disbursal Checklist"
+appears_in_stages = ["Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_date"
+name = "Disbursal Date*"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_details"
+name = "Disbursal Details"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_details_disbursal_schedule"
+name = "Disbursal Details >> Disbursal Schedule"
+appears_in_stages = ["Subsequent Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_details_disbursal_schedule_section_disbursal_payee_details_sub"
+name = "Disbursal Details >> Disbursal Schedule section >> Disbursal Payee Details sub"
+appears_in_stages = ["Subsequent Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_entry"
+name = "Disbursal Entry"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_initiation"
+name = "Disbursal Initiation"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_stage"
+name = "Disbursal stage"
+appears_in_stages = ["Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "disbursal_summary"
+name = "Disbursal Summary"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "documents"
+name = "Documents"
+appears_in_stages = ["Proposals", "Lead Conversion Stage", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Detailed Data Entry (DDE)", "DDEQC", "Credit Approval (Loans)", "Incomplete Collateral Details Activity (ICD)", "Post Approval Activity", "Facility Initiation", "FDE", "Tranche Initiation", "Curing", "RCU Initiation", "Disbursal Initiation", "Sales Queue Disbursal", "Raise Query"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "documents_details"
+name = "Documents Details"
+appears_in_stages = ["Credit Approval (Loans)", "Credit Approval (Credit Card)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "drawee_account_name"
+name = "Drawee Account Name*,"
+appears_in_stages = ["Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "drawee_details"
+name = "Drawee Details"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "education"
+name = "Education"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "education_details"
+name = "Education Details"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "eligibility_policy"
+name = "Eligibility Policy"
+appears_in_stages = ["Recommendation (Loans)", "Reconsideration", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "eligibility_policy_setup"
+name = "Eligibility Policy Setup"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "embossing_details"
+name = "Embossing Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_details"
+name = "Employment Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_details_assets"
+name = "Employment Details >> Assets"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_details_income"
+name = "Employment Details >> Income"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_details_liabilities"
+name = "Employment Details >> Liabilities"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_finance_details"
+name = "Employment/ Finance Details"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "employment_finance_details"
+name = "Employment/Finance Details"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "enquiry_s_summary"
+name = "Enquiry(s) Summary"
+appears_in_stages = ["Credit Bureau Referral Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "exposure_details"
+name = "Exposure Details"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "external_deviation"
+name = "External Deviation"
+appears_in_stages = ["Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "external_maintenance_vap_types"
+name = "External Maintenance VAP Types"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "facility_details"
+name = "Facility Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Credit Approval (Loans)", "Facility Initiation", "FDE"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "facility_initiation"
+name = "Facility Initiation"
+appears_in_stages = ["Facility Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "facility_limit_details"
+name = "Facility Limit Details"
+appears_in_stages = ["Facility Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "family"
+name = "Family"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "family_details"
+name = "Family Details"
+appears_in_stages = ["Proposals", "Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "fas_details"
+name = "FAS Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing", "Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "fi_allocation_grid"
+name = "FI Allocation Grid"
+appears_in_stages = ["FI Allocation Grid"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "finance_details"
+name = "Finance Details"
+appears_in_stages = ["Proposals", "Reconsideration", "Post Approval Activity", "Tranche Initiation", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details"
+name = "Financial Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_income_details"
+name = "Financial Details > Income Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_agriculture_expense"
+name = "Financial Details >> Agriculture Expense"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_agriculture_income"
+name = "Financial Details >> Agriculture Income"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_asset_details"
+name = "Financial Details >> Asset Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_balance_sheet"
+name = "Financial Details >> Balance Sheet"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_crop_income"
+name = "Financial Details >> Crop Income"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_deductions"
+name = "Financial Details >> Deductions"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_expenditure_details"
+name = "Financial Details >> Expenditure Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_expense_details"
+name = "Financial Details >> Expense Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_file_upload_and_preview"
+name = "Financial Details >> File Upload and Preview"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_funds_flow"
+name = "Financial Details >> Funds Flow"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_income_details"
+name = "Financial Details >> Income Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_income_statement"
+name = "Financial Details >> Income Statement"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_lease_land_details"
+name = "Financial Details >> Lease Land Details"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_liability_details"
+name = "Financial Details >> Liability Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_other_income_details"
+name = "Financial Details >> Other Income Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_previous"
+name = "Financial Details >> Previous"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_previous_files"
+name = "Financial Details >> Previous Files"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_ratio_analysis"
+name = "Financial Details >> Ratio Analysis"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_statement_of_cash_flow"
+name = "Financial Details >> Statement of Cash Flow"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "financial_details_expense_details"
+name = "Financial Details >>Expense Details"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "future_limit_details"
+name = "Future Limit Details"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "generate_application_summary"
+name = "Generate Application Summary"
+appears_in_stages = ["Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "gold_details"
+name = "Gold Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "gold_valuation"
+name = "Gold Valuation"
+appears_in_stages = ["Gold Valuation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "group_details"
+name = "Group Details"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "group_information"
+name = "Group Information"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "gst_details"
+name = "GST Details"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification"
+name = "Identification"
+appears_in_stages = ["Proposals", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_identification"
+name = "Identification >> Identification"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_identification_no_issue_date"
+name = "Identification >> Identification No*, Issue Date,"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_identification_type"
+name = "Identification >> Identification Type*"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_details"
+name = "Identification Details"
+appears_in_stages = ["Proposals", "Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_type_row"
+name = "Identification Type row"
+appears_in_stages = ["Proposals", "Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "identification_type_identification"
+name = "Identification Type, Identification"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "incomplete_collateral_details_activity_icd"
+name = "Incomplete Collateral Details Activity (ICD)"
+appears_in_stages = ["Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "information_address"
+name = "Information >> Address"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "insta_cards_archived"
+name = "Insta Cards Archived"
+appears_in_stages = ["Send To Card Management System"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "instrument_details"
+name = "Instrument Details"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "insurance_company"
+name = "Insurance Company*"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "insurance_details"
+name = "Insurance Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing", "Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "internal_deviation"
+name = "Internal Deviation"
+appears_in_stages = ["Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "know_your_customer_kyc"
+name = "Know Your Customer (KYC)"
+appears_in_stages = ["Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "kyc_check"
+name = "KYC Check"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "kyc_checklist"
+name = "KYC Checklist"
+appears_in_stages = ["Know Your Customer (KYC)", "Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "kyc_details"
+name = "KYC Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lan_linking_details"
+name = "LAN Linking Details"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Tranche Initiation", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "land_address"
+name = "Land Address"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "land_holding_details"
+name = "Land Holding Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lead_details"
+name = "Lead Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lease_details"
+name = "Lease Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lessor_details"
+name = "Lessor Details"
+appears_in_stages = ["Lead Details", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lien_details"
+name = "Lien Details"
+appears_in_stages = ["Lead Details", "Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "limit_details"
+name = "Limit Details"
+appears_in_stages = ["Credit Approval (Loans)", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "link_vap"
+name = "Link VAP"
+appears_in_stages = ["Application Tranche VAP Linking", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "loan_details"
+name = "Loan Details"
+appears_in_stages = ["Proposals", "Lead Details", "Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "loan_details_course_details"
+name = "Loan Details >> Course Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "loan_details_property_details"
+name = "Loan Details >> Property Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "loan_information"
+name = "Loan Information"
+appears_in_stages = ["Recommendation (Loans)", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "loan_information_section_editable"
+name = "Loan Information section (Editable)"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lodgement_scrip_details"
+name = "Lodgement Scrip Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "lodgement_security_details"
+name = "Lodgement Security Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "maintenance_and_external_maintenance_vap_types"
+name = "Maintenance and External Maintenance VAP Types"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "maker_stage_through_deviation_approval_sheet"
+name = "Maker stage through Deviation Approval Sheet"
+appears_in_stages = ["Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "mandate_cancellation_details"
+name = "Mandate Cancellation Details"
+appears_in_stages = ["Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "market_information_details"
+name = "Market Information details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "member_approval_decision_list"
+name = "Member Approval Decision List"
+appears_in_stages = ["Recommendation (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "member_information"
+name = "Member Information"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "micr_code_bank_bank_branch_and_banking_location"
+name = "MICR Code, Bank, Bank Branch and Banking Location"
+appears_in_stages = ["Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "miscellaneous_information"
+name = "Miscellaneous Information"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "more_actions_on_application"
+name = "More Actions on Application"
+appears_in_stages = ["Lead Conversion Stage", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Credit Bureau Referral Activity", "DDEQC", "Pre Sanction Visit (PSV)", "Account Updation", "Policy Referral/Execution", "Field Investigation Initiation (FII)", "Field Investigation Completion (FIC)", "Recommendation (Loans)", "Recommendation (Credit Card)", "Credit Approval (Loans)", "Credit Approval (Consumer Finance)", "Credit Approval (Credit Card)", "Asset Validation Stage", "Incomplete Collateral Details Activity (ICD)", "Reconsideration", "Operations Check", "Post Approval Activity", "Facility Initiation", "FDE", "Curing", "Application Tranche VAP Linking", "Disbursal Initiation", "DCC Scheduling", "DCC Execution", "Sales Queue Disbursal", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "mudra_loan"
+name = "Mudra Loan"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "multiple_asset_details"
+name = "Multiple Asset Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "multiple_loans_pop"
+name = "Multiple Loans pop"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "name_account"
+name = "Name*, Account"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "need_analysis"
+name = "Need Analysis"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "number_and_fund_transfer_reference_number"
+name = "Number* and Fund Transfer Reference Number*"
+appears_in_stages = ["Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "number_account"
+name = "Number*, Account"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "offline_kyc"
+name = "Offline KYC"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "omni_product_details"
+name = "Omni Product Details"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "only_additional_address_office"
+name = "Only Additional Address, Office"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "ornament_details"
+name = "Ornament Details"
+appears_in_stages = ["Gold Valuation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "partners_directors_details"
+name = "Partners & Directors Details"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "payee_details"
+name = "Payee Details"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "penalty_details"
+name = "Penalty Details"
+appears_in_stages = ["Credit Approval (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_details"
+name = "Personal Details"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_discussion"
+name = "Personal Discussion"
+appears_in_stages = ["Pre Sanction Visit (PSV)", "Credit Approval (Loans)", "Credit Approval (Consumer Finance)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information"
+name = "Personal Information"
+appears_in_stages = ["Lead Conversion Stage", "Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information"
+name = "Personal Information >>"
+appears_in_stages = ["Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information_address"
+name = "Personal Information >> Address"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information_communication_details"
+name = "Personal Information >> Communication Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information_education"
+name = "Personal Information >> Education"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information_family"
+name = "Personal Information >> Family"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "personal_information_identification"
+name = "Personal Information >> Identification"
+appears_in_stages = ["Credit Card Data Entry (CCDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "phone_number_mobile_landline_identification_type_id"
+name = "Phone Number (Mobile/ Landline), Identification Type, Id"
+appears_in_stages = ["Proposals"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "policy_referral_execution"
+name = "Policy Referral/Execution"
+appears_in_stages = ["Policy Referral/Execution"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "post_approval_activity"
+name = "Post Approval Activity"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "pricing_details"
+name = "Pricing Details"
+appears_in_stages = ["Credit Card Data Entry (CCDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_address_section_in_property_details"
+name = "Property Address section in Property Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details"
+name = "Property Details"
+appears_in_stages = ["Credit Approval (Loans)", "Post Approval Activity", "Tranche Approval", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_cersai_tab_security_interest_details"
+name = "Property Details >> CERSAI tab>> Security Interest Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_investigation_details"
+name = "Property Details >> Investigation Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_investigation_details_tab_valuation"
+name = "Property Details >> Investigation Details tab >> Valuation"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_investigation_details_tab_verification"
+name = "Property Details >> Investigation Details tab >> Verification"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_builder_details"
+name = "Property Details tab >> Builder Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_cersai"
+name = "Property Details tab >> CERSAI"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_insurance"
+name = "Property Details tab >> Insurance"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_other_details"
+name = "Property Details tab >> Other Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_ownership_details"
+name = "Property Details tab >> Ownership Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_property_registration_details"
+name = "Property Details tab >> Property & Registration Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_property_address"
+name = "Property Details tab >> Property Address"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_seller_details"
+name = "Property Details tab >> Seller Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_subvention_details"
+name = "Property Details tab >> Subvention Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_summary"
+name = "Property Details tab >> Summary"
+appears_in_stages = ["Incomplete Collateral Details Activity (ICD)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_details_tab_summary_details"
+name = "Property Details tab >> Summary Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_valuation"
+name = "Property Valuation"
+appears_in_stages = ["Collateral Investigation Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "property_verification"
+name = "Property Verification"
+appears_in_stages = ["Collateral Investigation Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "raise_query"
+name = "Raise Query"
+appears_in_stages = ["Collateral Investigation Completion (CIC)", "Raise Query"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "rcu_initiation"
+name = "RCU Initiation"
+appears_in_stages = ["RCU Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "rcu_referral"
+name = "RCU Referral"
+appears_in_stages = ["RCU Referral"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "rcu_verification"
+name = "RCU Verification"
+appears_in_stages = ["RCU Verification"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "re_validate_account"
+name = "Re- Validate Account"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "reassign_query"
+name = "Reassign Query"
+appears_in_stages = ["Reassign Query"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "receipt_details"
+name = "Receipt Details"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "receipt_details_instrument_details"
+name = "Receipt Details >> Instrument Details"
+appears_in_stages = ["Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "receipt_details_instrument_details_for_previously"
+name = "Receipt Details >> Instrument Details For Previously"
+appears_in_stages = ["Tranche Initiation", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "receipt_details_instrument_details_for_previously_collected_receivables"
+name = "Receipt Details >> Instrument Details For Previously Collected Receivables"
+appears_in_stages = ["Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "receipt_details_receivables_to_be_collected"
+name = "Receipt Details >> Receivables To Be Collected"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "recommendation_credit_card"
+name = "Recommendation (Credit Card)"
+appears_in_stages = ["Recommendation (Credit Card)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "recommendation_loans"
+name = "Recommendation (Loans)"
+appears_in_stages = ["Recommendation (Loans)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "recommendation_stage"
+name = "Recommendation stage"
+appears_in_stages = ["Renewal Recommendation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "references"
+name = "References"
+appears_in_stages = ["Proposals", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "renewal_approval"
+name = "Renewal Approval"
+appears_in_stages = ["Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "renewal_recommendation"
+name = "Renewal Recommendation"
+appears_in_stages = ["Renewal Recommendation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "repayment_instrument"
+name = "Repayment Instrument"
+appears_in_stages = ["Lead Details", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "repayment_instrument_details"
+name = "Repayment Instrument Details"
+appears_in_stages = ["Post Approval Activity", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "repayment_parameters_insurance_details"
+name = "Repayment Parameters >> Insurance Details"
+appears_in_stages = ["Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing", "Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "repayment_schedule"
+name = "Repayment Schedule"
+appears_in_stages = ["Recommendation (Loans)", "Credit Approval (Loans)", "Reconsideration", "Disbursal Initiation", "Disbursal Author"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "response_query"
+name = "Response Query"
+appears_in_stages = ["Response Query"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sales_personal_discussion"
+name = "Sales Personal Discussion"
+appears_in_stages = ["Pre Sanction Visit (PSV)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sales_queue"
+name = "Sales Queue"
+appears_in_stages = ["Sales Queue"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sales_queue_disbursal"
+name = "Sales Queue Disbursal"
+appears_in_stages = ["Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "send_to_card_management"
+name = "Send To Card Management"
+appears_in_stages = ["Send To Card Management System"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "send_to_card_management_system"
+name = "Send To Card Management System"
+appears_in_stages = ["Send To Card Management System"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "shareholding_details"
+name = "Shareholding Details"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "source_account_number"
+name = "Source Account Number*"
+appears_in_stages = ["Post Approval Activity", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "source_branch_assigned_to_product_scheme_card_type_etc"
+name = "Source Branch, Assigned To, Product, Scheme/Card Type etc"
+appears_in_stages = ["FI Allocation Grid"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sourcing_details"
+name = "Sourcing Details"
+appears_in_stages = ["Proposals", "Lead Conversion Stage", "Lead Details", "Credit Card Data Entry (CCDE)", "Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sourcing_details_omni_product_details"
+name = "Sourcing Details >> Omni Product Details"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sourcing_details_promo_code_details"
+name = "Sourcing Details >> Promo Code Details"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Tranche Initiation", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "sourcing_details_subsidy"
+name = "Sourcing Details >> Subsidy"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)", "Tranche Initiation", "Curing"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "stock_details"
+name = "Stock Details"
+appears_in_stages = ["Credit Approval (Loans)", "Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "subsequent_disbursal"
+name = "Subsequent Disbursal"
+appears_in_stages = ["Subsequent Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "summary_analysis"
+name = "Summary Analysis"
+appears_in_stages = ["Lead Details", "Detailed Data Entry (DDE)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tan_report_in_a_new"
+name = "TAN Report in a new"
+appears_in_stages = ["Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "task_status_and_history"
+name = "Task Status and History"
+appears_in_stages = ["Deviation Approval Sheet"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tentative_disbursal_schedule_details"
+name = "Tentative Disbursal Schedule Details"
+appears_in_stages = ["Disbursal Initiation", "Disbursal Author", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tentative_disbursal_schedule_entry"
+name = "Tentative Disbursal Schedule Entry"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tentative_tranche_disbursal_schedule"
+name = "Tentative Tranche Disbursal Schedule"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tentative_tranche_history"
+name = "Tentative Tranche History"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tranche_approval"
+name = "Tranche Approval"
+appears_in_stages = ["Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tranche_approval_decision"
+name = "Tranche Approval Decision"
+appears_in_stages = ["Tranche Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tranche_details"
+name = "Tranche Details"
+appears_in_stages = ["Tranche Initiation", "Tranche Approval", "Disbursal Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tranche_initiation"
+name = "Tranche Initiation"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "tranche_vap_linking_stage"
+name = "Tranche VAP Linking stage"
+appears_in_stages = ["Application Tranche VAP Linking"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "transaction_report_history"
+name = "Transaction Report History"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "type_is_used_asset"
+name = "Type is Used Asset"
+appears_in_stages = ["Lead Details"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "underwriter_decision_tab_exposure_details"
+name = "Underwriter Decision tab >> Exposure Details"
+appears_in_stages = ["Reconsideration"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "underwriter_decision_tab_miscellaneous_information"
+name = "Underwriter Decision tab >> Miscellaneous Information"
+appears_in_stages = ["Recommendation (Loans)", "Reconsideration", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "valuation_completion"
+name = "Valuation Completion"
+appears_in_stages = ["Valuation Completion"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "vap_details"
+name = "VAP Details"
+appears_in_stages = ["Proposals", "Detailed Data Entry (DDE)", "Post Approval Activity", "Tranche Initiation", "Curing", "Disbursal Initiation", "Sales Queue Disbursal"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "vap_details"
+name = "VAP details"
+appears_in_stages = ["Post Approval Activity"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "vap_product"
+name = "VAP Product*"
+appears_in_stages = ["Tranche Initiation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "video_kyc"
+name = "Video KYC"
+appears_in_stages = ["Proposals", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "waive_off_other_valuations"
+name = "Waive Off Other Valuations"
+appears_in_stages = ["Gold Valuation"]
+source = "online_help"
+confidence = "candidate"
+
+[[screen]]
+id = "workflow_history_records"
+name = "Workflow History Records"
+appears_in_stages = ["Lead Details", "Credit Card Data Entry (CCDE)", "Know Your Customer (KYC)", "Credit Bureau Referral Activity", "DDEQC", "Pre Sanction Visit (PSV)", "Account Updation", "Policy Referral/Execution", "Field Investigation Initiation (FII)", "Field Investigation Completion (FIC)", "Recommendation (Loans)", "Credit Approval (Loans)", "Credit Approval (Consumer Finance)", "Credit Approval (Credit Card)", "Asset Validation Stage", "Incomplete Collateral Details Activity (ICD)", "Reconsideration", "Operations Check", "Post Approval Activity", "Facility Initiation", "FDE", "Application Tranche VAP Linking", "Disbursal Initiation", "DCC Scheduling", "DCC Execution", "Sales Queue Disbursal", "Renewal Recommendation", "Renewal Approval"]
+source = "online_help"
+confidence = "candidate"
+

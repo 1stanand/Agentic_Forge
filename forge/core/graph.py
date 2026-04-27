@@ -22,15 +22,23 @@ def _critic_loop_back_edge(state: ForgeState) -> str:
 
     Enforces hard rule: maximum one loop via is_second_pass flag.
     """
-    critic_review = state.critic_review or {}
-    is_second_pass = state.is_second_pass if hasattr(state, 'is_second_pass') else False
+    # Handle both dict and TypedDict formats
+    if isinstance(state, dict):
+        critic_review = state.get('critic_review') or {}
+        is_second_pass = state.get('is_second_pass', False)
+    else:
+        critic_review = state.critic_review or {}
+        is_second_pass = getattr(state, 'is_second_pass', False)
 
     loop_back = critic_review.get("loop_back", False)
 
     if loop_back and not is_second_pass:
         logger.info("Critic: Loop back to Composer (first pass)")
         # Mark state for second pass to prevent further loops
-        state.is_second_pass = True
+        if isinstance(state, dict):
+            state['is_second_pass'] = True
+        else:
+            state.is_second_pass = True
         return "agent_07"
     else:
         if is_second_pass:

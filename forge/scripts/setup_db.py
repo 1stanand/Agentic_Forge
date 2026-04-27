@@ -161,6 +161,10 @@ CREATE TABLE doc_chunks (
     section_title   TEXT,
     stage_hint      TEXT,
     screen_hint     TEXT,
+    lob_hint        TEXT,
+    chunk_type      TEXT,
+    hint_confidence FLOAT,
+    source_module   TEXT,
     text            TEXT NOT NULL,
     page_range      TEXT,
     token_count     INTEGER,
@@ -177,7 +181,31 @@ CREATE TABLE rag_cache (
 
 CREATE INDEX idx_doc_chunks_stage ON doc_chunks(stage_hint);
 CREATE INDEX idx_doc_chunks_screen ON doc_chunks(screen_hint);
+CREATE INDEX idx_doc_chunks_lob ON doc_chunks(lob_hint);
+CREATE INDEX idx_doc_chunks_module ON doc_chunks(source_module);
 """
+
+
+def migrate_doc_chunks():
+    """Add columns introduced in wiki phase — idempotent, safe on existing DBs."""
+    try:
+        conn = get_conn()
+        with get_cursor(conn) as cursor:
+            for stmt in [
+                "ALTER TABLE doc_chunks ADD COLUMN IF NOT EXISTS lob_hint TEXT",
+                "ALTER TABLE doc_chunks ADD COLUMN IF NOT EXISTS chunk_type TEXT",
+                "ALTER TABLE doc_chunks ADD COLUMN IF NOT EXISTS hint_confidence FLOAT",
+                "ALTER TABLE doc_chunks ADD COLUMN IF NOT EXISTS source_module TEXT",
+                "CREATE INDEX IF NOT EXISTS idx_doc_chunks_lob ON doc_chunks(lob_hint)",
+                "CREATE INDEX IF NOT EXISTS idx_doc_chunks_module ON doc_chunks(source_module)",
+            ]:
+                cursor.execute(stmt)
+        logger.info("doc_chunks migration complete")
+        release_conn(conn)
+        return True
+    except Exception as e:
+        logger.warning(f"Migration error (safe if already applied): {e}")
+        return True
 
 
 def setup_db():
@@ -187,6 +215,7 @@ def setup_db():
             cursor.execute(SCHEMA_SQL)
         logger.info("Database schema created successfully")
         release_conn(conn)
+        migrate_doc_chunks()
         return True
     except Exception as e:
         logger.error(f"Failed to create schema: {e}")

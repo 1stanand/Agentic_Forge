@@ -1,0 +1,66 @@
+# Details
+
+**Appears in 70 knowledge chunks**
+
+## Knowledge Chunks
+
+### LTV (%)*
+> 4/1/26, 3:50 PM Applications Installment Select a frequency to pay the installments. Frequency* Installment Mode* Select the installment mode either as Arrears or Advance. Displays the number of advanced EMI. No. of Advanced EMI This field gets auto-populated based on Repayment Policy attached to the selected Scheme. However, this can be edited and changed, if required. This field displays the aut...
+
+### ti
+> 4/1/26, 3:50 PM Applications 3. Input Date and Time* of the appointment. 4. Choose Party Role* as either PRIMARY or SECONDARY from the drop down list. 5. Choose Party Contacted* from the drop down list. The options available in this field are populated based on the selected Party Role. 6. The Added By* field is auto populated and is read only. 7. Click Submit. 6. Click Save to save the details. On...
+
+### KYC.
+> 4/1/26, 3:50 PM Applications Select the name of the partner/spouse in case Partner/Spouse Name they are part of the application. Select as either Yes or No indicating that the Person With Disability person is disabled or not. Select as either Normal, Simplified or Small Applicant Profile* applicant profile. Input the TAN number of the customer. TAN Number Note: TAN number is mandatory for the cust...
+
+### CONSTRUCTION.
+> 4/1/26, 3:50 PM Applications Note: Click Save or Save & Next as required. On successfully completing the action, a notification appears on the screen. Else, errors (if any) are notified. Property Details (Appears only for Home Loan and Loan Against Property) Property Details Field Name Field Value Loan Details >> Property Details Tab (Use this tab to capture property details, its insurance details...
+
+### TDS*
+> 4/1/26, 3:50 PM Applications Details.) Input the gross rent amount of the Gross Rent* property. Input the tax deducted at source (TDS) TDS* for the lease/rent received. Input the property tax paid for the Property Tax* property. Net Rent* Input the net rent received. Input the rental and discounted Rental & Discounted %* percentage. Remarks Input remarks, if any. Input the name of the lessee who i...
+
+### GSTIN
+> 4/1/26, 3:50 PM Applications Transaction Report History The History pop- up window displays the following details: GSTIN, GSTIN Authenticated, Transaction Report Status, View Report, View Report Summary, Report Generation Request Date & Time, Report Generation Response Date & Time. History Click to view the History of the GST search. Select the GSTIN details in this column and click Generate Gener...
+
+### ti
+> 4/1/26, 3:50 PM Applications Displays the icons to download the report for video KYC in Reports PDF, HTML, etc. formats. History Click to view the history of video KYC. STSL Income Assessment Short Term Secured Loan (STSL) tab is used to capture all the income and expenses of the loan applicants. This tab support the DBR and eligibility calculation for STSL Schemes and is accessible to the authori...
+
+### ti
+> 4/1/26, 3:50 PM Applications On successfully completing the action, a Success message appears on the screen and the system redirects to the Applications screen. Else, errors (if any) are notified. To View the Cancelled Application: 1. Go to Applications >> Cancelled Applications. 2. Click Application ID link to view the details of the cancelled application. 3. On the Review Cancelled Application p...
+
+### ti
+> 4/1/26, 3:50 PM Applications 9. Click Save as Draft to save the partially filled acceptance sheet. 10.Click Save and Proceed to save the details. On successfully completing the action, a Success message appears on the screen. Else, errors (if any) are notified. To Move Application to the Next Stage Click Move to Next Stage to move to next stage of processing. On successfully completing the action,...
+
+### ti
+> 4/1/26, 3:50 PM Applications To Put an Application on Hold Click More Actions >> Hold to put a hold on the Application. Note: TAT calculation for the Application stops until the Application is on Hold. 1. On the pop up screen that appears, select single or multiple Reason(s)* for hold, from the drop down list and specify the Reassignment Date and Remarks, if any. Note: Reassignment Date cannot be ...
+
+### CCID
+> 4/1/26, 3:50 PM Applications Select the Credit Card Type from the drop down list. Credit Card Type* In case this data has already been captured at the Quick Lead, these field get auto populated, by default; and is read-only. This field gets auto populated depending on the selected Logo Credit Card Type and is read-only. Select the required promo code from the drop down list. Promo Code* This field...
+
+### ti
+> 4/1/26, 3:50 PM Applications 12.Go to the Video KYC tab to initiate the KYC through video: Video KYC Video KYC Use this tab to initiate the KYC of the applicants through video. Fields Name Description Initiate Video KYC for All Click to initiate the video KYC for all the applicants. Applicant Name Displays name of the applicant. Check to indicate that the consent for video KYC is provided by Conse...
+
+### ti
+> 4/1/26, 3:50 PM Applications To Cancel the Application Click More Actions >> Cancel Application to add the Application in the Cancelled Applications list. On the Cancel Application pop-up screen that appears, select Reason Code (reason for cancellation) from the drop down list. The Reason Description gets automatically populated. 1. Additionally, add the additional comments and click Done. On succ...
+
+### VAT TIN
+> 4/1/26, 3:50 PM Applications Select the value from the drop down and click Initiate/Re-Initiate to run/re-run the interface. VAT TIN Click View Report to view the VAT TIN Verification Report in a new tab. Select the value from the drop down and click Initiate/Re-Initiate to run/re-run the interface. Shop Establishment Number Interface Click View Report to view the Shop Establishment Number Report ...
+
+### ti
+> 4/1/26, 3:50 PM Applications Click More Actions >> Cancel Application to add the Application in the Cancelled Applications list. On the Cancel Application pop-up screen that appears, select Reason Code (reason for cancellation) from the drop down list. The Reason Description gets automatically populated. 1. Additionally, add the additional comments and click Done. On successfully completing the ac...
+
+### ti
+> 4/1/26, 3:50 PM Applications Note: To unhold a Application, click Application Number in the grid and then click More Options >> Unhold. Only user with appropriate authority can hold/unhold the applications. Move Application to Next Stage To Move Application to the Next Stage Click Move to Next Stage to move to next stage of processing. On successfully completing the action, a Success message appea...
+
+### ti
+> 4/1/26, 3:50 PM Applications Also, input Decision Comments, if required. Click Save to save the details. On successfully completing the action, a Success message appears on the screen. Else, errors (if any) are notified. More Actions on Application Workflow History Records To View Workflow History Record of the Application Click More Actions >> Workflow History Records to view the workflow history...
+
+### CONSTRUCTION.
+> 4/1/26, 3:50 PM Applications Select this option to add a new collateral in the loan Add New Collateral application. Select this option to search and add the existing collateral Search Collateral available in the system. If required, user can also delink the added collateral. Choose Application Type as either Property Identified or Property Non-Identified from the drop down list. For Application Ty...
+
+### (CIC).
+> 4/1/26, 3:50 PM Applications Project Name* Select the name of the builder project. Building Name* Select the name of the building. Wing Name Select the wing name of the building. Flat/Shop No. Input the Flat/Shop number in the building. Floor No. Input the floor number of the building. Input the current percentage of building Building Completion % completion. The value of APF check box and APF Num...
+
+### TDS*
+> 4/1/26, 3:50 PM Applications All fields in these child tabs are common to both Individual and Non Individual Applicant Type. Financial Summary (Appears for All Product Types) Field Name Field Value Financial Summary (Use this child tab to view, edit or capture the Consolidated Financial Details Summary.) Applicant Name Displays the name of the applicant. Displays the gross salary/profit of the Gro...
+

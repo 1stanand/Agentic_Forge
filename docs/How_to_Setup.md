@@ -102,6 +102,9 @@ CAS_DOCS_PATH=D:\Code\Agentic_Forge\data\knowledge\cas
 FAISS_INDEX_DIR=D:\Code\Agentic_Forge\data\indices
 LOG_PATH=D:\Code\Agentic_Forge\logs\forge.log
 
+# Note: CAS PDFs should be placed in data/knowledge/cas/_source/ subfolder.
+# build_knowledge.py will find them via recursive glob.
+
 # Authentication
 SECRET_KEY=<generate-with-secrets.token_urlsafe(32)>
 JWT_EXPIRE_HOURS=12
