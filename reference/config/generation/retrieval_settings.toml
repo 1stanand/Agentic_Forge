@@ -1,0 +1,35 @@
+# Retrieval Settings Configuration
+# Hybrid retrieval channel weights, boost factors, and stopwords
+
+[channel_weights]
+vector = 0.50
+fts = 0.30
+trigram = 0.20
+
+trigram_min_similarity = 0.10
+stage_boost = 1.30
+stage_hint_boost = 1.60
+rerank_fetch_multiplier = 5
+min_rerank_fetch = 20
+
+stopwords = [
+    "a", "an", "and", "any", "all", "at",
+    "be", "both", "button", "by",
+    "for", "from",
+    "if", "in", "into", "is", "it",
+    "level",
+    "of", "on", "or",
+    "screen", "should", "stage",
+    "that", "the", "to",
+    "user",
+    "when", "with"
+]
+
+[assembly_thresholds]
+# Scoring thresholds for step candidate confidence evaluation
+high_confidence = 0.52
+medium_confidence = 0.35
+low_confidence = 0.18
+anchor_min_score = 0.32
+step_chain_min_score = 0.15
+fallback_min_score = 0.45

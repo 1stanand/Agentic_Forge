@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forge - Login</title>
+    <link rel="icon" type="image/png" href="assets/Forge_MINIMAL_LOGO.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="dark" class="login-page">
+    <div class="login-bg" aria-hidden="true"></div>
+    <button class="icon-btn login-theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+
+    <section class="login-card card-glass">
+      <div class="login-card-body">
+        <div class="login-logo-wrap">
+          <img class="login-logo" src="assets/Forge_LOGO.png" alt="Forge" />
+          <div class="login-title">
+            <h1 class="text-h1" style="margin: 0;">Forge Workspace</h1>
+          </div>
+          <div class="login-subtitle text-body-md muted">Nucleus Software - Internal Platform</div>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="login-field">
+            <label class="mono-label field-label" for="username">Identifier</label>
+            <input class="input" id="username" name="username" type="text" autocomplete="username" placeholder="sys_admin_01" />
+          </div>
+
+          <div class="login-field">
+            <label class="mono-label field-label" for="password">Access Key</label>
+            <input
+              class="input"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter password"
+            />
+          </div>
+
+          <div id="login-error" class="login-error text-body-sm" aria-live="polite"></div>
+
+          <button id="login-btn" class="btn-primary" style="width: 100%; margin-top: 6px;" type="submit">Initialize Session</button>
+        </form>
+      </div>
+
+      <div class="login-footer">
+        <div class="mono-label muted">Powered By</div>
+        <img class="nucleus-logo" src="assets/nucleus-software-logo.webp" alt="Nucleus Software" />
+      </div>
+    </section>
+
+    <div class="login-status mono-label muted">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>System Operational</span>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module">
+      import { getToken, initTheme, setAuth } from "./app.js";
+
+      const form = document.getElementById("login-form");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const loginBtn = document.getElementById("login-btn");
+      const errorEl = document.getElementById("login-error");
+
+      initTheme();
+
+      if (getToken()) {
+        window.location.replace("chat.html");
+      }
+
+      function showError(message) {
+        errorEl.textContent = message;
+      }
+
+      function clearError() {
+        errorEl.textContent = "";
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        clearError();
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+          showError("Enter username and password");
+          return;
+        }
+
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Signing in...";
+
+        try {
+          const response = await fetch("/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const payload = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            showError(payload.detail || "Invalid credentials");
+            return;
+          }
+
+          setAuth(payload.access_token, payload.display_name || username, payload.user_id, payload.is_admin);
+          window.location.replace("chat.html");
+        } catch {
+          showError("Connection error. Is Forge running?");
+        } finally {
+          loginBtn.disabled = false;
+          loginBtn.textContent = "Initialize Session";
+        }
+      });
+    </script>
+  </body>
+</html>

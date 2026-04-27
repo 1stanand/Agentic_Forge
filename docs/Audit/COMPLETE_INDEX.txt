@@ -1,0 +1,306 @@
+════════════════════════════════════════════════════════════════════════════════
+  FORGE AGENTIC AUDIT — COMPLETE INDEX
+  April 27, 2026
+════════════════════════════════════════════════════════════════════════════════
+
+AUDIT PACKAGE CONTENTS (5 DOCUMENTS)
+
+════════════════════════════════════════════════════════════════════════════════
+  1. FINDINGS_SUMMARY.txt
+════════════════════════════════════════════════════════════════════════════════
+  Type: Executive Brief (1-page)
+  Audience: Stakeholders, decision-makers, team leads
+
+  Contains:
+  • Overall compliance: 70%
+  • Issue severity breakdown (8 CRITICAL, 12 HIGH, 15 MEDIUM, 9 LOW)
+  • One-line summary of each issue
+  • Timeline estimate: ~2 weeks
+  • Next steps
+
+  Read if: You need 5-minute overview before diving deep
+
+════════════════════════════════════════════════════════════════════════════════
+  2. SECURITY_AND_QUALITY_AUDIT.md
+════════════════════════════════════════════════════════════════════════════════
+  Type: Comprehensive Technical Audit (40+ pages)
+  Audience: Developers, architects, tech leads
+
+  Contains:
+  • 44 total issues identified
+  • 8 CRITICAL blockers (architecture/security)
+  • 12 HIGH severity (spec violations, security risks)
+  • 15 MEDIUM severity (code quality)
+  • 9 LOW severity (style/minor)
+  • Remediation timeline (4 phases)
+  • Security findings matrix
+  • Spec compliance checklist
+  • Agent implementation status
+  • Missing required files checklist
+
+  Sections:
+  - Executive Summary
+  - Critical Issues (8 detailed)
+  - High Severity Issues (12 detailed)
+  - Medium Severity Issues (15 listed)
+  - Low Severity Issues (9 listed)
+  - Security Review Detail
+  - Spec Violations Matrix
+  - Agent Implementation Status
+  - Missing Required Files
+  - Recommendations & Next Steps
+
+  Read if: You want complete architectural audit with detailed explanations
+
+════════════════════════════════════════════════════════════════════════════════
+  3. CODE_LEVEL_AUDIT.md
+════════════════════════════════════════════════════════════════════════════════
+  Type: Deep Code Review (50+ pages)
+  Audience: Developers implementing fixes, code reviewers
+
+  Contains:
+  • 5 CRITICAL BLOCKERS (with exact file:line and code examples)
+  • 5 CRITICAL BUGS in agent implementations
+  • 3 SPEC VIOLATIONS in code
+  • 5 CODE QUALITY ISSUES
+  • Before/after code snippets for all fixes
+  • Completion status for all 18 major components
+  • 13-hour detailed fix timeline
+
+  Critical Blockers:
+  1. State TypedDict keys mismatched (BLOCKER-1)
+  2. DB connection pool has no timeout (BLOCKER-2)
+  3. Agent 8 writes wrong state keys (BLOCKER-3)
+  4. Agent 9 type error on state access (BLOCKER-4)
+  5. Background generation violates CAS spec (BLOCKER-5)
+
+  Critical Bugs:
+  1. Agent 5 validation errors not enforced (BUG-1)
+  2. Agent 2 RAG engine silent failure (BUG-2)
+  3. Agent 8 Order.json validation incomplete (BUG-3)
+  4. Order.json tag matching broken (BUG-4)
+  5. Agent 1 JSON extraction lenient (BUG-5)
+
+  Spec Violations:
+  1. Mandatory prerequisite step missing
+  2. "But" keyword hard ban not enforced
+  3. Then+And hard ban not enforced
+
+  Code Quality:
+  1. No startup config validation
+  2. Hardcoded stage/screen/lob lists
+  3. Missing exception handling
+  4. Weak API input validation
+  5. PAT encryption key not validated
+
+  Read if: You're implementing code fixes and need specific line numbers and exact code changes
+
+════════════════════════════════════════════════════════════════════════════════
+  4. SECURITY_VULNERABILITIES.md
+════════════════════════════════════════════════════════════════════════════════
+  Type: Security-Focused Deep-Dive (25+ pages)
+  Audience: Security engineers, architects, compliance leads
+
+  Contains:
+  • 5 CRITICAL security vulnerabilities
+  • 7 HIGH security vulnerabilities
+  • CVE-equivalent classifications
+  • Attack scenario walkthroughs for each vulnerability
+  • Root cause analysis
+  • Remediation code examples
+  • Security remediation priority matrix
+  • Before/after vulnerability fixes
+
+  Critical Vulnerabilities:
+  VULN-1: Plaintext JIRA PAT in .env
+  VULN-2: Fernet encryption key not validated
+  VULN-3: Credentials logged to stdout
+  VULN-4: Database cursor not rolled back on failure
+  VULN-5: Connection pool exhaustion (DoS)
+
+  High Vulnerabilities:
+  VULN-6: State validation bypass
+  VULN-7: Unvalidated file paths (directory traversal)
+  VULN-8: CSV injection in feature files
+  VULN-9: CORS too permissive
+  VULN-10: No rate limiting on generation
+  VULN-11: LLM prompt injection via JIRA content
+  VULN-12: No audit logging
+
+  Read if: You need to understand security implications and attack scenarios
+
+════════════════════════════════════════════════════════════════════════════════
+  5. ACTION_ITEMS.md
+════════════════════════════════════════════════════════════════════════════════
+  Type: Prioritized Fix Checklist (40+ pages)
+  Audience: Project managers, developers, QA team
+
+  Contains:
+  • Organized by priority and phase
+  • Detailed task descriptions
+  • Effort estimates for each task
+  • Success criteria and verification steps
+  • Phase 1: CRITICAL (2-3 days)
+  • Phase 2: HIGH (4-5 days)
+  • Phase 3: MEDIUM (2-3 days)
+  • Phase 4: VERIFICATION (2-3 days)
+  • Total: ~2 weeks
+  • Checkboxes for tracking progress
+  • Team tracking guide
+  • Sign-off criteria for demo readiness
+
+  How to Use:
+  1. Copy to project management tool (Jira, Linear, etc.)
+  2. Check off items as completed
+  3. Update status after each phase
+  4. Run verification commands
+
+  Read if: You're tracking remediation progress and need a detailed work breakdown
+
+════════════════════════════════════════════════════════════════════════════════
+  QUICK REFERENCE BY ROLE
+════════════════════════════════════════════════════════════════════════════════
+
+EXECUTIVE / STAKEHOLDER:
+  1. FINDINGS_SUMMARY.txt (5 min)
+  2. SECURITY_VULNERABILITIES.md — Overview section (10 min)
+  3. ACTION_ITEMS.md — Timeline and phases (5 min)
+
+TECH LEAD:
+  1. FINDINGS_SUMMARY.txt (5 min)
+  2. CODE_LEVEL_AUDIT.md — Summary table (5 min)
+  3. SECURITY_AND_QUALITY_AUDIT.md — Full read (30 min)
+  4. ACTION_ITEMS.md — Phase planning (10 min)
+
+DEVELOPER (IMPLEMENTING FIXES):
+  1. ACTION_ITEMS.md — Start with Phase 1
+  2. CODE_LEVEL_AUDIT.md — Reference for specific code changes
+  3. SECURITY_VULNERABILITIES.md — For security-related fixes
+  4. SECURITY_AND_QUALITY_AUDIT.md — For architectural context
+
+SECURITY ENGINEER:
+  1. SECURITY_VULNERABILITIES.md (full read)
+  2. CODE_LEVEL_AUDIT.md — Security issues section
+  3. SECURITY_AND_QUALITY_AUDIT.md — Security review detail
+  4. ACTION_ITEMS.md — Phase 1-2 security items
+
+QA / TEST ENGINEER:
+  1. ACTION_ITEMS.md — Phase 4 (Verification)
+  2. SECURITY_AND_QUALITY_AUDIT.md — Test verification sections
+  3. CODE_LEVEL_AUDIT.md — Features section
+
+════════════════════════════════════════════════════════════════════════════════
+  KEY METRICS SUMMARY
+════════════════════════════════════════════════════════════════════════════════
+
+Total Issues Found:              44
+├─ CRITICAL (blocks deployment): 8
+├─ HIGH (spec violation):        12
+├─ MEDIUM (code quality):        15
+└─ LOW (style/minor):            9
+
+Codebase Completeness:           ~40%
+Specification Compliance:        70%
+
+Deployment Readiness:            NOT READY
+Demo Readiness:                  NOT READY
+
+Critical Blockers:               5 (will crash)
+Critical Bugs:                   5 (will produce invalid output)
+Spec Violations:                 3 (hard rules not enforced)
+Code Quality Issues:             5 (poor practices)
+
+Estimated Remediation Effort:    ~13 hours (code fixes)
+Total Effort (incl. testing):    ~2 weeks
+
+════════════════════════════════════════════════════════════════════════════════
+  MUST-FIX ITEMS (Blocks Everything)
+════════════════════════════════════════════════════════════════════════════════
+
+1. State TypedDict keys (forge/core/state.py)
+   Issue: Agent 8→9 handoff will crash with KeyError
+   Effort: 30 minutes
+   Blocking: Agent pipeline end-to-end execution
+
+2. Agent 8 output keys (forge/agents/agent_08_atdd_expert.py)
+   Issue: Writes 'validation_result' instead of 'reviewed_scenarios'
+   Effort: 30 minutes
+   Blocking: Feature file generation
+
+3. Agent 9 state access (forge/agents/agent_09_writer.py)
+   Issue: Type mismatch on state keys
+   Effort: 30 minutes
+   Blocking: Feature file generation
+
+4. Background generation (forge/agents/agent_09_writer.py)
+   Issue: Generates wrong step per CAS spec
+   Effort: 20 minutes
+   Blocking: CAS ATDD validation
+
+5. Order.json validation (forge/infrastructure/order_json_reader.py)
+   Issue: Boolean expression matching broken
+   Effort: 1 hour
+   Blocking: Ordered flow validation
+
+6. RAG engine fallback (forge/agents/agent_02_domain_expert.py)
+   Issue: Silent failure on missing indices
+   Effort: 30 minutes
+   Blocking: Domain knowledge grounding
+
+7. PAT plaintext (forge/infrastructure/jira_client.py)
+   Issue: Falls back to plaintext from .env
+   Effort: 1 hour
+   Blocking: Security requirement
+
+8. Missing prerequisite step (all agents)
+   Issue: Ordered flows missing canonical first step
+   Effort: 1 hour (across agents 5, 8, 9)
+   Blocking: Ordered flow generation
+
+════════════════════════════════════════════════════════════════════════════════
+  NEXT IMMEDIATE ACTIONS
+════════════════════════════════════════════════════════════════════════════════
+
+TODAY:
+  1. Review FINDINGS_SUMMARY.txt (5 min)
+  2. Assign PHASE 1 tasks from ACTION_ITEMS.md
+  3. Start with must-fix items above
+
+TOMORROW:
+  1. Complete PHASE 1 fixes (3 hours)
+  2. Run basic tests to verify fixes
+  3. Begin PHASE 2 (agent implementation)
+
+THIS WEEK:
+  1. Complete PHASE 1 + 2 (7 hours)
+  2. Conduct code review of fixes
+  3. Start PHASE 3 (quality issues)
+
+WEEK 2:
+  1. Complete PHASE 3 (quality)
+  2. Run full test suite (PHASE 4)
+  3. Security review
+  4. Load testing
+  5. Demo readiness verification
+
+════════════════════════════════════════════════════════════════════════════════
+  DOCUMENT STATUS
+════════════════════════════════════════════════════════════════════════════════
+
+All 5 audit documents are COMPLETE and ready for use.
+
+Location: docs/Audit/
+
+Files:
+  ✓ FINDINGS_SUMMARY.txt (1 page)
+  ✓ SECURITY_AND_QUALITY_AUDIT.md (50+ pages)
+  ✓ CODE_LEVEL_AUDIT.md (50+ pages)
+  ✓ SECURITY_VULNERABILITIES.md (25+ pages)
+  ✓ ACTION_ITEMS.md (40+ pages)
+  ✓ README.md (navigation guide)
+  ✓ COMPLETE_INDEX.txt (this file)
+
+════════════════════════════════════════════════════════════════════════════════
+End of Audit Index
+Generated: April 27, 2026
+════════════════════════════════════════════════════════════════════════════════

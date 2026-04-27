@@ -1,0 +1,31 @@
+# Known True Steps Configuration
+# Repository-authentic steps organized by flow type, shared scenarios, and stage/screen context
+
+[unordered]
+login = [
+    "Given user is on CAS Login Page",
+    "And user logged in CAS with valid username and password present in \"LoginDetailsCAS.xlsx\" under \"LoginData\" and 0"
+]
+
+[ordered]
+prerequisite = [
+    "Given all prerequisite are performed in previous scenario of \"<ProductType>\" logical id \"<LogicalID>\""
+]
+
+[shared]
+open_application_generic = [
+    "user opens an application of \"<ProductType>\" product type as \"<ApplicantType>\" applicant at \"<StageName>\" for \"<Category>\" with \"<Key>\" from application grid"
+]
+open_application_multi_facility = [
+    "user opens an application of \"<ProductType>\" product type at \"<ApplicationStage>\" with multiple facilities"
+]
+
+[stage_screen_steps.KYC."Applicant Information"]
+open_screen = [
+    "user opens applicant information page of \"<ApplicationStage>\""
+]
+
+[stage_screen_steps.KYC.Documents]
+open_screen = [
+    "user opens Documents tab"
+]

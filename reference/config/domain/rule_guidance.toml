@@ -1,0 +1,93 @@
+# Rule Guidance Configuration
+# Business rule hints for intent enrichment: anchor terms, assertions, exclusions
+
+[[rules]]
+id = "guarantor_relationship_mandatory"
+anchor_terms = ["guarantor", "relationship field", "applicant information"]
+assert_terms = ["mandatory", "required"]
+exclude_terms = ["external verification", "eida", "passport"]
+intent_family = "validation"
+retrieval_bias_terms = ["select guarantor", "relationship mandatory", "applicant type dropdown"]
+
+[rules.applies_to]
+stages = ["CCDE", "Recommendation", "Credit Approval"]
+screens = ["Applicant Information"]
+applicant_roles = ["Guarantor"]
+
+[[rules]]
+id = "guarantor_documents_visibility"
+anchor_terms = ["guarantor", "documents", "available documents", "raise query"]
+assert_terms = ["visible", "displayed", "list"]
+exclude_terms = ["external verification", "eida"]
+intent_family = "positive"
+retrieval_bias_terms = ["documents tab", "raise query", "guarantor documents"]
+
+[rules.applies_to]
+stages = ["Recommendation", "Credit Approval", "KYC"]
+screens = ["Documents", "Raise Query"]
+applicant_roles = ["Guarantor"]
+
+[[rules]]
+id = "deviation_facility_identifier"
+anchor_terms = ["deal/facility id", "facility name", "deviation", "facility-level", "deal-level"]
+assert_terms = ["visible", "first column", "na"]
+exclude_terms = ["consumer durable", "underwriter decision"]
+intent_family = "ui_structure"
+retrieval_bias_terms = ["deviation table", "manual deviation", "view history", "cam report"]
+
+[rules.applies_to]
+stages = ["DDE", "Recommendation", "Credit Approval", "Disbursal"]
+screens = ["Deviations", "CAM Report"]
+
+[[rules]]
+id = "field_investigation_guarantor"
+anchor_terms = ["guarantor", "field investigation", "separate column"]
+assert_terms = ["visible", "applicable"]
+exclude_terms = ["documents", "external verification"]
+intent_family = "positive"
+retrieval_bias_terms = ["field investigation", "guarantor column", "verification"]
+
+[rules.applies_to]
+stages = ["Recommendation", "Credit Approval"]
+screens = ["Field Investigation"]
+applicant_roles = ["Guarantor"]
+
+[[rules]]
+id = "historical_valuation_show_history_family"
+anchor_terms = ["show history", "historical valuation", "valuation history", "copied collateral"]
+assert_terms = ["displayed", "rows", "column", "read only"]
+exclude_terms = ["special condition", "raise query", "query", "corporate guarantee", "editable", "collateral details"]
+intent_family = "positive"
+retrieval_bias_terms = ["view details", "show history", "valuation", "show history grid", "completed"]
+
+[rules.applies_to]
+
+[[rules]]
+id = "historical_valuation_application_id"
+anchor_terms = ["show history", "application id", "valuation entry"]
+assert_terms = ["column", "displayed", "mapping"]
+exclude_terms = ["special condition", "raise query", "query", "corporate guarantee", "editable"]
+intent_family = "validation"
+retrieval_bias_terms = ["application id column", "show history grid", "valuation", "mapping"]
+
+[rules.applies_to]
+
+[[rules]]
+id = "historical_valuation_validity_window"
+anchor_terms = ["show history", "historical valuation", "valid.month", "valid month"]
+assert_terms = ["displayed", "not displayed", "outside validity period"]
+exclude_terms = ["special condition", "raise query", "query", "corporate guarantee", "editable"]
+intent_family = "dependency"
+retrieval_bias_terms = ["configured validity period", "valid month", "show history grid", "historical valuation"]
+
+[rules.applies_to]
+
+[[rules]]
+id = "historical_valuation_read_only"
+anchor_terms = ["show history", "historical valuation", "read only"]
+assert_terms = ["read only", "not allow modification"]
+exclude_terms = ["editable", "edit", "special condition", "corporate guarantee", "collateral details"]
+intent_family = "negative"
+retrieval_bias_terms = ["read only mode", "show history grid", "historical valuation"]
+
+[rules.applies_to]

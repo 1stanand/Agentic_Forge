@@ -1,0 +1,51 @@
+# CAS Stage Rules Configuration
+# Stage-level business rules: what is locked, editable, mandatory at each stage
+# User adds more entries here without any code changes
+
+["Lead Details"]
+editable_entities = ["applicant", "co-applicant", "guarantor"]
+locked_entities = []
+mandatory_before_submit = ["applicant information", "employment details", "financial details", "bank details"]
+notes = "First stage, most fields editable. This is where applicant data is captured."
+
+["Sales Queue"]
+editable_entities = ["applicant"]
+locked_entities = []
+mandatory_before_submit = ["documents"]
+notes = "Sales stage, applicant info mostly locked. Documents collection phase."
+
+["CCDE"]
+editable_entities = ["credit card details"]
+locked_entities = ["applicant", "loan information"]
+mandatory_before_submit = ["card details", "references"]
+notes = "Credit card data entry. Only credit-specific fields editable."
+
+["KYC"]
+editable_entities = ["kyc_status"]
+locked_entities = ["applicant", "loan information", "documents"]
+mandatory_before_submit = ["kyc verification"]
+notes = "Know-your-customer verification. Mostly read-only after data entry."
+
+["DDE"]
+editable_entities = ["loan details", "deviations"]
+locked_entities = ["applicant", "bank details"]
+mandatory_before_submit = ["loan information"]
+notes = "Detailed data entry and deviation handling."
+
+["Recommendation"]
+editable_entities = ["recommendation", "deviations"]
+locked_entities = ["applicant", "loan information", "documents"]
+mandatory_before_submit = ["recommendation decision"]
+notes = "Underwriter recommendation. Can update deviations."
+
+["Credit Approval"]
+editable_entities = ["approval decision"]
+locked_entities = ["applicant", "loan information", "recommendation"]
+mandatory_before_submit = ["underwriter decision"]
+notes = "Credit decision stage. Very restricted editing."
+
+["Post Approval"]
+editable_entities = ["documentation"]
+locked_entities = ["applicant", "loan information", "approval decision"]
+mandatory_before_submit = ["approval documents"]
+notes = "Post-approval documentation collection."

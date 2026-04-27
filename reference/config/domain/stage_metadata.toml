@@ -1,0 +1,188 @@
+# Stage Metadata Configuration
+# Per-stage metadata: UI family, screens, navigation context
+
+[Lead\ Details]
+ui_family = "capture"
+default_screen = "Applicant Information"
+common_screens = ["Applicant Information", "Personal Information", "Employment Details", "Financial Details", "Bank Details"]
+navigation_notes = "Lead Details is the initial capture context and often lands directly into applicant data entry screens."
+
+[Login\ Acceptance]
+ui_family = "decisioning"
+default_screen = "Login Acceptance"
+common_screens = ["Login Acceptance", "Acceptance Sheet", "Applicant Information"]
+navigation_notes = "Login Acceptance is an early decisioning context and may still expose applicant-level views."
+
+[Lead\ Conversion\ Stage]
+ui_family = "decisioning"
+default_screen = "Lead Conversion"
+common_screens = ["Lead Conversion", "Applicant Information"]
+navigation_notes = "Lead Conversion Stage is the early conversion checkpoint where leads are held, rejected, or converted into applications."
+
+[Sales\ Queue]
+ui_family = "rework"
+default_screen = "Sales Queue"
+common_screens = ["Sales Queue", "Acceptance Sheet", "Applicant Information", "Documents"]
+navigation_notes = "Sales Queue is the discrepant rework stage reached from Login Acceptance where incomplete details are corrected before the application moves forward."
+
+[CCDE]
+ui_family = "capture"
+default_screen = "Credit Card Data Entry"
+common_screens = ["Credit Card Data Entry", "Applicant Information", "Card Details", "Documents", "References"]
+navigation_notes = "CCDE is the credit-card-specific data entry stage where sourcing, applicant, card, document and reference details are captured and updated."
+
+[KYC]
+ui_family = "verification"
+default_screen = "KYC"
+common_screens = ["KYC", "Applicant Information", "Documents"]
+navigation_notes = "KYC uses verification-heavy screens including checklist, dedupe and video-KYC contexts."
+
+[DDE]
+ui_family = "capture"
+default_screen = "Loan Information"
+common_screens = ["Loan Information", "Applicant Information", "Deviations"]
+navigation_notes = "DDE is a broad data-entry stage where loan data, applicant data and deviation views can all appear."
+
+[DDEQC]
+ui_family = "review"
+default_screen = "DDEQC"
+common_screens = ["DDEQC", "Loan Information"]
+navigation_notes = "DDEQC is the finance review stage where the detailed data entry information is reviewed and a decision is taken before the application moves onward."
+
+[Gold\ Valuation]
+ui_family = "valuation"
+default_screen = "Gold Valuation"
+common_screens = ["Gold Valuation", "Collateral Investigation", "Underwriter Decision"]
+navigation_notes = "Gold Valuation is the stage where gold valuation details are captured before the application moves onward."
+
+[Pre\ Sanction\ Visit]
+ui_family = "verification"
+default_screen = "Pre Sanction Visit"
+common_screens = ["Pre Sanction Visit", "Applicant Information", "Documents", "Financial Details"]
+navigation_notes = "Pre Sanction Visit is a verification stage where prior-stage data is reviewed, Sales Personal Discussion is captured and approval decisions are taken."
+
+[Recommendation]
+ui_family = "recommendation"
+default_screen = "Recommendation"
+common_screens = ["Recommendation", "Applicant Information", "Intent Indicators", "Documents", "Raise Query", "Deviations"]
+navigation_notes = "Recommendation has its own UI family with accordions and recommendation-specific navigation for applicant and signal views."
+
+[Credit\ Approval]
+ui_family = "approval"
+default_screen = "Underwriter Decision"
+common_screens = ["Underwriter Decision", "Applicant Information", "CAM Report", "Documents", "Raise Query", "Deviations"]
+navigation_notes = "Credit Approval has a distinct approval UI family. Applicant Information, CAM Report and More Options navigation differ from earlier stages."
+
+[Operations\ Check]
+ui_family = "operations"
+default_screen = "Operations Check"
+common_screens = ["Operations Check"]
+navigation_notes = "Operations Check is the credit-card-specific post-approval checkpoint where the operations checklist is completed before the application moves to card management."
+
+[Reconsideration]
+ui_family = "recommendation"
+default_screen = "Reconsideration"
+common_screens = ["Reconsideration", "Applicant Information", "CAM Report", "Deviations"]
+navigation_notes = "Reconsideration often reuses recommendation-like navigation but editability may be restricted until specific conditions are met."
+
+[Post\ Approval\ Activity]
+ui_family = "post_approval"
+default_screen = "Post Approval Activity"
+common_screens = ["Post Approval Activity", "Documents", "Repayment Parameters"]
+navigation_notes = "Post Approval Activity is the finance post-approval processing stage where post-approval documents, special conditions and instrument details are prepared for disbursal."
+
+[Post\ Approval]
+ui_family = "post_approval"
+default_screen = "Post Approval"
+common_screens = ["Post Approval", "Applicant Information", "Documents"]
+navigation_notes = "Post Approval is a downstream documentation context after approval."
+
+[Disbursal]
+ui_family = "disbursal"
+default_screen = "Disbursal"
+common_screens = ["Disbursal", "Applicant Information", "Documents"]
+navigation_notes = "Disbursal has a distinct downstream UI family for maker/author and release-related actions."
+
+[Disbursal\ Initiation]
+ui_family = "disbursal"
+default_screen = "Disbursal"
+common_screens = ["Disbursal", "Documents", "CAM Report", "Deviations", "Collateral"]
+navigation_notes = "Disbursal Initiation is the maker-stage disbursal flow where disbursal details are prepared, validated, and initiated before authorization."
+
+[Disbursal\ Author]
+ui_family = "disbursal"
+default_screen = "Disbursal Author"
+common_screens = ["Disbursal Author", "Disbursal"]
+navigation_notes = "Disbursal Author is the authorization stage where the initiated disbursal is approved, rejected or sent back for correction."
+
+[Sales\ Queue\ Disbursal]
+ui_family = "disbursal"
+default_screen = "Sales Queue Disbursal"
+common_screens = ["Sales Queue Disbursal", "Disbursal", "CAM Report"]
+navigation_notes = "Sales Queue Disbursal is the discrepant disbursal rework stage used when disbursal initiation data must be corrected before proceeding."
+
+[DCC\ Scheduling]
+ui_family = "counseling"
+default_screen = "DCC Scheduling"
+common_screens = ["DCC Scheduling", "Applicant Information", "Documents"]
+navigation_notes = "DCC Scheduling is the first disbursal credit counseling stage where the DCC user is assigned and the counseling session is prepared."
+
+[DCC\ Execution]
+ui_family = "counseling"
+default_screen = "DCC Execution"
+common_screens = ["DCC Execution", "Documents"]
+navigation_notes = "DCC Execution is the follow-up counseling stage where the DCC session is approved and the application is moved onward."
+
+[RCU\ Initiation]
+ui_family = "verification"
+default_screen = "RCU Initiation"
+common_screens = ["RCU Initiation", "Documents", "CAM Report"]
+navigation_notes = "RCU Initiation is the risk screening stage where screening results are marked and applications may move to RCU Verification or RCU Referral."
+
+[Renewal\ Recommendation]
+ui_family = "recommendation"
+default_screen = "Renewal Recommendation"
+common_screens = ["Renewal Recommendation", "Applicant Information", "CAM Report", "Deviations"]
+navigation_notes = "Renewal Recommendation is the renewal review stage where the application is recommended or not recommended before moving to renewal approval."
+
+[Renewal\ Approval]
+ui_family = "approval"
+default_screen = "Renewal Approval"
+common_screens = ["Renewal Approval", "Applicant Information"]
+navigation_notes = "Renewal Approval is the finance renewal authorization stage where the renewal request is approved for further processing."
+
+[Collateral\ Investigation\ Initiation]
+ui_family = "investigation"
+default_screen = "Collateral Investigation"
+common_screens = ["Collateral Investigation"]
+navigation_notes = "Collateral Investigation stages use parallel investigation UI."
+
+[Collateral\ Investigation\ Verification]
+ui_family = "investigation"
+default_screen = "Collateral Investigation"
+common_screens = ["Collateral Investigation"]
+navigation_notes = "Collateral Investigation stages use parallel investigation UI."
+
+[Collateral\ Investigation\ Completion]
+ui_family = "investigation"
+default_screen = "Collateral Investigation"
+common_screens = ["Collateral Investigation"]
+navigation_notes = "Collateral Investigation stages use parallel investigation UI."
+
+[Field\ Investigation\ Initiation]
+ui_family = "investigation"
+default_screen = "Field Investigation"
+common_screens = ["Field Investigation"]
+navigation_notes = "Field Investigation stages use parallel investigation UI."
+
+[Field\ Investigation\ Verification]
+ui_family = "investigation"
+default_screen = "Field Investigation"
+common_screens = ["Field Investigation"]
+navigation_notes = "Field Investigation stages use parallel investigation UI."
+
+[Field\ Investigation\ Completion]
+ui_family = "investigation"
+default_screen = "Field Investigation"
+common_screens = ["Field Investigation"]
+navigation_notes = "Field Investigation stages use parallel investigation UI."

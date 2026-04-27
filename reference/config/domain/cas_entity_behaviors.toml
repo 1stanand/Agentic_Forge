@@ -1,0 +1,52 @@
+# CAS Entity Behaviors Configuration
+# Entity-specific behavioral rules and constraints
+# User adds more entries here without any code changes
+
+[applicant]
+canonical = "applicant"
+mandatory_conditions = ["application must have at least one applicant"]
+screens_available = ["Applicant Information", "Employment Details", "Bank Details", "Documents", "KYC"]
+can_be_added_at_stages = ["Lead Details"]
+can_be_modified_at_stages = ["Lead Details", "Sales Queue"]
+cannot_be_deleted = true
+notes = "Primary applicant is mandatory for all applications"
+
+[co_applicant]
+canonical = "co-applicant"
+mandatory_conditions = ["co-applicant optional based on product and amount"]
+screens_available = ["Applicant Information", "Employment Details", "Bank Details", "Documents"]
+can_be_added_at_stages = ["Lead Details", "DDE"]
+can_be_modified_at_stages = ["Lead Details"]
+cannot_be_deleted = false
+notes = "Can only be added/removed in specific stages"
+
+[guarantor]
+canonical = "guarantor"
+mandatory_conditions = [
+  "loan amount exceeds 25 lakhs",
+  "primary applicant age > 60",
+  "primary applicant credit score below 650"
+]
+screens_available = ["Applicant Information", "Financial Details", "Documents", "KYC"]
+can_be_added_at_stages = ["Lead Details", "DDE"]
+can_be_modified_at_stages = ["Lead Details", "DDE"]
+cannot_be_primary = true
+notes = "Mandatory based on loan amount and applicant risk profile"
+
+[facility]
+canonical = "facility"
+mandatory_conditions = ["at least one facility required"]
+screens_available = ["Loan Information", "Deviations"]
+can_be_added_at_stages = ["DDE"]
+can_be_modified_at_stages = ["DDE", "Recommendation"]
+cannot_be_deleted = true
+notes = "Facility represents the loan product (HL, PL, LAP, etc.)"
+
+[deviation]
+canonical = "deviation"
+mandatory_conditions = ["business deviations must be approved"]
+screens_available = ["Deviations"]
+can_be_added_at_stages = ["DDE", "Recommendation", "Credit Approval"]
+can_be_modified_at_stages = ["DDE", "Recommendation", "Credit Approval"]
+cannot_be_deleted = false
+notes = "Policy exceptions that require approval"

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forge - Settings</title>
+    <link rel="icon" type="image/png" href="assets/Forge_MINIMAL_LOGO.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-lockup">
+            <img class="brand-mark" src="assets/Forge_MINIMAL_LOGO.png" alt="Forge minimal logo" />
+            <div class="brand-copy">
+              <img class="brand-wordmark" src="assets/Forge_LOGO.png" alt="Forge" />
+              <div class="mono-label muted">AI QA Laboratory</div>
+            </div>
+          </div>
+
+          <button onclick="toggleSidebar()" class="sidebar-collapse-btn" aria-label="Toggle sidebar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"></path>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="chat.html" class="nav-item" id="nav-chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+            </svg>
+            <span class="nav-label mono-label">Forge Chat</span>
+          </a>
+          <a href="atdd.html" class="nav-item" id="nav-atdd">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m5 3 2.5 2.5L5 8"></path>
+              <path d="M3 12h8"></path>
+              <path d="m9 16 2 2 4-4"></path>
+              <path d="M14 4h7"></path>
+              <path d="M14 8h7"></path>
+              <path d="M14 12h7"></path>
+            </svg>
+            <span class="nav-label mono-label">Forge ATDD</span>
+          </a>
+          <a href="settings.html" class="nav-item" id="nav-settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a2.5 2.5 0 0 1 2.45 2h1.38a2 2 0 0 1 1.73 1l.7 1.2 1.2.7a2 2 0 0 1 1 1.73v1.38a2.5 2.5 0 0 1 0 4.9v1.38a2 2 0 0 1-1 1.73l-1.2.7-.7 1.2a2 2 0 0 1-1.73 1h-1.38a2.5 2.5 0 0 1-4.9 0H8.17a2 2 0 0 1-1.73-1l-.7-1.2-1.2-.7a2 2 0 0 1-1-1.73v-1.38a2.5 2.5 0 0 1 0-4.9V9.63a2 2 0 0 1 1-1.73l1.2-.7.7-1.2a2 2 0 0 1 1.73-1h1.38A2.5 2.5 0 0 1 12 3Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="nav-label mono-label">Settings</span>
+          </a>
+
+          <div class="sidebar-spacer"></div>
+
+          <div class="sidebar-docs">
+            <div class="nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 7v14"></path>
+                <path d="M3 18V5a2 2 0 0 1 2-2h10"></path>
+                <path d="M13 5h6v13a2 2 0 0 1-2 2H7"></path>
+              </svg>
+              <span class="nav-label mono-label">Documentation</span>
+            </div>
+            <div class="nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              <span class="nav-label mono-label">Support</span>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <span class="text-body-sm" id="display-name" data-display-name>-</span>
+            <span class="mono-label muted">Authenticated</span>
+          </div>
+          <button onclick="logout()" class="btn-secondary btn-sm">Sign Out</button>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-btn mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open navigation">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M3 12h18"></path>
+                <path d="M3 18h18"></path>
+              </svg>
+            </button>
+            <span class="text-h2" style="color: var(--primary);">Settings</span>
+          </div>
+          <div class="topbar-right">
+            <button onclick="toggleTheme()" id="theme-toggle" class="icon-btn" aria-label="Toggle theme"></button>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <div class="page-frame">
+            <div>
+              <h1 class="text-h1" style="margin: 0 0 8px;">Settings</h1>
+              <p class="text-body-md muted" style="margin: 0;">Configure laboratory environment, integrations, and operational parameters.</p>
+            </div>
+
+            <section class="settings-grid">
+              <div class="settings-column">
+                <article class="card settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <div class="text-h2">Operator Profile</div>
+                      <div class="text-body-sm muted">Profile and theme preferences.</div>
+                    </div>
+                  </div>
+
+                  <form id="profile-form" class="settings-form">
+                    <div>
+                      <label class="mono-label field-label" for="display-name-input">Display Name</label>
+                      <input id="display-name-input" class="input" type="text" placeholder="Display name" />
+                    </div>
+
+                    <div>
+                      <label class="mono-label field-label">Theme Preference</label>
+                      <div class="theme-options">
+                        <button class="theme-choice" type="button" data-theme-choice="dark">
+                          <span class="theme-indicator"></span>
+                          <span>Dark</span>
+                        </button>
+                        <button class="theme-choice" type="button" data-theme-choice="light">
+                          <span class="theme-indicator"></span>
+                          <span>Light</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="inline-actions">
+                      <button class="btn-primary" type="submit">Save Profile</button>
+                    </div>
+                    <div id="profile-status" class="hidden"></div>
+                  </form>
+                </article>
+
+                <article class="card settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <div class="text-h2">JIRA Integration</div>
+                      <div class="text-body-sm muted">Stored host and PAT management.</div>
+                    </div>
+                    <span id="jira-badge" class="badge">Not Configured</span>
+                  </div>
+
+                  <form id="jira-form" class="settings-form">
+                    <div>
+                      <label class="mono-label field-label" for="jira-url">JIRA Instance URL</label>
+                      <input id="jira-url" class="input" type="text" placeholder="jira.nucleussoftware.com" />
+                    </div>
+
+                    <div>
+                      <label class="mono-label field-label" for="jira-pat">Personal Access Token</label>
+                      <input id="jira-pat" class="input" type="password" placeholder="Not set" />
+                      <div id="jira-pat-hint" class="field-hint text-body-sm"></div>
+                    </div>
+
+                    <div class="inline-actions">
+                      <button class="btn-secondary" type="submit">Save JIRA Settings</button>
+                      <button id="test-jira-btn" class="btn-primary" type="button">Test Connection</button>
+                    </div>
+                    <div id="jira-status" class="hidden"></div>
+                  </form>
+                </article>
+              </div>
+
+              <div class="settings-column">
+                <article class="card settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <div class="text-h2">Authentication</div>
+                      <div class="text-body-sm muted">Change your current password.</div>
+                    </div>
+                  </div>
+
+                  <form id="password-form" class="settings-form">
+                    <div>
+                      <label class="mono-label field-label" for="current-password">Current Password</label>
+                      <input id="current-password" class="input" type="password" />
+                    </div>
+
+                    <div>
+                      <label class="mono-label field-label" for="new-password">New Password</label>
+                      <input id="new-password" class="input" type="password" />
+                    </div>
+
+                    <div>
+                      <label class="mono-label field-label" for="confirm-password">Confirm Password</label>
+                      <input id="confirm-password" class="input" type="password" />
+                    </div>
+
+                    <button class="btn-primary" type="submit">Update Password</button>
+                    <div id="password-status" class="hidden"></div>
+                  </form>
+                </article>
+
+                <article class="card settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <div class="text-h2">Neural Engine</div>
+                      <div class="text-body-sm muted">Model availability and local runtime status.</div>
+                    </div>
+                  </div>
+
+                  <div class="settings-form">
+                    <div class="system-display">
+                      <div>
+                        <div class="mono-label muted">Model Status</div>
+                        <div id="model-status-heading" class="mono-metric" style="color: var(--primary);">Not yet tested</div>
+                      </div>
+                      <div id="model-status-text" class="text-body-sm muted">Run diagnostics to confirm model availability.</div>
+                      <div class="system-metrics">
+                        <div>
+                          <div class="mono-label muted">Mode</div>
+                          <div class="offline-indicator">Offline Mode</div>
+                        </div>
+                        <div>
+                          <div class="mono-label muted">Backend</div>
+                          <div class="text-body-sm">llama_cpp</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button id="test-model-btn" class="btn-secondary" type="button">Run Diagnostic</button>
+                    <div id="model-status-inline" class="hidden"></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module">
+      import {
+        apiFetch,
+        getDisplayName,
+        getToken,
+        initTheme,
+        requireAuth,
+        setActiveNav,
+        setDisplayName,
+        setTheme,
+        showToast,
+        updateDisplayNameElements,
+      } from "./app.js";
+
+      const state = {
+        jiraPatConfigured: false,
+      };
+
+      const displayNameInput = document.getElementById("display-name-input");
+      const jiraUrlInput = document.getElementById("jira-url");
+      const jiraPatInput = document.getElementById("jira-pat");
+      const jiraPatHint = document.getElementById("jira-pat-hint");
+
+      requireAuth();
+      initTheme();
+      setActiveNav("settings");
+      updateDisplayNameElements(getDisplayName() || "User");
+
+      bindEvents();
+      loadSettings();
+      runModelDiagnostic(false);
+
+      function bindEvents() {
+        document.querySelectorAll("[data-theme-choice]").forEach((button) => {
+          button.addEventListener("click", () => {
+            setTheme(button.dataset.themeChoice);
+          });
+        });
+
+        document.getElementById("profile-form").addEventListener("submit", saveProfile);
+        document.getElementById("jira-form").addEventListener("submit", saveJiraSettings);
+        document.getElementById("password-form").addEventListener("submit", changePassword);
+        document.getElementById("test-jira-btn").addEventListener("click", testJiraConnection);
+        document.getElementById("test-model-btn").addEventListener("click", () => runModelDiagnostic(true));
+      }
+
+      function setInlineStatus(targetId, kind, message) {
+        const element = document.getElementById(targetId);
+        element.className = `inline-status is-${kind}`;
+        element.innerHTML = `<div class="text-body-sm">${message}</div>`;
+      }
+
+      function normalizeJiraUrl(value) {
+        if (typeof value !== "string") {
+          return "";
+        }
+
+        if (value === "True" || value === "False") {
+          return "";
+        }
+
+        return value;
+      }
+
+      async function loadSettings() {
+        try {
+          const response = await apiFetch("/settings/");
+          const payload = await response.json();
+
+          displayNameInput.value = payload.display_name || getDisplayName() || "";
+          jiraUrlInput.value = normalizeJiraUrl(payload.jira_url) || "jira.nucleussoftware.com";
+          state.jiraPatConfigured = Boolean(payload.jira_pat_configured);
+
+          jiraPatInput.value = "";
+          jiraPatInput.placeholder = state.jiraPatConfigured ? "********" : "Not set";
+          jiraPatHint.textContent = state.jiraPatConfigured
+            ? "Re-enter PAT to save or test JIRA on this backend build."
+            : "PAT is required for save/test operations.";
+          document.getElementById("jira-badge").textContent = state.jiraPatConfigured ? "Configured" : "Not Configured";
+          document.getElementById("jira-badge").className = state.jiraPatConfigured ? "badge badge-success" : "badge";
+        } catch (error) {
+          setInlineStatus("profile-status", "error", error.message);
+          jiraUrlInput.value = "jira.nucleussoftware.com";
+        }
+      }
+
+      async function saveProfile(event) {
+        event.preventDefault();
+        const displayName = displayNameInput.value.trim();
+
+        if (!displayName) {
+          setInlineStatus("profile-status", "error", "Display name cannot be empty.");
+          return;
+        }
+
+        try {
+          const response = await apiFetch("/settings/profile", {
+            method: "PUT",
+            body: JSON.stringify({ display_name: displayName }),
+          });
+          const payload = await response.json();
+          setDisplayName(payload.display_name || displayName);
+          setInlineStatus("profile-status", "success", "Profile updated.");
+        } catch (error) {
+          setInlineStatus("profile-status", "error", error.message);
+        }
+      }
+
+      async function saveJiraSettings(event) {
+        event.preventDefault();
+        const jiraUrl = jiraUrlInput.value.trim();
+        const jiraPat = jiraPatInput.value.trim();
+
+        if (state.jiraPatConfigured && !jiraPat) {
+          setInlineStatus("jira-status", "error", "Re-enter PAT before saving. This backend build clears stored PATs when saving without one.");
+          return;
+        }
+
+        try {
+          await apiFetch("/settings/", {
+            method: "PUT",
+            body: JSON.stringify({
+              jira_url: jiraUrl,
+              jira_pat: jiraPat || null,
+            }),
+          });
+          state.jiraPatConfigured = Boolean(jiraPat);
+          jiraPatInput.value = "";
+          jiraPatInput.placeholder = state.jiraPatConfigured ? "********" : "Not set";
+          jiraPatHint.textContent = state.jiraPatConfigured
+            ? "Re-enter PAT to save or test JIRA on this backend build."
+            : "PAT is required for save/test operations.";
+          document.getElementById("jira-badge").textContent = state.jiraPatConfigured ? "Configured" : "Not Configured";
+          document.getElementById("jira-badge").className = state.jiraPatConfigured ? "badge badge-success" : "badge";
+          setInlineStatus("jira-status", "success", "JIRA settings saved.");
+        } catch (error) {
+          setInlineStatus("jira-status", "error", error.message);
+        }
+      }
+
+      async function testJiraConnection() {
+        const jiraUrl = jiraUrlInput.value.trim();
+        const jiraPat = jiraPatInput.value.trim();
+
+        if (!jiraPat) {
+          setInlineStatus("jira-status", "error", "Enter PAT to test JIRA on this machine.");
+          return;
+        }
+
+        try {
+          const response = await apiFetch("/settings/test-jira", {
+            method: "POST",
+            body: JSON.stringify({
+              jira_url: jiraUrl,
+              jira_pat: jiraPat,
+            }),
+          });
+          const payload = await response.json();
+          setInlineStatus("jira-status", payload.success ? "success" : "error", payload.message);
+        } catch (error) {
+          setInlineStatus("jira-status", "error", error.message);
+        }
+      }
+
+      async function changePassword(event) {
+        event.preventDefault();
+        const currentPassword = document.getElementById("current-password");
+        const newPassword = document.getElementById("new-password");
+        const confirmPassword = document.getElementById("confirm-password");
+
+        if (!currentPassword.value || !newPassword.value || !confirmPassword.value) {
+          setInlineStatus("password-status", "error", "Fill all password fields.");
+          return;
+        }
+
+        if (newPassword.value !== confirmPassword.value) {
+          setInlineStatus("password-status", "error", "New password and confirmation do not match.");
+          return;
+        }
+
+        try {
+          const response = await apiFetch("/settings/password", {
+            method: "PUT",
+            body: JSON.stringify({
+              current_password: currentPassword.value,
+              new_password: newPassword.value,
+            }),
+          });
+          const payload = await response.json();
+          currentPassword.value = "";
+          newPassword.value = "";
+          confirmPassword.value = "";
+          setInlineStatus("password-status", "success", payload.message || "Password updated.");
+        } catch (error) {
+          setInlineStatus("password-status", "error", error.message);
+        }
+      }
+
+      async function runModelDiagnostic(showToastOnError) {
+        try {
+          const response = await apiFetch("/settings/test-model", {
+            method: "POST",
+          });
+          const payload = await response.json();
+          document.getElementById("model-status-heading").textContent = payload.success ? "Model Available" : "Model Unavailable";
+          document.getElementById("model-status-heading").style.color = payload.success ? "var(--success)" : "var(--warning)";
+          document.getElementById("model-status-text").textContent = payload.message;
+          setInlineStatus("model-status-inline", payload.success ? "success" : "error", payload.message);
+        } catch (error) {
+          document.getElementById("model-status-heading").textContent = "Diagnostic Failed";
+          document.getElementById("model-status-heading").style.color = "var(--error)";
+          document.getElementById("model-status-text").textContent = error.message;
+          setInlineStatus("model-status-inline", "error", error.message);
+          if (showToastOnError) {
+            showToast(error.message, "error");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

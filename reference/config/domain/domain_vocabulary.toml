@@ -1,0 +1,219 @@
+# Domain Vocabulary Configuration
+# PRIMARY SOURCE OF TRUTH for LOBs, applicant roles, entities, and stages
+# User can add new entries here without code changes
+# NOTE: families, sections, matrix_terms remain in domain_knowledge.toml
+
+[[lob_aliases]]
+canonical = "OMNI"
+phrases = ["omni loan", "omni"]
+
+[[lob_aliases]]
+canonical = "HL"
+phrases = ["home loan"]
+
+[[lob_aliases]]
+canonical = "PL"
+phrases = ["personal loan"]
+
+[[lob_aliases]]
+canonical = "LAP"
+phrases = ["loan against property", "lap"]
+
+[[lob_aliases]]
+canonical = "MHF"
+phrases = ["micro home loan", "mhl"]
+
+[[lob_aliases]]
+canonical = "CV"
+phrases = ["commercial vehicle", "consumer vehicle", "cv"]
+
+[[lob_aliases]]
+canonical = "EDU"
+phrases = ["education loan", "education", "edu"]
+
+[[lob_aliases]]
+canonical = "PF"
+phrases = ["personal finance", "pf"]
+
+[[lob_aliases]]
+canonical = "BL"
+phrases = ["business loan", "bl"]
+
+[[lob_aliases]]
+canonical = "CC"
+phrases = ["credit card loan", "credit card", "cc"]
+
+[[applicant_roles]]
+canonical = "Primary"
+aliases = ["primary", "primary applicant"]
+
+[[applicant_roles]]
+canonical = "Co-applicant"
+aliases = ["co-applicant", "co applicant", "coapplicant"]
+
+[[applicant_roles]]
+canonical = "Guarantor"
+aliases = ["guarantor"]
+
+[[applicant_roles]]
+canonical = "Add-on"
+aliases = ["add on", "add-on", "add on applicant", "add-on applicant", "add-on card"]
+
+# UI Structure Entities
+[[entities]]
+canonical = "decision column"
+aliases = ["decision column", "column decision", "new column decision", "new column 'decision'", "new column \"decision\""]
+family = "ui_structure"
+screens = []
+
+[[entities]]
+canonical = "product type decision list"
+aliases = ["product type decision list"]
+family = "ui_structure"
+screens = ["Product Type Decision List"]
+
+[[entities]]
+canonical = "facility name column"
+aliases = ["facility name column", "deal/facility id column", "deal facility id column", "facility column"]
+family = "ui_structure"
+screens = ["Deviations", "CAM Report"]
+
+# Checkbox & Default State Entities
+[[entities]]
+canonical = "decision checkbox"
+aliases = ["decision checkbox", "decision check box", "checkbox in decision column"]
+family = "default_state"
+screens = []
+
+[[entities]]
+canonical = "decision checkbox for sub loan grid"
+aliases = ["decision checkbox for sub loan grid", "decision checkbox for subloan grid", "decision checkbox for sub loans", "checkbox for sub loans", "checkbox for sub products"]
+family = "default_state"
+screens = []
+
+[[entities]]
+canonical = "decision checkbox for credit card grid"
+aliases = ["decision checkbox for credit card grid", "checkbox for credit cards", "checkbox for add on cards"]
+family = "default_state"
+screens = []
+
+# Decision Logic Entities
+[[entities]]
+canonical = "recommendation decision dropdown"
+aliases = ["recommendation decision dropdown", "recommendation decision"]
+family = "dependency"
+screens = ["Recommendation Decisions"]
+
+[[entities]]
+canonical = "application level decision"
+aliases = ["application level decision", "application decision"]
+family = "dependency"
+screens = []
+
+[[entities]]
+canonical = "sub product decision"
+aliases = ["sub product decision", "sub loan decision", "separate decision", "sub loan level decision", "separate recommendation decision"]
+family = "dependency"
+screens = []
+
+[[entities]]
+canonical = "committee verdict"
+aliases = ["committee verdict", "committee decision", "verdict"]
+family = "decision_logic"
+screens = ["Decision Drawer"]
+
+# Field Enablement Entities
+[[entities]]
+canonical = "recommended amount field"
+aliases = ["recommended amount field", "recommended amount"]
+family = "field_enablement"
+screens = []
+
+[[entities]]
+canonical = "recommended limit field"
+aliases = ["recommended limit field", "recommended limit"]
+family = "field_enablement"
+screens = []
+
+# Data Combination Entities
+[[entities]]
+canonical = "primary card"
+aliases = ["primary card"]
+family = "data_combination"
+screens = []
+
+[[entities]]
+canonical = "add-on card"
+aliases = ["add-on card", "addon card", "add on card"]
+family = "data_combination"
+screens = []
+
+[[entities]]
+canonical = "sub loan"
+aliases = ["sub loan", "subloan", "sub loans", "subloans"]
+family = "data_combination"
+screens = []
+
+[[entities]]
+canonical = "credit card grid"
+aliases = ["credit card grid", "credit card", "card grid"]
+family = "data_combination"
+screens = []
+
+# Validation Entities
+[[entities]]
+canonical = "relationship field"
+aliases = ["relationship field", "relationship"]
+family = "validation"
+screens = ["Applicant Information"]
+
+# All Stages (consolidated from both files)
+[[stages]]
+canonical = "Lead Conversion Stage"
+aliases = ["lead conversion stage", "lead conversion"]
+
+[[stages]]
+canonical = "Lead Details"
+aliases = ["lead details", "lead"]
+
+[[stages]]
+canonical = "Login Acceptance"
+aliases = ["login acceptance"]
+
+[[stages]]
+canonical = "Sales Queue"
+aliases = ["sales queue"]
+
+[[stages]]
+canonical = "DDE"
+aliases = ["dde", "data entry"]
+
+[[stages]]
+canonical = "Recommendation"
+aliases = ["recommendation"]
+
+[[stages]]
+canonical = "Credit Approval"
+aliases = ["credit approval"]
+
+[[stages]]
+canonical = "Committee Approval"
+aliases = ["committee approval"]
+
+[[stages]]
+canonical = "Reconsideration"
+aliases = ["reconsideration"]
+
+[[stages]]
+canonical = "Disbursal Initiation"
+aliases = ["disbursal initiation", "disbursal"]
+
+[hypothesis_fallback]
+# Keywords for hypothesis fallback detection (when LLM fails)
+# Entity keywords: detect applicants, guarantors, etc.
+entity_keywords = ["guarantor", "applicant", "co-applicant", "coapplicant"]
+
+# Behavior keywords: detect mandatory, display, validation, etc.
+mandatory_keywords = ["mandatory", "required"]
+display_keywords = ["display", "show"]
+validate_keywords = ["validate", "check", "validation"]

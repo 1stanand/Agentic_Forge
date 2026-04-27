@@ -1,0 +1,9 @@
+psycopg2-binary
+python-dotenv
+tomli
+sentence-transformers
+faiss-cpu
+numpy
+llama-cpp-python
+fastapi
+uvicorn[standard]

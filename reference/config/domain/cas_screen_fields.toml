@@ -1,0 +1,48 @@
+# CAS Screen Fields Configuration
+# Per-screen field definitions, validation rules, and behaviors
+# User adds more entries here without any code changes
+
+["Applicant Information"]
+mandatory_fields = ["first_name", "last_name", "date_of_birth", "mobile"]
+optional_fields = ["email", "alternate_mobile", "middle_name"]
+rules = [
+  "Primary applicant must be filled before co-applicant",
+  "Date of birth must be valid",
+  "Mobile number must be 10 digits",
+]
+
+["Bank Details"]
+mandatory_fields = ["account_number", "ifsc_code", "account_type"]
+optional_fields = ["account_holder_name"]
+rules = [
+  "Account number must be 9-18 digits",
+  "IFSC code must be valid",
+  "Account type must be selected",
+]
+
+["Deviations"]
+mandatory_fields = ["facility_identifier", "deviation_type"]
+optional_fields = ["reason", "amount"]
+rules = [
+  "Facility filter must be set before deviations load",
+  "Deviation requires recommendation stage or later",
+  "Deviation type must be selected from list",
+]
+
+["Documents"]
+mandatory_fields = []
+optional_fields = ["document_type", "document_status"]
+rules = [
+  "Documents must be uploaded before stage completion",
+  "Mandatory documents vary by product type",
+  "Each document must have a clear timestamp",
+]
+
+["KYC"]
+mandatory_fields = ["kyc_status", "dedupe_result"]
+optional_fields = ["kyc_update_date"]
+rules = [
+  "KYC must be completed before moving to next stage",
+  "Dedupe check must pass",
+  "Video KYC required if physical KYC not possible",
+]

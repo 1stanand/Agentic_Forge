@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forge ATDD Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#432100",
+                        "secondary-fixed": "#e8e1dd",
+                        "on-primary-fixed": "#2f1500",
+                        "primary-fixed": "#ffdcc3",
+                        "tertiary-container": "#c48060",
+                        "primary": "#ffb77d",
+                        "on-secondary-fixed-variant": "#4a4643",
+                        "outline-variant": "#554336",
+                        "background": "#161311",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#383432",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#491d05",
+                        "primary-fixed-dim": "#ffb77d",
+                        "tertiary": "#ffb694",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary-fixed-variant": "#6d391e",
+                        "secondary-container": "#4c4845",
+                        "outline": "#a38c7c",
+                        "surface-container-low": "#1e1b19",
+                        "on-secondary": "#33302d",
+                        "surface-dim": "#161311",
+                        "secondary-fixed-dim": "#ccc5c1",
+                        "surface-container": "#221f1d",
+                        "surface-container-lowest": "#100e0c",
+                        "surface": "#161311",
+                        "on-secondary-container": "#beb7b3",
+                        "on-tertiary": "#51230a",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1e1b19",
+                        "tertiary-fixed-dim": "#ffb694",
+                        "primary-container": "#d97707",
+                        "surface-tint": "#ffb77d",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3c3836",
+                        "surface-variant": "#383432",
+                        "on-background": "#e9e1dd",
+                        "secondary": "#ccc5c1",
+                        "inverse-primary": "#904d00",
+                        "on-surface": "#e9e1dd",
+                        "inverse-surface": "#e9e1dd",
+                        "on-surface-variant": "#dbc2b0",
+                        "inverse-on-surface": "#33302d",
+                        "surface-container-high": "#2d2927",
+                        "on-primary": "#4d2600",
+                        "on-tertiary-fixed": "#351000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "inspector_width": "320px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "1px",
+                        "sidebar_width": "240px",
+                        "unit": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "mono-label": ["JetBrains Mono"],
+                        "h1": ["Inter"],
+                        "mono-metric": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "mono-code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "mono-label": ["10px", {"lineHeight": "12px", "fontWeight": "700"}],
+                        "h1": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "mono-metric": ["16px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(34, 31, 29, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--tw-colors-surface-variant);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .technical-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .technical-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .technical-scroll::-webkit-scrollbar-thumb {
+            background: var(--tw-colors-surface-variant);
+            border-radius: 4px;
+        }
+        .pulse-amber {
+            animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(255, 183, 125, 0.2); background-color: rgba(217, 119, 7, 0.05); }
+            50% { border-color: rgba(255, 183, 125, 0.8); background-color: rgba(217, 119, 7, 0.15); box-shadow: 0 0 12px rgba(255, 183, 125, 0.2); }
+        }
+        .line-numbers {
+            counter-reset: line;
+        }
+        .line-numbers > div {
+            counter-increment: line;
+            display: flex;
+        }
+        .line-numbers > div::before {
+            content: counter(line);
+            width: 2rem;
+            text-align: right;
+            padding-right: 0.75rem;
+            color: var(--tw-colors-on-surface-variant);
+            opacity: 0.5;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md h-screen w-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-sidebar_width border-r border-surface-variant bg-surface-container py-6 flex-shrink-0">
+<div class="px-md mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<div>
+<div class="font-h2 text-h2 text-primary font-black tracking-tighter uppercase">Forge</div>
+<div class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-wider mt-1">AI QA Laboratory</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all px-4 py-3 flex items-center gap-3 font-mono-label text-mono-label uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                Forge Chat
+            </a>
+<a class="bg-surface-container-high text-primary border-l-2 border-primary px-4 py-3 flex items-center gap-3 font-mono-label text-mono-label uppercase tracking-wider scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined text-[18px]">precision_manufacturing</span>
+                Forge ATDD
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all px-4 py-3 flex items-center gap-3 font-mono-label text-mono-label uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto border-t border-surface-variant pt-4 flex flex-col gap-1">
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all px-4 py-2 flex items-center gap-3 font-mono-label text-mono-label uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+                Documentation
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all px-4 py-2 flex items-center gap-3 font-mono-label text-mono-label uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<div class="flex-1 flex flex-col min-w-0 h-full relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-4 h-14 z-50 bg-surface-container/80 backdrop-blur-xl border-b border-surface-variant shadow-none border-t border-t-white/5 flex-shrink-0">
+<div class="md:hidden flex items-center gap-2">
+<div class="font-h2 text-h2 text-primary font-black tracking-tighter uppercase">Forge</div>
+</div>
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant font-mono-label text-mono-label uppercase">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span>Workspace / Active Pipeline</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="w-px h-4 bg-surface-variant"></div>
+<div class="w-7 h-7 rounded-full bg-surface-variant border border-outline flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a person with neutral background, dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg2y1xPZWc5fM7xIxd2NO-QuBqqZZG7M2N0Hj9xQEMWwUqrsaaPJf4kjIPUdMBjthh-gY2qiFfgBP0uuXDLvV3PcTNqh70wWSbUPSGVszgMRtI-wnTHN3_i_Idt666MyaXVsIb0bdIfunFVh3czK5uxFYfy5qeSeLOTsXBsKNMVSqJ1Awnl6zo4F7_we5pxbOn1VQDq1fIsttE1ZuGVi63lfWCvrT7UyH34W4cXGDltuB8_eIJHCBJWKQRCibAvJMFrrCJquoA7uyG"/>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<main class="flex-1 flex overflow-hidden bg-background">
+<!-- Center Column (Command Center) -->
+<div class="flex-1 flex flex-col p-4 md:p-6 gap-6 overflow-y-auto technical-scroll">
+<!-- System HUD -->
+<section class="glass-panel rounded-lg p-4 flex flex-wrap gap-6 items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Job Status</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono-metric text-mono-metric">RUNNING</span>
+</div>
+</div>
+<div class="w-px h-8 bg-surface-variant hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Active Agent</span>
+<span class="font-mono-metric text-mono-metric text-on-surface">6. Retriever</span>
+</div>
+<div class="w-px h-8 bg-surface-variant hidden lg:block"></div>
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Progress</span>
+<div class="flex items-center gap-3">
+<span class="font-mono-metric text-mono-metric text-on-surface">6 / 11</span>
+<div class="w-24 h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[55%]"></div>
+</div>
+</div>
+</div>
+<div class="w-px h-8 bg-surface-variant hidden lg:block"></div>
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Elapsed Time</span>
+<span class="font-mono-metric text-mono-metric text-on-surface">00:04:12.4s</span>
+</div>
+<div class="w-px h-8 bg-surface-variant hidden xl:block"></div>
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Tokens / Sec</span>
+<span class="font-mono-metric text-mono-metric text-tertiary">42.8</span>
+</div>
+<div class="w-px h-8 bg-surface-variant hidden xl:block"></div>
+<div class="flex flex-col gap-1">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Avg Latency</span>
+<span class="font-mono-metric text-mono-metric text-on-surface">124ms</span>
+</div>
+</section>
+<!-- Pipeline Visualization -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="font-h2 text-h2 text-on-surface">Pipeline Topology</h2>
+<span class="font-mono-label text-mono-label text-on-surface-variant border border-surface-variant rounded px-2 py-1">v2.4.1-alpha</span>
+</div>
+<div class="glass-panel rounded-lg p-6 relative">
+<!-- Node Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 relative z-10">
+<!-- Completed Nodes -->
+<div class="border border-surface-variant bg-surface-container-low rounded p-3 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">01</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Reader</span>
+</div>
+<div class="border border-surface-variant bg-surface-container-low rounded p-3 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">02</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Domain Expert</span>
+</div>
+<div class="border border-surface-variant bg-surface-container-low rounded p-3 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">03</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Scope Definer</span>
+</div>
+<div class="border border-surface-variant bg-surface-container-low rounded p-3 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">04</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Coverage Planner</span>
+</div>
+<div class="border border-surface-variant bg-surface-container-low rounded p-3 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">05</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Action Decomposer</span>
+</div>
+<!-- Active Node -->
+<div class="border border-primary bg-primary-container/10 rounded p-3 flex flex-col gap-2 relative pulse-amber transform scale-105 z-20">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-primary">06</span>
+<span class="material-symbols-outlined text-[16px] text-primary animate-spin" style="animation-duration: 3s;">settings</span>
+</div>
+<span class="font-body-sm text-body-sm font-bold text-primary">Retriever</span>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<!-- Pending Nodes -->
+<div class="border border-surface-container-highest bg-surface-container-lowest opacity-50 rounded p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">07</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pending</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Composer</span>
+</div>
+<div class="border border-surface-container-highest bg-surface-container-lowest opacity-50 rounded p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">08</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pending</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ATDD Expert</span>
+</div>
+<div class="border border-surface-container-highest bg-surface-container-lowest opacity-50 rounded p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">09</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pending</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Writer</span>
+</div>
+<div class="border border-surface-container-highest bg-surface-container-lowest opacity-50 rounded p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">10</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pending</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Critic</span>
+</div>
+<div class="border border-surface-container-highest bg-surface-container-lowest opacity-50 rounded p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant">11</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">pending</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reporter</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Agent Inspector -->
+<section class="mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-2 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">manage_search</span>
+<h3 class="font-h2 text-h2 text-on-surface">Agent Inspector: <span class="text-primary font-mono-code text-[16px]">Retriever</span></h3>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<div class="bg-surface-container rounded border border-surface-variant p-4 flex flex-col gap-3">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Input Action Context</span>
+<div class="bg-surface-container-lowest p-3 rounded font-mono-code text-mono-code text-secondary break-words">
+                                {"intent": "locate_auth_boundary", "params": ["JWT", "session_store"]}
+                            </div>
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase mt-2">Expanded Vector Query</span>
+<div class="bg-surface-container-lowest p-3 rounded font-mono-code text-mono-code text-tertiary break-words">
+                                SELECT chunk, similarity FROM core_auth WHERE embedding &lt;=&gt; '[0.12, -0.45...]' LIMIT 5;
+                            </div>
+</div>
+<div class="bg-surface-container rounded border border-surface-variant p-4 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase">Candidates Found</span>
+<span class="bg-surface-variant text-on-surface-variant font-mono-label px-2 py-0.5 rounded">Top 3</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center bg-surface-container-lowest p-2 rounded">
+<span class="font-mono-code text-mono-code text-on-surface truncate pr-4">src/auth/jwt_middleware.ts</span>
+<span class="font-mono-label text-mono-label text-primary">0.92 CE</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest p-2 rounded">
+<span class="font-mono-code text-mono-code text-on-surface truncate pr-4">tests/unit/session_test.spec.ts</span>
+<span class="font-mono-label text-mono-label text-primary">0.88 CE</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest p-2 rounded">
+<span class="font-mono-code text-mono-code text-on-surface-variant truncate pr-4">docs/architecture/auth_flow.md</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">0.65 CE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Output Panel (Right Sidebar) -->
+<aside class="hidden xl:flex flex-col w-inspector_width border-l border-surface-variant bg-surface flex-shrink-0 z-10 shadow-[-4px_0_24px_rgba(0,0,0,0.2)]">
+<!-- Tabs -->
+<div class="flex border-b border-surface-variant">
+<button class="flex-1 py-3 px-2 border-b-2 border-primary text-primary font-mono-label text-mono-label uppercase tracking-wider text-center bg-surface-container-low transition-colors">
+                        Feature Output
+                    </button>
+<button class="flex-1 py-3 px-2 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-mono-label text-mono-label uppercase tracking-wider text-center transition-colors">
+                        Gap Report
+                    </button>
+<button class="flex-1 py-3 px-2 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-mono-label text-mono-label uppercase tracking-wider text-center transition-colors">
+                        Logs
+                    </button>
+</div>
+<!-- Tab Content: Gherkin -->
+<div class="flex-1 overflow-y-auto technical-scroll bg-[#0a0a0a] p-4 text-on-surface font-mono-code text-mono-code line-numbers">
+<div><span class="text-primary-fixed">Feature:</span> JWT Authentication Middleware</div>
+<div>  As a secure API consumer</div>
+<div>  I want all protected routes to validate JWTs</div>
+<div>  So that unauthorized access is prevented</div>
+<div><br/></div>
+<div>  <span class="text-tertiary">Scenario:</span> Valid token provided in header</div>
+<div>    <span class="text-secondary-fixed-dim">Given</span> a user has a valid JWT token</div>
+<div>    <span class="text-secondary-fixed-dim">When</span> they make a request to "/api/protected"</div>
+<div>    <span class="text-secondary-fixed-dim">And</span> the "Authorization" header is set</div>
+<div>    <span class="text-secondary-fixed-dim">Then</span> the response status should be 200</div>
+<div>    <span class="text-secondary-fixed-dim">And</span> the response body should contain data</div>
+<div><br/></div>
+<div class="opacity-50 italic"># Pending Generation: Edge Cases...</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-4 border-t border-surface-variant bg-surface-container flex gap-2">
+<button class="flex-1 bg-surface-variant hover:bg-surface-container-highest text-on-surface font-body-sm text-body-sm font-semibold py-2 px-4 rounded border border-outline-variant transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">content_copy</span> Copy
+                    </button>
+<button class="flex-1 bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-semibold py-2 px-4 rounded transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">save</span> Commit
+                    </button>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

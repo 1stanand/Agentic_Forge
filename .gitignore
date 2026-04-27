@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env.local
+.env*.local
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+agentic_forge_local/
+
+# LLM Models (HUGE - never commit)
+*.gguf
+*.bin
+*.safetensors
+D:\LLM_MODEL\*
+LLM_MODEL/
+
+# FAISS indices
+*.faiss
+data/indices/faiss_index.bin
+data/indices/step_id_map.npy
+
+# Cache and temp
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+
+# IDE generated
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Backup files
+*.bak
+*.backup
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Static/frontend (Codex territory)
+static/dist/
+node_modules/
+
+# Generated files
+docs/How_to_run.md.bak
+docs/How_to_maintain.md.bak

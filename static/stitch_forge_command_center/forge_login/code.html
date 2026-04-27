@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forge | Secure Login</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#432100",
+                        "secondary-fixed": "#e8e1dd",
+                        "on-primary-fixed": "#2f1500",
+                        "primary-fixed": "#ffdcc3",
+                        "tertiary-container": "#c48060",
+                        "primary": "#ffb77d",
+                        "on-secondary-fixed-variant": "#4a4643",
+                        "outline-variant": "#554336",
+                        "background": "#161311",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#383432",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#491d05",
+                        "primary-fixed-dim": "#ffb77d",
+                        "tertiary": "#ffb694",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary-fixed-variant": "#6d391e",
+                        "secondary-container": "#4c4845",
+                        "outline": "#a38c7c",
+                        "surface-container-low": "#1e1b19",
+                        "on-secondary": "#33302d",
+                        "surface-dim": "#161311",
+                        "secondary-fixed-dim": "#ccc5c1",
+                        "surface-container": "#221f1d",
+                        "surface-container-lowest": "#100e0c",
+                        "surface": "#161311",
+                        "on-secondary-container": "#beb7b3",
+                        "on-tertiary": "#51230a",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1e1b19",
+                        "tertiary-fixed-dim": "#ffb694",
+                        "primary-container": "#d97707",
+                        "surface-tint": "#ffb77d",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3c3836",
+                        "surface-variant": "#383432",
+                        "on-background": "#e9e1dd",
+                        "secondary": "#ccc5c1",
+                        "inverse-primary": "#904d00",
+                        "on-surface": "#e9e1dd",
+                        "inverse-surface": "#e9e1dd",
+                        "on-surface-variant": "#dbc2b0",
+                        "inverse-on-surface": "#33302d",
+                        "surface-container-high": "#2d2927",
+                        "on-primary": "#4d2600",
+                        "on-tertiary-fixed": "#351000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "inspector_width": "320px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "1px",
+                        "sidebar_width": "240px",
+                        "unit": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "mono-label": ["JetBrains Mono"],
+                        "h1": ["Inter"],
+                        "mono-metric": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "mono-code": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "mono-label": ["10px", { "lineHeight": "12px", "fontWeight": "700" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "mono-metric": ["16px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Subtle abstract technical pattern overlay */
+        .bg-tech-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center relative antialiased selection:bg-primary/30 selection:text-primary">
+<!-- Background Texture -->
+<div class="absolute inset-0 z-0 bg-tech-pattern pointer-events-none"></div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 w-full max-w-[420px] px-md">
+<!-- Glassmorphism Login Card -->
+<div class="bg-surface-container/60 backdrop-blur-xl border border-surface-variant rounded-xl shadow-2xl relative overflow-hidden">
+<!-- Metallic Top Edge Highlight -->
+<div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+<!-- Card Content -->
+<div class="p-lg">
+<!-- Branding Header -->
+<div class="flex flex-col items-center mb-lg pt-sm">
+<img alt="Forge Logo" class="h-14 w-auto mb-md" data-alt="Sleek, minimalist 3D rendering of an industrial bronze anvil or forge symbol, isolated on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOXgUY47txQ6PZ6m0n1mOeejSYhBobFPsc26cuqbD71fi379ymUk_5KXskuLLTM9_AUc7APrvzNyDQ0ov9V5GvX1Un958l5NTM9QjKGtanIcJuJ6P-DATi9NzeHlYD5ArARU1s5daL9hcL5IXlel7Nxjw5IYHQiYE6-YHc9XB_xsjc9ocQqRxj7AmpkKboTgN6NGNPhynQ0v1E52qqNYvJCkRcqeoQdQHzjlGA04EuISTeH_UUtBThhHVTwTbJZJ6FZZPKN9lwtwKJ"/>
+<h1 class="font-h1 text-h1 text-on-surface">Forge Workspace</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm text-center">Secure authentication required for laboratory access.</p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-md">
+<!-- Username Input -->
+<div class="flex flex-col gap-unit">
+<label class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest pl-1" for="username">Identifier</label>
+<div class="relative flex items-center bg-surface-container-lowest border-b border-surface-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3 pointer-events-none" style="font-variation-settings: 'FILL' 0;">badge</span>
+<input class="w-full bg-transparent border-none outline-none text-on-surface font-mono-code text-mono-code pl-10 pr-4 py-3 placeholder-on-surface-variant/40 focus:ring-0" id="username" name="username" placeholder="sys_admin_01" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-unit">
+<div class="flex justify-between items-end pl-1 pr-1">
+<label class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest" for="password">Access Key</label>
+</div>
+<div class="relative flex items-center bg-surface-container-lowest border-b border-surface-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3 pointer-events-none" style="font-variation-settings: 'FILL' 0;">key</span>
+<input class="w-full bg-transparent border-none outline-none text-on-surface font-mono-code text-mono-code pl-10 pr-4 py-3 placeholder-on-surface-variant/40 focus:ring-0" id="password" name="password" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-sm">
+<button class="w-full bg-primary hover:bg-primary-fixed text-on-primary font-body-md text-body-md font-semibold py-3 rounded-DEFAULT transition-all active:scale-[0.98] flex items-center justify-center gap-2 group shadow-[0_0_15px_rgba(255,183,125,0.1)]" type="button">
+<span>Initialize Session</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">arrow_right_alt</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Footer / Sub-branding -->
+<div class="bg-surface-container-highest/30 border-t border-surface-variant p-md flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+<p class="font-mono-label text-mono-label text-on-surface-variant uppercase mb-unit">Powered By</p>
+<img alt="Nucleus Software" class="h-5 w-auto grayscale contrast-125" data-alt="Monochrome, highly technical corporate logotype for Nucleus Software on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzNaLGBtYNS-iMqX80xUhTCNbcncSe0hq3KuRtf1mWwMyqSUuUI8o3lPLff-Z-4cAw2_fBfm5benrIqIRkhp2Vu-tm8uKLbEkbFSFfNBZ0S7by8RLeXGdqqF4MLIxLdYVQgbu8BEuYwO8MJUhageXurJZH5wI13EvaVfzKHLlI8RfbQ7ponZFFmWfoj2dUKJIgqhMFOaK2PlaIV8yyYwof_SqdUAlOr88ojPCpKsMsKa16CfOwWuLHw62QpTmpilANV5kvPAtJm8oW"/>
+</div>
+</div>
+<!-- System Status Indicator (Decorative) -->
+<div class="mt-md flex justify-center items-center gap-2 text-on-surface-variant opacity-50">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(255,183,125,0.6)]"></div>
+<span class="font-mono-label text-mono-label uppercase tracking-wider">System Operational</span>
+</div>
+</main>
+</body></html>

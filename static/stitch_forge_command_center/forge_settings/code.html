@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forge - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#432100",
+                        "secondary-fixed": "#e8e1dd",
+                        "on-primary-fixed": "#2f1500",
+                        "primary-fixed": "#ffdcc3",
+                        "tertiary-container": "#c48060",
+                        "primary": "#ffb77d",
+                        "on-secondary-fixed-variant": "#4a4643",
+                        "outline-variant": "#554336",
+                        "background": "#161311",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#383432",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#491d05",
+                        "primary-fixed-dim": "#ffb77d",
+                        "tertiary": "#ffb694",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary-fixed-variant": "#6d391e",
+                        "secondary-container": "#4c4845",
+                        "outline": "#a38c7c",
+                        "surface-container-low": "#1e1b19",
+                        "on-secondary": "#33302d",
+                        "surface-dim": "#161311",
+                        "secondary-fixed-dim": "#ccc5c1",
+                        "surface-container": "#221f1d",
+                        "surface-container-lowest": "#100e0c",
+                        "surface": "#161311",
+                        "on-secondary-container": "#beb7b3",
+                        "on-tertiary": "#51230a",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1e1b19",
+                        "tertiary-fixed-dim": "#ffb694",
+                        "primary-container": "#d97707",
+                        "surface-tint": "#ffb77d",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3c3836",
+                        "surface-variant": "#383432",
+                        "on-background": "#e9e1dd",
+                        "secondary": "#ccc5c1",
+                        "inverse-primary": "#904d00",
+                        "on-surface": "#e9e1dd",
+                        "inverse-surface": "#e9e1dd",
+                        "on-surface-variant": "#dbc2b0",
+                        "inverse-on-surface": "#33302d",
+                        "surface-container-high": "#2d2927",
+                        "on-primary": "#4d2600",
+                        "on-tertiary-fixed": "#351000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "inspector_width": "320px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "1px",
+                        "sidebar_width": "240px",
+                        "unit": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "mono-label": ["JetBrains Mono"],
+                        "h1": ["Inter"],
+                        "mono-metric": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "mono-code": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "mono-label": ["10px", { "lineHeight": "12px", "fontWeight": "700" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "mono-metric": ["16px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0C0A09; }
+        .glass-panel {
+            background-color: rgba(28, 25, 23, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen flex font-body-md overflow-hidden antialiased">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-[240px] border-r border-[#292524] bg-[#1C1917] flex-shrink-0 z-40">
+<div class="px-4 py-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 bg-amber-600 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<div>
+<h2 class="text-amber-600 font-bold font-h2 text-h2 tracking-tighter uppercase">Forge</h2>
+<p class="text-stone-500 font-mono-label text-mono-label uppercase">AI QA Laboratory</p>
+</div>
+</div>
+<div class="space-y-1 font-mono-label text-mono-label uppercase tracking-wider">
+<a class="text-stone-500 hover:text-stone-300 px-4 py-3 flex items-center gap-3 hover:bg-stone-800/30 transition-all rounded" href="#">
+<span class="material-symbols-outlined">chat</span>
+                    Forge Chat
+                </a>
+<a class="text-stone-500 hover:text-stone-300 px-4 py-3 flex items-center gap-3 hover:bg-stone-800/30 transition-all rounded" href="#">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+                    Forge ATDD
+                </a>
+<a class="bg-stone-800/50 text-amber-500 border-l-2 border-amber-600 px-4 py-3 flex items-center gap-3 scale-[0.98] transition-transform rounded-r" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Settings
+                </a>
+</div>
+</div>
+<div class="mt-auto px-4 py-6 border-t border-[#292524] font-mono-label text-mono-label uppercase tracking-wider">
+<div class="space-y-1">
+<a class="text-stone-500 hover:text-stone-300 px-4 py-2 flex items-center gap-3 hover:bg-stone-800/30 transition-all rounded" href="#">
+<span class="material-symbols-outlined text-[14px]">menu_book</span>
+                    Documentation
+                </a>
+<a class="text-stone-500 hover:text-stone-300 px-4 py-2 flex items-center gap-3 hover:bg-stone-800/30 transition-all rounded" href="#">
+<span class="material-symbols-outlined text-[14px]">contact_support</span>
+                    Support
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-4 h-14 z-50 bg-[#1C1917]/80 backdrop-blur-xl border-b border-[#292524] shadow-none md:hidden flex-shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-600">precision_manufacturing</span>
+<span class="text-xl font-black text-amber-600 tracking-tighter uppercase">Forge</span>
+</div>
+<div class="flex items-center gap-4 text-stone-400">
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined">dark_mode</span></button>
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined">logout</span></button>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-[#292524]" data-alt="professional headshot of a person looking directly at camera, neutral background, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNeec9GKdMrkz1TnvBw9C2b_Tmy2FpZFJh3KUs_SQcL92Cn6CTtU3tV1SiW3cwClRzN_4qL6_UWdQNSSecAlRP2CBcLlvwtGlg10SdHwlvmNnH8tkoY7kdjMoKMxq5QlOZfUYQfNY8_FAn0kzIm0jyZtarmkj4sUMYTVGpK0GLXW-sdDdtbEU3Isdlf8v6ZxO0J9T3guB9bQ5CRTsSHsrjmuxbvrW0Jh9Y9Xzt-FVoUyh4KFXAtXbI2oM9bPMJvsz4W7VILAN-8JTE"/>
+</div>
+</header>
+<!-- TopAppBar (Desktop - Just Actions) -->
+<header class="hidden md:flex justify-end items-center w-full px-8 h-14 z-50 border-b border-[#292524] bg-surface flex-shrink-0">
+<div class="flex items-center gap-4 text-stone-400">
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined text-[20px]">dark_mode</span></button>
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span></button>
+<button class="hover:text-stone-100 transition-colors"><span class="material-symbols-outlined text-[20px]">logout</span></button>
+<div class="w-px h-4 bg-[#292524] mx-2"></div>
+<img alt="User Profile" class="w-7 h-7 rounded border border-[#292524]" data-alt="professional headshot of a person looking directly at camera, neutral background, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiBrvVb1FjOjh7GN0LtjPELE2ntAAH4sFazaiM2KCtnHDhD3g59SeAms-qPz54l2RUb_gn6yi5rG8QvQwukH-S78ugjOK5OU6VIoasKEZQEl5p_J-efOTmBV0Y-ZGaJw_fimbtiHAVKKIG9PgSZp5LK2pfCuNpeRjIZJUHYOuAIIPQxi0ZnyJOAaVpdFBEvHh5qTLVgNYiv9NAb6RptLrBZA2lzUJKaIBVA8BipjKXI0I7nizoHTgwRWqpV1AE5fyUjpsvnZUCO4kw"/>
+</div>
+</header>
+<!-- Settings Workspace -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 bg-background custom-scrollbar">
+<div class="max-w-5xl mx-auto space-y-8">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface mb-2">Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure laboratory environment, integrations, and operational parameters.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Profile & JIRA -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Profile Card -->
+<div class="glass-panel rounded border border-[#292524] p-6">
+<h2 class="font-h2 text-h2 text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-stone-400">person</span>
+                                Operator Profile
+                            </h2>
+<div class="space-y-5">
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">Display Name</label>
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-on-surface px-3 py-2 outline-none transition-colors" type="text" value="Admin_QA_01"/>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">Theme Preference</label>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer group">
+<div class="w-4 h-4 rounded-full border border-amber-600 bg-amber-600/20 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-amber-600"></div>
+</div>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-amber-500 transition-colors">Dark (Laboratory)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group opacity-50 cursor-not-allowed" title="Light theme currently disabled for QA environments">
+<div class="w-4 h-4 rounded-full border border-[#292524] flex items-center justify-center">
+</div>
+<span class="font-body-md text-body-md text-stone-500">Light (Standard)</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- JIRA Configuration -->
+<div class="glass-panel rounded border border-[#292524] p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-h2 text-h2 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-stone-400">integration_instructions</span>
+                                    JIRA Integration
+                                </h2>
+<span class="px-2 py-1 rounded-[2px] bg-emerald-500/10 text-emerald-400 font-mono-label text-mono-label border border-emerald-500/20">CONNECTED</span>
+</div>
+<div class="space-y-5">
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">JIRA Instance URL</label>
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-on-surface px-3 py-2 outline-none transition-colors" type="text" value="https://jira.forge-qa.internal"/>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">Personal Access Token (PAT)</label>
+<div class="relative">
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-stone-500 px-3 py-2 outline-none transition-colors pr-10" readonly="" type="password" value="••••••••••••••••••••••••••••••••"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-300">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-4 flex justify-end gap-3 border-t border-[#292524]">
+<button class="px-4 py-2 border border-[#292524] text-stone-300 font-body-sm text-body-sm font-semibold rounded hover:bg-[#292524] transition-colors">
+                                        Update Token
+                                    </button>
+<button class="px-4 py-2 bg-amber-600/10 border border-amber-600/30 text-amber-500 font-body-sm text-body-sm font-semibold rounded hover:bg-amber-600/20 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+                                        Test Connection
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Security & System -->
+<div class="space-y-6">
+<!-- Security / Password -->
+<div class="glass-panel rounded border border-[#292524] p-6">
+<h2 class="font-h2 text-h2 text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-stone-400">lock</span>
+                                Authentication
+                            </h2>
+<div class="space-y-5">
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">Current Password</label>
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-on-surface px-3 py-2 outline-none transition-colors" type="password"/>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">New Password</label>
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-on-surface px-3 py-2 outline-none transition-colors" type="password"/>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-stone-400 uppercase mb-2">Confirm Password</label>
+<input class="w-full bg-surface-container border-b border-[#292524] border-t-0 border-l-0 border-r-0 focus:border-amber-600 focus:ring-0 font-mono-code text-mono-code text-on-surface px-3 py-2 outline-none transition-colors" type="password"/>
+</div>
+<div class="pt-2">
+<button class="w-full px-4 py-2 bg-[#d97707] text-white font-body-sm text-body-sm font-semibold rounded hover:bg-amber-600 transition-colors">
+                                        Update Password
+                                    </button>
+</div>
+</div>
+</div>
+<!-- System Status / Model -->
+<div class="glass-panel rounded border border-[#292524] p-6">
+<h2 class="font-h2 text-h2 text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-stone-400">memory</span>
+                                Neural Engine
+                            </h2>
+<div class="bg-[#000] border border-[#292524] rounded p-4 mb-5">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="block font-mono-label text-mono-label text-stone-500 uppercase mb-1">Active Model</span>
+<span class="font-mono-metric text-mono-metric text-amber-500">Forge-LLM-v4.2-Instruct</span>
+</div>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-[#292524]/50">
+<div>
+<span class="block font-mono-label text-mono-label text-stone-600 uppercase mb-1">Latency</span>
+<span class="font-mono-code text-mono-code text-stone-300">42ms</span>
+</div>
+<div>
+<span class="block font-mono-label text-mono-label text-stone-600 uppercase mb-1">Context Window</span>
+<span class="font-mono-code text-mono-code text-stone-300">128k</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mb-5 px-1">
+<span class="font-body-sm text-body-sm text-stone-300">Offline Local Mode</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-stone-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-stone-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-600"></div>
+</label>
+</div>
+<button class="w-full px-4 py-2 border border-[#292524] text-stone-300 font-body-sm text-body-sm font-semibold rounded hover:bg-[#292524] transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">science</span>
+                                Run Diagnostic
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

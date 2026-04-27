@@ -1,0 +1,459 @@
+# Screen Metadata Configuration
+# Per-screen metadata: aliases, phrase_hints, and stage-specific navigation context
+# Complete reference of all CAS application screens and their stage-specific behaviors
+
+["Acceptance Sheet"]
+aliases = ["acceptance sheet"]
+phrase_hints = ["acceptance sheet"]
+
+["Acceptance Sheet".stages."Login Acceptance"]
+type = "TAB"
+navigation = "Open Acceptance Sheet Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["login acceptance", "acceptance sheet"]
+
+["Acceptance Sheet".stages."Sales Queue"]
+type = "TAB"
+navigation = "Open Acceptance Sheet Tab"
+navigation_needed = true
+default_screen = false
+editable = "conditional"
+anchor_terms = ["sales queue", "acceptance sheet", "discrepant comment"]
+
+["Applicant Information"]
+aliases = ["applicant info", "app info"]
+phrase_hints = ["applicant details", "applicant profile", "add applicant", "add co-applicant", "add coapplicant", "applicant information page", "applicant information section", "applicant's profile", "applicant profile"]
+
+["Applicant Information".stages."Lead Details"]
+type = "TAB"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["lead details", "applicant information"]
+
+["Applicant Information".stages."Login Acceptance"]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["login acceptance", "applicant information"]
+
+["Applicant Information".stages."Sales Queue"]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["sales queue", "applicant information"]
+
+["Applicant Information".stages.CCDE]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["ccde", "applicant information"]
+
+["Applicant Information".stages.KYC]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["kyc", "applicant information"]
+
+["Applicant Information".stages.DDE]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["dde", "applicant information"]
+
+["Applicant Information".stages.Recommendation]
+type = "TAB"
+navigation = "Recommendation Stage Navigation"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["recommendation", "applicant information"]
+
+["Applicant Information".stages."Credit Approval"]
+type = "TAB"
+navigation = "Credit Approval Stage Navigation"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["credit approval", "applicant information"]
+
+["Applicant Information".stages.Reconsideration]
+type = "TAB"
+navigation = "Recommendation-like Navigation"
+navigation_needed = true
+default_screen = false
+editable = "conditional"
+anchor_terms = ["reconsideration", "applicant information"]
+
+["Applicant Information".stages."Post Approval"]
+type = "TAB"
+navigation = "Post Approval Navigation"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["post approval", "applicant information"]
+
+["Applicant Information".stages.Disbursal]
+type = "TAB"
+navigation = "Disbursal Stage Navigation"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["disbursal", "applicant information"]
+
+["Applicant Information".stages."Pre Sanction Visit"]
+type = "TAB"
+navigation = "Open Applicant Information Tab"
+navigation_needed = true
+default_screen = false
+editable = false
+anchor_terms = ["pre sanction visit", "applicant information"]
+
+["Bank Details"]
+aliases = ["bank details", "bank account details", "bank detail"]
+phrase_hints = ["bank details"]
+
+["Bank Details".stages."Lead Details"]
+type = "TAB"
+navigation = "Open Applicant Details Child Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["lead details", "bank details"]
+
+["CAM Report"]
+aliases = ["cam report", "cam"]
+phrase_hints = ["cam report"]
+
+["CAM Report".stages."Credit Approval"]
+type = "PAGE"
+navigation = "Access From More Actions"
+navigation_needed = true
+default_screen = false
+editable = false
+anchor_terms = ["cam report", "credit approval", "more options"]
+
+["CAM Report".stages.Recommendation]
+type = "PAGE"
+navigation = "Open CAM Report"
+navigation_needed = true
+default_screen = false
+editable = false
+anchor_terms = ["cam report", "recommendation"]
+
+["Card Details"]
+aliases = ["card details", "card detail"]
+phrase_hints = ["card details"]
+
+["Card Details".stages.CCDE]
+type = "TAB"
+navigation = "Open Card Details Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["ccde", "card details"]
+
+["Credit Card Data Entry"]
+aliases = ["credit card data entry", "ccde"]
+phrase_hints = ["credit card data entry", "ccde"]
+
+["Credit Card Data Entry".stages.CCDE]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["ccde", "credit card data entry"]
+
+[Deviations]
+aliases = ["deviation", "deviations", "deviation section", "business deviations", "credit deviations", "manual deviation", "raise deviation"]
+phrase_hints = ["deviation table", "deviations tab", "deviation page"]
+
+[Deviations.stages.DDE]
+type = "TAB"
+navigation = "Click Deviations Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["dde", "deviations", "facility filter"]
+
+[Deviations.stages.Recommendation]
+type = "TAB"
+navigation = "Click Deviations Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["recommendation", "deviations", "facility filter"]
+
+[Deviations.stages."Credit Approval"]
+type = "TAB"
+navigation = "Click Deviations Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["credit approval", "deviations", "facility filter"]
+
+[Documents]
+aliases = ["documents", "document", "document tab", "documents tab"]
+phrase_hints = ["available documents", "document received for", "documents tab"]
+
+[Documents.stages."Sales Queue"]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["sales queue", "documents"]
+
+[Documents.stages.CCDE]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["ccde", "documents"]
+
+[Documents.stages.KYC]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["kyc", "documents"]
+
+[Documents.stages.Recommendation]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["recommendation", "documents"]
+
+[Documents.stages."Credit Approval"]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["credit approval", "documents"]
+
+[Documents.stages."Post Approval"]
+type = "TAB"
+navigation = "Open Documents Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["post approval", "documents"]
+
+[DDEQC]
+aliases = ["ddeqc"]
+phrase_hints = ["ddeqc"]
+
+[DDEQC.stages.DDEQC]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["ddeqc", "detailed data entry"]
+
+["Employment Details"]
+aliases = ["employment details", "occupation details", "employment"]
+phrase_hints = ["employment details", "work and income"]
+
+["Employment Details".stages."Lead Details"]
+type = "TAB"
+navigation = "Open Applicant Details Child Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["lead details", "employment details"]
+
+["Financial Details"]
+aliases = ["financial details", "financial", "income details"]
+phrase_hints = ["financial details", "income details"]
+
+["Financial Details".stages."Lead Details"]
+type = "TAB"
+navigation = "Open Applicant Details Child Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["lead details", "financial details"]
+
+["Gold Valuation"]
+aliases = ["gold valuation"]
+phrase_hints = ["gold valuation"]
+
+["Gold Valuation".stages."Gold Valuation"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["gold valuation"]
+
+[KYC]
+aliases = ["kyc", "kyc details", "kyc screen"]
+phrase_hints = ["kyc checklist", "video kyc", "dedupe summary"]
+
+[KYC.stages.KYC]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["kyc", "checklist", "dedupe"]
+
+["Lead Conversion"]
+aliases = ["lead conversion", "lead conversion stage"]
+phrase_hints = ["lead conversion"]
+
+["Lead Conversion".stages."Lead Conversion Stage"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["lead conversion", "hold", "reject", "convert"]
+
+["Loan Information"]
+aliases = ["loan information", "loan details", "loan info"]
+phrase_hints = ["loan information"]
+
+["Loan Information".stages.DDE]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["dde", "loan information"]
+
+["Login Acceptance"]
+aliases = ["login acceptance"]
+phrase_hints = ["login acceptance"]
+
+["Login Acceptance".stages."Login Acceptance"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["login acceptance"]
+
+["Personal Information"]
+aliases = ["personal information", "personal info", "personal details"]
+phrase_hints = ["personal information"]
+
+["Personal Information".stages."Lead Details"]
+type = "TAB"
+navigation = "Open Applicant Details Child Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["lead details", "personal information"]
+
+["Post Approval"]
+aliases = ["post approval", "pdoc", "post approval documents"]
+phrase_hints = ["post approval"]
+
+["Post Approval".stages."Post Approval"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["post approval"]
+
+["Pre Sanction Visit"]
+aliases = ["pre sanction visit", "psv"]
+phrase_hints = ["pre sanction visit"]
+
+["Pre Sanction Visit".stages."Pre Sanction Visit"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["pre sanction visit", "psv"]
+
+["Raise Query"]
+aliases = ["raise query"]
+phrase_hints = ["raise query"]
+
+["Raise Query".stages.Recommendation]
+type = "PAGE"
+navigation = "Open Raise Query"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["recommendation", "raise query", "documents"]
+
+["Raise Query".stages."Credit Approval"]
+type = "PAGE"
+navigation = "Open Raise Query"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["credit approval", "raise query", "documents"]
+
+[Recommendation]
+aliases = ["recommendation", "recommendations"]
+phrase_hints = ["recommendation"]
+
+[Recommendation.stages.Recommendation]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["recommendation", "intent indicators"]
+
+["References"]
+aliases = ["references", "reference tab"]
+phrase_hints = ["references"]
+
+["References".stages.CCDE]
+type = "TAB"
+navigation = "Open References Tab"
+navigation_needed = true
+default_screen = false
+editable = true
+anchor_terms = ["ccde", "references"]
+
+["Sales Queue"]
+aliases = ["sales queue"]
+phrase_hints = ["sales queue"]
+
+["Sales Queue".stages."Sales Queue"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["sales queue", "discrepant", "application grid"]
+
+["Underwriter Decision"]
+aliases = ["underwriter decision", "underwriter decisions"]
+phrase_hints = ["underwriter"]
+
+["Underwriter Decision".stages."Credit Approval"]
+type = "PAGE"
+navigation = "Default Page"
+navigation_needed = false
+default_screen = true
+editable = true
+anchor_terms = ["credit approval", "underwriter decision", "decision details"]

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forge - ATDD</title>
+    <link rel="icon" type="image/png" href="assets/Forge_MINIMAL_LOGO.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-lockup">
+            <img class="brand-mark" src="assets/Forge_MINIMAL_LOGO.png" alt="Forge minimal logo" />
+            <div class="brand-copy">
+              <img class="brand-wordmark" src="assets/Forge_LOGO.png" alt="Forge" />
+              <div class="mono-label muted">AI QA Laboratory</div>
+            </div>
+          </div>
+
+          <button onclick="toggleSidebar()" class="sidebar-collapse-btn" aria-label="Toggle sidebar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"></path>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="chat.html" class="nav-item" id="nav-chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+            </svg>
+            <span class="nav-label mono-label">Forge Chat</span>
+          </a>
+          <a href="atdd.html" class="nav-item" id="nav-atdd">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m5 3 2.5 2.5L5 8"></path>
+              <path d="M3 12h8"></path>
+              <path d="m9 16 2 2 4-4"></path>
+              <path d="M14 4h7"></path>
+              <path d="M14 8h7"></path>
+              <path d="M14 12h7"></path>
+            </svg>
+            <span class="nav-label mono-label">Forge ATDD</span>
+          </a>
+          <a href="settings.html" class="nav-item" id="nav-settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a2.5 2.5 0 0 1 2.45 2h1.38a2 2 0 0 1 1.73 1l.7 1.2 1.2.7a2 2 0 0 1 1 1.73v1.38a2.5 2.5 0 0 1 0 4.9v1.38a2 2 0 0 1-1 1.73l-1.2.7-.7 1.2a2 2 0 0 1-1.73 1h-1.38a2.5 2.5 0 0 1-4.9 0H8.17a2 2 0 0 1-1.73-1l-.7-1.2-1.2-.7a2 2 0 0 1-1-1.73v-1.38a2.5 2.5 0 0 1 0-4.9V9.63a2 2 0 0 1 1-1.73l1.2-.7.7-1.2a2 2 0 0 1 1.73-1h1.38A2.5 2.5 0 0 1 12 3Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="nav-label mono-label">Settings</span>
+          </a>
+
+          <div class="sidebar-spacer"></div>
+
+          <div class="sidebar-docs">
+            <div class="nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 7v14"></path>
+                <path d="M3 18V5a2 2 0 0 1 2-2h10"></path>
+                <path d="M13 5h6v13a2 2 0 0 1-2 2H7"></path>
+              </svg>
+              <span class="nav-label mono-label">Documentation</span>
+            </div>
+            <div class="nav-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              <span class="nav-label mono-label">Support</span>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <span class="text-body-sm" id="display-name" data-display-name>-</span>
+            <span class="mono-label muted">Authenticated</span>
+          </div>
+          <button onclick="logout()" class="btn-secondary btn-sm">Sign Out</button>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-btn mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open navigation">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M3 12h18"></path>
+                <path d="M3 18h18"></path>
+              </svg>
+            </button>
+            <span class="text-h2" style="color: var(--primary);">Forge ATDD</span>
+          </div>
+          <div class="topbar-right">
+            <button onclick="toggleTheme()" id="theme-toggle" class="icon-btn" aria-label="Toggle theme"></button>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <div class="page-frame">
+            <div id="llm-warning" class="llm-warning-banner hidden">
+              <div class="text-body-sm">LLM model not loaded. Generation is unavailable until the backend model path is fixed.</div>
+              <button class="icon-btn-soft" type="button" onclick="this.parentElement.classList.add('hidden')">X</button>
+            </div>
+
+            <div id="error-banner" class="error-banner hidden">
+              <div>
+                <div class="mono-label">Generation Failed</div>
+                <div id="error-reason" class="text-body-sm">Generation failed.</div>
+              </div>
+              <button id="retry-btn" class="btn-secondary btn-sm" type="button">Try Again</button>
+            </div>
+
+            <section id="state-module_select" class="atdd-state is-active">
+              <div class="module-selector-header">
+                <h1 class="text-h1" style="margin: 0;">Select Module</h1>
+                <p class="text-body-sm muted" style="margin: 0;">Choose a module to generate feature files for.</p>
+              </div>
+
+              <div class="module-grid">
+                <article class="module-card module-active" id="module-cas" role="button" tabindex="0" aria-label="Select CAS module">
+                  <span class="badge badge-success">Active</span>
+                  <div class="module-card-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m4 12 8-8 8 8"></path>
+                      <path d="M6 10v9h12v-9"></path>
+                      <path d="M10 19v-5h4v5"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-h2">CAS</div>
+                    <div class="text-body-sm muted">Credit Application System</div>
+                  </div>
+                  <div class="mono-label muted">Ready for JIRA and CSV-driven generation</div>
+                </article>
+
+                <article class="module-card module-disabled">
+                  <span class="badge badge-coming">Coming Soon</span>
+                  <div class="module-card-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 7h18"></path>
+                      <path d="M5 7v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"></path>
+                      <path d="M9 11h6"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-h2">LMS</div>
+                    <div class="text-body-sm muted">Loan Management System</div>
+                  </div>
+                  <div class="mono-label muted">Reserved for future rollout</div>
+                </article>
+
+                <article class="module-card module-disabled">
+                  <span class="badge badge-coming">Coming Soon</span>
+                  <div class="module-card-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 6h14"></path>
+                      <path d="M5 12h14"></path>
+                      <path d="M5 18h14"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-h2">Collections</div>
+                    <div class="text-body-sm muted">Collections Module</div>
+                  </div>
+                  <div class="mono-label muted">Reserved for future rollout</div>
+                </article>
+              </div>
+            </section>
+
+            <section id="state-form" class="atdd-state form-shell">
+              <div class="inline-actions">
+                <button id="back-to-modules" class="btn-secondary btn-sm" type="button">Back</button>
+                <span class="badge badge-success">CAS</span>
+              </div>
+
+              <div class="card">
+                <div class="form-grid">
+                  <div>
+                    <label class="mono-label field-label">Input Mode</label>
+                    <div class="segment-group">
+                      <button class="segment-btn is-active" type="button" data-input-mode="jira_id">JIRA ID</button>
+                      <button class="segment-btn" type="button" data-input-mode="csv">CSV</button>
+                    </div>
+                  </div>
+
+                  <div id="jira-id-group">
+                    <label class="mono-label field-label" for="story-id-input">JIRA Story ID</label>
+                    <input id="story-id-input" class="input" type="text" placeholder="CAS-256008" />
+                  </div>
+
+                  <div id="csv-group" class="hidden">
+                    <label class="mono-label field-label" for="csv-input">CSV Content</label>
+                    <textarea id="csv-input" class="textarea" placeholder="Paste raw CSV content"></textarea>
+                  </div>
+
+                  <div>
+                    <label class="mono-label field-label">Flow Type</label>
+                    <div class="segment-group">
+                      <button class="segment-btn is-active" type="button" data-flow-type="ordered">Ordered</button>
+                      <button class="segment-btn" type="button" data-flow-type="unordered">Unordered</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="mono-label field-label" for="notes-input">Three Amigos Notes</label>
+                    <textarea
+                      id="notes-input"
+                      class="textarea"
+                      placeholder="Any decisions from 3-amigos meeting..."
+                    ></textarea>
+                  </div>
+
+                  <details class="advanced-details">
+                    <summary class="mono-label">Advanced Options</summary>
+                    <div class="advanced-body">
+                      <label class="mono-label field-label" for="pat-override-input">JIRA PAT Override</label>
+                      <input
+                        id="pat-override-input"
+                        class="input"
+                        type="password"
+                        placeholder="Leave blank to use saved settings"
+                      />
+                    </div>
+                  </details>
+
+                  <button id="generate-btn" class="btn-primary" type="button" style="width: 100%;">Generate Feature File</button>
+                </div>
+              </div>
+            </section>
+
+            <section id="state-pipeline" class="atdd-state">
+              <div class="pipeline-shell">
+                <div class="hud-strip">
+                  <div class="hud-item">
+                    <div class="mono-label">Status</div>
+                    <div id="hud-status" class="hud-item-value hud-running">RUNNING</div>
+                  </div>
+                  <div class="hud-item">
+                    <div class="mono-label">Agent</div>
+                    <div id="hud-agent" class="hud-item-value">0 / 11</div>
+                  </div>
+                  <div class="hud-item">
+                    <div class="mono-label">Elapsed</div>
+                    <div id="hud-elapsed" class="hud-item-value">00:00:00</div>
+                  </div>
+                  <div class="hud-item">
+                    <div class="mono-label">Confidence</div>
+                    <div id="hud-confidence" class="hud-item-value">--</div>
+                  </div>
+                  <div class="hud-item">
+                    <div class="mono-label">Tokens / Sec</div>
+                    <div class="hud-item-value">--</div>
+                  </div>
+                </div>
+
+                <div class="pipeline-layout">
+                  <section class="pipeline-panel card">
+                    <div class="inline-actions" style="justify-content: space-between; margin-bottom: 14px;">
+                      <div>
+                        <div class="text-h2">Pipeline Topology</div>
+                        <div class="text-body-sm muted">Live progress from the generation stream.</div>
+                      </div>
+                      <span class="badge">11 Agents</span>
+                    </div>
+                    <div id="agent-list" class="agent-list"></div>
+                  </section>
+
+                  <section class="output-panel">
+                    <div class="tab-bar">
+                      <div class="tab-group">
+                        <button class="btn-tab is-active" type="button" data-tab="feature-output">Feature Output</button>
+                        <button class="btn-tab" type="button" data-tab="gap-report">Gap Report</button>
+                        <button class="btn-tab" type="button" data-tab="agent-logs">Agent Logs</button>
+                      </div>
+                      <div class="tab-actions">
+                        <button id="copy-feature-btn" class="btn-secondary btn-sm" type="button">Copy</button>
+                        <button id="download-feature-btn" class="btn-primary btn-sm" type="button">Download</button>
+                      </div>
+                    </div>
+
+                    <div id="feature-output" class="tab-panel is-active editor-surface">
+                      <div id="feature-output-lines" class="editor-lines">
+                        <div class="editor-empty text-body-sm">Feature output will appear here when generation completes.</div>
+                      </div>
+                    </div>
+
+                    <div id="gap-report" class="tab-panel">
+                      <div class="gap-panel">
+                        <div id="gap-summary" class="gap-summary"></div>
+                        <div id="gap-list" class="gap-list"></div>
+                      </div>
+                    </div>
+
+                    <div id="agent-logs" class="tab-panel">
+                      <div id="logs-panel" class="logs-panel"></div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module">
+      import {
+        apiFetch,
+        checkModelStatus,
+        closeSidebar,
+        connectProgressStream,
+        copyText,
+        downloadTextFile,
+        escapeHtml,
+        formatElapsed,
+        getDisplayName,
+        initTheme,
+        parseLooseObject,
+        requireAuth,
+        setActiveNav,
+        showToast,
+        updateDisplayNameElements,
+      } from "./app.js";
+
+      const STATES = {
+        MODULE_SELECT: "module_select",
+        FORM: "form",
+        PIPELINE: "pipeline",
+      };
+
+      const AGENTS = [
+        { num: 1, name: "Reader", activity: "Reading JIRA story" },
+        { num: 2, name: "Domain Expert", activity: "Fetching CAS domain context" },
+        { num: 3, name: "Scope Definer", activity: "Defining story scope" },
+        { num: 4, name: "Coverage Planner", activity: "Planning scenario coverage" },
+        { num: 5, name: "Action Decomposer", activity: "Decomposing tester actions" },
+        { num: 6, name: "Retriever", activity: "Retrieving repository steps" },
+        { num: 7, name: "Composer", activity: "Composing scenarios" },
+        { num: 8, name: "ATDD Expert", activity: "Validating ATDD rules" },
+        { num: 9, name: "Writer", activity: "Writing feature file" },
+        { num: 10, name: "Critic", activity: "Reviewing coverage" },
+        { num: 11, name: "Reporter", activity: "Preparing final report" },
+      ];
+
+      const state = {
+        currentView: STATES.MODULE_SELECT,
+        inputMode: "jira_id",
+        flowType: "ordered",
+        currentJobId: null,
+        streamController: null,
+        timerId: null,
+        timerStart: null,
+        featureFile: "",
+        gapData: null,
+        currentLogCursor: null,
+      };
+
+      const storyIdInput = document.getElementById("story-id-input");
+      const csvInput = document.getElementById("csv-input");
+      const notesInput = document.getElementById("notes-input");
+      const patOverrideInput = document.getElementById("pat-override-input");
+      const generateBtn = document.getElementById("generate-btn");
+      const errorBanner = document.getElementById("error-banner");
+      const errorReason = document.getElementById("error-reason");
+      const llmWarning = document.getElementById("llm-warning");
+      const logsPanel = document.getElementById("logs-panel");
+      const featureOutputLines = document.getElementById("feature-output-lines");
+      const gapSummary = document.getElementById("gap-summary");
+      const gapList = document.getElementById("gap-list");
+
+      requireAuth();
+      initTheme();
+      setActiveNav("atdd");
+      updateDisplayNameElements(getDisplayName() || "User");
+
+      bindEvents();
+      buildPipeline();
+      loadModelStatus();
+
+      function bindEvents() {
+        document.getElementById("module-cas").addEventListener("click", () => {
+          setState(STATES.FORM);
+          closeSidebar();
+        });
+        document.getElementById("module-cas").addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            setState(STATES.FORM);
+          }
+        });
+
+        document.getElementById("back-to-modules").addEventListener("click", () => {
+          setState(STATES.MODULE_SELECT);
+        });
+
+        document.getElementById("retry-btn").addEventListener("click", () => {
+          hideErrorBanner();
+          setState(STATES.FORM);
+        });
+
+        document.querySelectorAll("[data-input-mode]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.inputMode = button.dataset.inputMode;
+            document.querySelectorAll("[data-input-mode]").forEach((item) => {
+              item.classList.toggle("is-active", item.dataset.inputMode === state.inputMode);
+            });
+            document.getElementById("jira-id-group").classList.toggle("hidden", state.inputMode !== "jira_id");
+            document.getElementById("csv-group").classList.toggle("hidden", state.inputMode !== "csv");
+          });
+        });
+
+        document.querySelectorAll("[data-flow-type]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.flowType = button.dataset.flowType;
+            document.querySelectorAll("[data-flow-type]").forEach((item) => {
+              item.classList.toggle("is-active", item.dataset.flowType === state.flowType);
+            });
+          });
+        });
+
+        generateBtn.addEventListener("click", submitGeneration);
+
+        document.querySelectorAll("[data-tab]").forEach((button) => {
+          button.addEventListener("click", () => switchTab(button.dataset.tab));
+        });
+
+        document.getElementById("copy-feature-btn").addEventListener("click", async () => {
+          if (!state.featureFile) {
+            showToast("No feature file to copy.", "warning");
+            return;
+          }
+
+          await copyText(state.featureFile);
+          const button = document.getElementById("copy-feature-btn");
+          const original = button.textContent;
+          button.textContent = "Copied!";
+          window.setTimeout(() => {
+            button.textContent = original;
+          }, 2000);
+        });
+
+        document.getElementById("download-feature-btn").addEventListener("click", () => {
+          if (!state.featureFile) {
+            showToast("No feature file to download.", "warning");
+            return;
+          }
+
+          const storyId = storyIdInput.value.trim() || "forge-output";
+          downloadTextFile(`${storyId}.feature`, state.featureFile);
+        });
+      }
+
+      async function loadModelStatus() {
+        try {
+          const result = await checkModelStatus();
+          if (!result.success) {
+            llmWarning.classList.remove("hidden");
+            llmWarning.querySelector(".text-body-sm").textContent =
+              result.message || "LLM model not loaded. Generation is unavailable until the backend model path is fixed.";
+          }
+        } catch {
+          // Non-blocking here.
+        }
+      }
+
+      function setState(nextState) {
+        Object.values(STATES).forEach((name) => {
+          const section = document.getElementById(`state-${name}`);
+          section.classList.toggle("is-active", name === nextState);
+        });
+        state.currentView = nextState;
+      }
+
+      function buildPipeline() {
+        const list = document.getElementById("agent-list");
+        list.innerHTML = AGENTS.map((agent, index) => {
+          return `
+            <article class="agent-card" id="agent-${agent.num}" data-state="waiting">
+              ${index > 0 ? `<div class="agent-connector" id="connector-${agent.num}"></div>` : ""}
+              <div class="agent-number mono-label">${String(agent.num).padStart(2, "0")}</div>
+              <div class="agent-status-icon" id="agent-icon-${agent.num}">..</div>
+              <div class="agent-info">
+                <div class="text-body-md">${agent.name}</div>
+                <div class="text-body-sm muted" id="agent-activity-${agent.num}">Waiting...</div>
+              </div>
+              <div class="mono-label" id="agent-elapsed-${agent.num}">--</div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function resetPipelineVisuals() {
+        AGENTS.forEach((agent) => {
+          const card = document.getElementById(`agent-${agent.num}`);
+          const icon = document.getElementById(`agent-icon-${agent.num}`);
+          const activity = document.getElementById(`agent-activity-${agent.num}`);
+          const elapsed = document.getElementById(`agent-elapsed-${agent.num}`);
+          const connector = document.getElementById(`connector-${agent.num}`);
+
+          if (card) {
+            card.dataset.state = "waiting";
+          }
+          if (icon) {
+            icon.textContent = "..";
+          }
+          if (activity) {
+            activity.textContent = "Waiting...";
+          }
+          if (elapsed) {
+            elapsed.textContent = "--";
+          }
+          connector?.classList.remove("active");
+        });
+      }
+
+      function resetHud() {
+        document.getElementById("hud-status").textContent = "RUNNING";
+        document.getElementById("hud-status").className = "hud-item-value hud-running";
+        document.getElementById("hud-agent").textContent = "0 / 11";
+        document.getElementById("hud-elapsed").textContent = "00:00:00";
+        document.getElementById("hud-confidence").textContent = "--";
+      }
+
+      function startElapsedTimer() {
+        stopElapsedTimer();
+        state.timerStart = Date.now();
+        state.timerId = window.setInterval(() => {
+          const seconds = Math.floor((Date.now() - state.timerStart) / 1000);
+          document.getElementById("hud-elapsed").textContent = formatElapsed(seconds);
+        }, 1000);
+      }
+
+      function stopElapsedTimer() {
+        if (state.timerId) {
+          window.clearInterval(state.timerId);
+          state.timerId = null;
+        }
+      }
+
+      function activateAgent(num, elapsed) {
+        for (let index = 1; index < num; index += 1) {
+          const card = document.getElementById(`agent-${index}`);
+          if (card) {
+            card.dataset.state = "completed";
+            document.getElementById(`agent-icon-${index}`).textContent = "OK";
+          }
+        }
+
+        const current = document.getElementById(`agent-${num}`);
+        if (current) {
+          current.dataset.state = "running";
+          document.getElementById(`agent-icon-${num}`).textContent = "ON";
+          document.getElementById(`agent-activity-${num}`).textContent = AGENTS[num - 1].activity;
+          document.getElementById(`agent-elapsed-${num}`).textContent = `${elapsed}s`;
+          document.getElementById(`connector-${num}`)?.classList.add("active");
+          current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        document.getElementById("hud-agent").textContent = `${num} / 11`;
+        document.getElementById("hud-elapsed").textContent = formatElapsed(elapsed);
+        addLog("INFO", `Agent ${String(num).padStart(2, "0")} ${AGENTS[num - 1].name} active`);
+      }
+
+      function completePipeline() {
+        AGENTS.forEach((agent) => {
+          const card = document.getElementById(`agent-${agent.num}`);
+          if (card) {
+            card.dataset.state = "completed";
+            document.getElementById(`agent-icon-${agent.num}`).textContent = "OK";
+          }
+        });
+
+        document.getElementById("hud-status").textContent = "COMPLETE";
+        document.getElementById("hud-status").className = "hud-item-value hud-complete";
+        addLog("INFO", "Generation completed. Fetching result.");
+        stopElapsedTimer();
+        fetchAndRenderResult();
+      }
+
+      function failPipeline(reason) {
+        document.getElementById("hud-status").textContent = "FAILED";
+        document.getElementById("hud-status").className = "hud-item-value hud-failed";
+        stopElapsedTimer();
+
+        const runningCard = Array.from(document.querySelectorAll(".agent-card")).find((card) => card.dataset.state === "running");
+        if (runningCard) {
+          runningCard.dataset.state = "failed";
+          const id = runningCard.id.replace("agent-", "");
+          document.getElementById(`agent-icon-${id}`).textContent = "NO";
+        }
+
+        showErrorBanner(reason);
+        addLog("ERROR", reason || "Generation failed");
+      }
+
+      function showErrorBanner(reason) {
+        errorReason.textContent = reason || "Generation failed";
+        errorBanner.classList.remove("hidden");
+      }
+
+      function hideErrorBanner() {
+        errorBanner.classList.add("hidden");
+      }
+
+      function addLog(level, message) {
+        const timestamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        const className =
+          level === "ERROR" ? "log-error" : level === "MARKER" ? "log-marker" : "log-info";
+        const line = document.createElement("div");
+        line.className = "log-line";
+        line.innerHTML = `<span class="log-timestamp">[${timestamp}]</span> <span class="${className}">${escapeHtml(message)}</span>`;
+        logsPanel.appendChild(line);
+
+        state.currentLogCursor?.remove();
+        const cursor = document.createElement("span");
+        cursor.className = "log-cursor";
+        logsPanel.appendChild(cursor);
+        state.currentLogCursor = cursor;
+        logsPanel.scrollTop = logsPanel.scrollHeight;
+      }
+
+      function switchTab(tabId) {
+        document.querySelectorAll("[data-tab]").forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.tab === tabId);
+        });
+
+        document.querySelectorAll(".tab-panel").forEach((panel) => {
+          panel.classList.toggle("is-active", panel.id === tabId);
+        });
+      }
+
+      async function submitGeneration() {
+        hideErrorBanner();
+
+        const body = {
+          jira_input_mode: state.inputMode === "jira_id" ? "pat" : "csv",
+          jira_story_id: state.inputMode === "jira_id" ? storyIdInput.value.trim() : null,
+          jira_csv_raw: state.inputMode === "csv" ? csvInput.value.trim() : null,
+          flow_type: state.flowType,
+          three_amigos_notes: notesInput.value.trim(),
+          module: "cas",
+          jira_pat_override: patOverrideInput.value.trim() || null,
+        };
+
+        if (state.inputMode === "jira_id" && !body.jira_story_id) {
+          showToast("Enter a JIRA Story ID", "error");
+          return;
+        }
+
+        if (state.inputMode === "csv" && !body.jira_csv_raw) {
+          showToast("Paste CSV content", "error");
+          return;
+        }
+
+        generateBtn.disabled = true;
+        generateBtn.textContent = "Starting...";
+
+        try {
+          const response = await apiFetch("/generate/", {
+            method: "POST",
+            body: JSON.stringify(body),
+          });
+          const payload = await response.json();
+
+          state.currentJobId = payload.job_id;
+          state.featureFile = "";
+          state.gapData = null;
+          featureOutputLines.innerHTML = `<div class="editor-empty text-body-sm">Generation in progress...</div>`;
+          gapSummary.innerHTML = "";
+          gapList.innerHTML = "";
+          logsPanel.innerHTML = "";
+          addLog("INFO", `Job ${state.currentJobId} started`);
+          resetPipelineVisuals();
+          resetHud();
+          startElapsedTimer();
+          setState(STATES.PIPELINE);
+          switchTab("agent-logs");
+
+          state.streamController?.abort();
+          state.streamController = connectProgressStream(
+            state.currentJobId,
+            (agentNum, elapsed) => activateAgent(agentNum, elapsed),
+            () => completePipeline(),
+            (reason) => failPipeline(reason),
+          );
+        } catch (error) {
+          showToast(error.message || "Generation failed to start", "error");
+        } finally {
+          generateBtn.disabled = false;
+          generateBtn.textContent = "Generate Feature File";
+        }
+      }
+
+      async function fetchAndRenderResult() {
+        try {
+          const response = await apiFetch(`/generate/${state.currentJobId}/result`);
+          const payload = await response.json();
+          state.featureFile = payload.feature_file || "";
+          state.gapData = parseLooseObject(payload.gaps) || payload.gaps || {};
+
+          featureOutputLines.innerHTML = state.featureFile
+            ? highlightGherkin(state.featureFile)
+            : `<div class="editor-empty text-body-sm">No feature file returned.</div>`;
+
+          renderGapReport(state.gapData);
+
+          const confidence =
+            state.gapData?.confidence_score ??
+            state.gapData?.markers_summary?.confidence_score ??
+            null;
+
+          if (typeof confidence === "number") {
+            document.getElementById("hud-confidence").textContent = `${Math.round(confidence * 100)}%`;
+          }
+
+          addLog("INFO", "Result fetched successfully");
+          switchTab("feature-output");
+        } catch (error) {
+          showToast(`Failed to load result: ${error.message}`, "error");
+          addLog("ERROR", `Result fetch failed: ${error.message}`);
+        }
+      }
+
+      function renderGapReport(gaps) {
+        const objectGaps = typeof gaps === "object" && gaps ? gaps : {};
+        const markers = objectGaps.markers_summary || {};
+        const confidence = objectGaps.confidence_score;
+
+        gapSummary.innerHTML = `
+          <article class="gap-card">
+            <div class="mono-label">New Steps</div>
+            <div class="mono-metric">${markers.NEW_STEP_NOT_IN_REPO ?? 0}</div>
+          </article>
+          <article class="gap-card">
+            <div class="mono-label">Low Match</div>
+            <div class="mono-metric">${markers.LOW_MATCH ?? 0}</div>
+          </article>
+          <article class="gap-card">
+            <div class="mono-label">Role Gaps</div>
+            <div class="mono-metric">${markers.ROLE_GAP ?? 0}</div>
+          </article>
+          <article class="gap-card">
+            <div class="mono-label">Confidence</div>
+            <div class="mono-metric">${typeof confidence === "number" ? `${Math.round(confidence * 100)}%` : "--"}</div>
+          </article>
+        `;
+
+        const entries = [];
+
+        (objectGaps.coverage_gaps || []).forEach((item) => {
+          entries.push({
+            title: "Coverage Gap",
+            body: item,
+            badge: "badge-low-match",
+          });
+        });
+
+        (objectGaps.atdd_issues || []).forEach((item) => {
+          entries.push({
+            title: "ATDD Issue",
+            body: item,
+            badge: "badge-role-gap",
+          });
+        });
+
+        if (objectGaps.recommendation) {
+          entries.push({
+            title: "Recommendation",
+            body: objectGaps.recommendation,
+            badge: "badge-running",
+          });
+        }
+
+        if (!entries.length) {
+          gapList.innerHTML = `<div class="panel-empty text-body-sm">No gaps detected - all steps found in repository.</div>`;
+          return;
+        }
+
+        gapList.innerHTML = entries
+          .map(
+            (entry) => `
+              <article class="gap-item">
+                <div class="inline-actions">
+                  <span class="badge ${entry.badge}">${entry.title}</span>
+                </div>
+                <div class="text-body-sm">${escapeHtml(String(entry.body))}</div>
+              </article>
+            `,
+          )
+          .join("");
+      }
+
+      function highlightGherkin(text) {
+        const lines = text.split("\n");
+        return lines
+          .map((line, index) => {
+            const trimmed = line.trimStart();
+            let cls = "";
+
+            if (trimmed.startsWith("Feature:")) cls = "kw-feature";
+            else if (trimmed.startsWith("Scenario Outline:")) cls = "kw-scenario";
+            else if (trimmed.startsWith("Scenario:")) cls = "kw-scenario";
+            else if (trimmed.startsWith("Background:")) cls = "kw-scenario";
+            else if (trimmed.startsWith("@")) cls = "kw-tag";
+            else if (trimmed.startsWith("Given ")) cls = "kw-given";
+            else if (trimmed.startsWith("When ")) cls = "kw-when";
+            else if (trimmed.startsWith("Then ")) cls = "kw-then";
+            else if (trimmed.startsWith("And ")) cls = "kw-and";
+            else if (trimmed.startsWith("#")) cls = "kw-comment";
+            else if (trimmed.startsWith("|")) cls = "kw-table";
+            else if (trimmed.startsWith("Examples:")) cls = "kw-scenario";
+
+            return `
+              <div class="editor-line">
+                <span class="line-no">${index + 1}</span>
+                <span class="line-code ${cls}">${escapeHtml(line)}</span>
+              </div>
+            `;
+          })
+          .join("");
+      }
+    </script>
+  </body>
+</html>
