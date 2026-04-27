@@ -22,11 +22,82 @@
 
 ## Current Handoff Snapshot
 
-**Last updated:** 2026-04-27 17:45  
+**Last updated:** 2026-04-27 18:15  
 **Updated by:** Claude Code  
-**Current task:** Comprehensive Audit Complete — Ready for Fix Phase  
-**Next action:** Anand decides: proceed with Phase 1 fixes? If yes, create new session and start CRITICAL blockers.  
-**Blockers:** None. Audit is complete. Strategic plan created. 44 issues documented with remediation guidance.
+**Current task:** PHASE 1 — CRITICAL FIXES — COMPLETE  
+**Next action:** Begin PHASE 2 (HIGH severity, 12 items) or wait for Anand approval  
+**Blockers:** None. All 8 critical blockers fixed and committed.
+
+---
+
+## 2026-04-27 18:15 — Claude Code — PHASE 1 CRITICAL FIXES — COMPLETE
+
+### Changed
+
+- **forge/core/state.py** — Fixed TypedDict:
+  - `action_sequences: Dict` → `List[Dict[str, Any]]`
+  - `composed_scenarios: Dict` → `List[Dict[str, Any]]`
+  - `validation_result` → `reviewed_scenarios`
+  - `feature_file: Dict` → `feature_file: str`
+  - `critic_review` → `critique`
+  
+- **forge/core/db.py** — Added cursor safety:
+  - Initialize cursor=None before try block
+  - Check if cursor exists in finally before closing
+  - Ensures no AttributeError on exception
+
+- **forge/agents/agent_08_atdd_expert.py** — Fixed state writes:
+  - Replace `state['validation_result']` with individual keys
+  - Write: `reviewed_scenarios`, `atdd_issues`, `atdd_passed`, `atdd_confidence`, `order_json_status`
+
+- **forge/agents/agent_09_writer.py** — Fixed state reads + Background:
+  - Read `reviewed_scenarios` (List) instead of composed_scenarios
+  - Background: hardcoded "Given user is on CAS Login Page" (unordered only)
+
+- **forge/agents/agent_10_critic.py** — Fixed state key:
+  - `state['critic_review']` → `state['critique']` (2 occurrences)
+
+- **forge/api/routes/auth.py** — Removed debug prints:
+  - Removed 10× `print()` statements
+  - Kept logger.info/warning calls
+
+- **forge/infrastructure/jira_client.py** — Removed plaintext PAT:
+  - Removed `settings.jira_pat` from fallback chain
+  - Removed plaintext fallback in decrypt try-except
+  - Hard-fail on decrypt failure with clear error
+
+- **forge/api/main.py** — Added encryption key validation:
+  - Check `PAT_ENCRYPTION_KEY` in startup event
+  - Provide generation instructions if missing
+
+### Verified
+
+- State TypedDict: `reviewed_scenarios` (List), `feature_file` (str), `critique` (Dict) all present
+- No print() statements remain in auth.py routes
+- Agent 8 → 9 handoff: correct state keys
+- Background generation: includes mandatory prerequisite step
+- Encryption: startup validation in place
+
+### Decisions
+
+- Used individual state keys instead of validation_result dict to match FORGE_SRS.md Section 2.5
+- Hardcoded Background step as per CAS spec (mandatory prerequisite)
+- PAT encryption: only encrypted form allowed (no plaintext fallback)
+- Encryption key validation: non-fatal warning for non-Fernet keys (allows dev testing)
+
+### Next
+
+- PHASE 2 — HIGH SEVERITY FIXES (12 items):
+  - HIGH-1: Missing prerequisite step in ordered flows (Agent 5)
+  - HIGH-2: "But" keyword hard ban enforcement
+  - HIGH-3: Then+And hard ban enforcement
+  - HIGH-4 through HIGH-12: Config, JSON validation, SCREEN_NAME_MAP, LLM error handling, admin routes, chat routing, acceptance tests
+
+### Blockers
+
+- None. All critical fixes deployed and verified.
+
+---
 
 ---
 
