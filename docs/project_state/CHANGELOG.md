@@ -22,11 +22,56 @@
 
 ## Current Handoff Snapshot
 
-**Last updated:** 2026-04-27 20:45  
+**Last updated:** 2026-04-27 21:15  
 **Updated by:** Claude Code  
-**Current task:** PHASE 4 — VERIFICATION COMPLETE  
-**Next action:** Final commit and mark project DEMO READY  
-**Blockers:** None. All 35 audit tests (PHASE 1-3) passing.
+**Current task:** PHASE 5 — KNOWLEDGE WIKI INFRASTRUCTURE (Planning)  
+**Next action:** Anand to generate TOML manifest from CAS PDFs via Gemini; Claude Code to implement Python wiki-builder  
+**Blockers:** None. All 37 audit/E2E tests passing. Agent 07 runtime bug fixed.
+
+---
+
+## 2026-04-27 21:15 — Claude Code — Agent 07 Runtime Bug Fix + Knowledge Wiki Architecture Planning
+
+### Changed
+
+**Bug Fix:**
+- forge/agents/agent_07_composer.py: Fixed scenarios list → dict conversion (lines 162-167)
+  - LLM returns scenarios as list; code expected dict keyed by logical_id
+  - Now handles both list and dict formats defensively
+  - Prevents AttributeError when accessing .get() on list
+
+### Verified
+
+**End-to-End Pipeline Execution:**
+- Ran full 11-agent pipeline with real CSV input (CAS-247073.csv)
+- Pipeline progressed through Agents 1-6 successfully
+- Agent 7 previously crashed on title mapping; now fixed
+- Result: 37/37 acceptance tests passing (35 audit + 2 E2E)
+
+### Decisions
+
+1. **Knowledge Wiki Architecture** — Collaborative design with Anand:
+   - Use TOML manifest for domain structure (LOB → Stage → Screen hierarchy)
+   - Markdown wiki files in `data/knowledge/cas/{screens,stages,concepts}/`
+   - Module-scoped organization (`data/knowledge/{cas,lms,collections}/`)
+   - Python-based wiki generation from TOML + PDFs (at setup time)
+   - Supports incremental PDF additions without being locked to current set
+   - Eager build (pre-process at setup) vs lazy build (on-demand distillation) — both acceptable, eager chosen for transparency + CAS stability
+
+2. **Responsibility Split:**
+   - Anand: Generate TOML manifest from CAS PDFs using Gemini (domain structure extraction)
+   - Claude Code: Implement Python wiki-builder using TOML as input (infrastructure automation)
+
+### Next
+
+1. Await TOML manifest from Anand
+2. Implement wiki-builder script: `forge/scripts/build_wiki.py`
+3. Design: TOML parsing → PDF chunking → markdown generation → screen/stage organization
+4. Update setup flow: `setup_db` → `index_repo` → `build_wiki` → `build_step_index` → `build_knowledge`
+
+### Blockers
+
+None. All critical systems verified and operational.
 
 ---
 

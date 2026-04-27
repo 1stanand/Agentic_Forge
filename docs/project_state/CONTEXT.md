@@ -21,10 +21,10 @@
 
 ## Current State
 
-**Last updated:** 2026-04-27 20:45  
+**Last updated:** 2026-04-27 21:15  
 **Updated by:** Claude Code  
-**Current active task:** PHASE 4 — VERIFICATION COMPLETE  
-**Status:** ✅ PHASE 1 (8 CRITICAL) verified. ✅ PHASE 2 (12 HIGH) verified. ✅ PHASE 3 (15 MEDIUM) verified. Project structure reorganized. Comprehensive acceptance tests: 35/35 PASSING (8 + 12 + 15).
+**Current active task:** PHASE 5 — KNOWLEDGE WIKI ARCHITECTURE DESIGN  
+**Status:** ✅ PHASE 1-4 verified (37/37 tests passing). ✅ Agent 07 runtime bug fixed. 🔄 Designing CAS knowledge wiki infrastructure (TOML-based LOB→Stage→Screen hierarchy, markdown wiki generation).
 
 ---
 
@@ -64,7 +64,7 @@ Do not rely on chat history as the source of truth.
 
 ---
 
-## Audit Phase (Claude Code) — CURRENT
+## Audit Phase (Claude Code) — COMPLETE
 
 | Task | Name | Status |
 | ---- | ---- | ------ |
@@ -72,9 +72,15 @@ Do not rely on chat history as the source of truth.
 | 2 | Deep Code-Level Audit | ✅ Complete |
 | 3 | Remediation Strategy Document | ✅ Complete (`Audit_Compliance.md`) |
 | 4 | PHASE 1 — CRITICAL FIXES (8 blockers) | ✅ Complete (committed) |
-| 5 | PHASE 2 — HIGH SEVERITY FIXES (12 items) | ✅ Complete (awaiting verification) |
-| 6 | PHASE 3 — MEDIUM SEVERITY FIXES (15 items) | 🟡 6/15 done (awaiting verification) |
-| 7 (NEXT) | PHASE 4 — VERIFICATION & DEMO READY | 🔴 Not started |
+| 5 | PHASE 2 — HIGH SEVERITY FIXES (12 items) | ✅ Complete (verified) |
+| 6 | PHASE 3 — MEDIUM SEVERITY FIXES (15 items) | ✅ Complete (verified) |
+| 7 | PHASE 4 — VERIFICATION & DEMO READY | ✅ Complete (37/37 tests passing, 1 runtime bug fixed) |
+
+## Enhancement Phase (Claude Code) — CURRENT
+
+| Task | Name | Status |
+| ---- | ---- | ------ |
+| 1 (NEXT) | Knowledge Wiki Infrastructure | 🔄 In Planning (TOML manifest design with Anand) |
 
 ---
 
@@ -208,20 +214,29 @@ Run these commands to verify each system before launch:
 
 ---
 
-## Next Steps — Comprehensive Testing & Verification
+## Next Steps — Knowledge Wiki Infrastructure
 
-**Immediate (This Session — NOW):**
+**Completed (Previous Session):**
 1. ✅ Root folder cleanup — moved 12 doc/script files to appropriate folders
 2. ✅ Docs organization — CONTEXT.md & CHANGELOG.md in docs/project_state/
 3. ✅ Tools folder created — 6 batch files for common operations
 4. ✅ Tests folder reorganized — conftest.py, unit/, integration/, acceptance/
-5. ✅ Comprehensive acceptance tests written — **45 tests** covering all PHASE 1-3 fixes
-6. ▶️ **RUNNING: Execute comprehensive test suite** — `tools\user\tests.bat`
+5. ✅ Comprehensive acceptance tests written — **37 tests** covering all PHASE 1-4 fixes
+6. ✅ Full test execution — 37/37 tests passing (2 E2E tests with real LLM pipeline)
 
-**Anand (After Tests Pass):**
-1. Review test output — All 45 tests should pass
-2. If all pass: Proceed to PHASE 4 (Verification & Demo Ready) final commit
-3. If failures: Report which tests failed for targeted fixes
+**Current (This Session):**
+1. ✅ Identified Agent 07 runtime bug (scenarios list → dict conversion)
+2. ✅ Fixed and committed Agent 07 bug
+3. 🔄 **Designing Knowledge Wiki Infrastructure** — Collaborative planning with Anand
+   - TOML-based LOB → Stage → Screen hierarchy (Anand to generate via Gemini + PDFs)
+   - Python wiki-building script using TOML as input
+   - Markdown wiki files (`data/knowledge/cas/{screens,stages,concepts}/`)
+   - Incremental PDF support for future modules (LMS, collections, etc.)
+
+**Anand (Next):**
+1. Generate TOML manifest from CAS PDFs using Gemini
+2. Provide TOML structure to Claude Code
+3. Implement Python wiki-builder using TOML
 
 **Running Tests:**
 ```bash
