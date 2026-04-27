@@ -41,6 +41,11 @@ def match_tags(effective_tags: list) -> str:
     return None
 
 
+def evaluate_expression(expr: str, tags: set) -> bool:
+    """Public API for evaluating boolean expressions against tag sets."""
+    return _match_expression(expr, tags)
+
+
 def _match_expression(expr: str, tags: set) -> bool:
     """Match a single boolean expression against tag set using proper evaluation."""
     # Normalize tags: remove @ and lowercase
