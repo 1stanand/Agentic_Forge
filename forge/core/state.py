@@ -24,22 +24,22 @@ class ForgeState(TypedDict):
     coverage_plan: Dict[str, Any]
 
     # Agent 5 — Action Decomposer
-    action_sequences: Dict[str, Any]
+    action_sequences: List[Dict[str, Any]]
 
     # Agent 6 — Retriever
     retrieved_steps: Dict[str, Any]
 
     # Agent 7 — Composer
-    composed_scenarios: Dict[str, Any]
+    composed_scenarios: List[Dict[str, Any]]
 
     # Agent 8 — ATDD Expert
-    validation_result: Dict[str, Any]
+    reviewed_scenarios: List[Dict[str, Any]]
 
     # Agent 9 — Writer
-    feature_file: Dict[str, Any]
+    feature_file: str
 
     # Agent 10 — Critic
-    critic_review: Dict[str, Any]
+    critique: Dict[str, Any]
 
     # Agent 11 — Reporter
     final_output: Dict[str, Any]

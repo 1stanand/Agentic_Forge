@@ -42,6 +42,17 @@ app.add_middleware(
 async def startup_event():
     logger.info("Forge server starting...")
 
+    # Validate PAT encryption key
+    config = get_settings()
+    if not config.pat_encryption_key:
+        raise RuntimeError(
+            "PAT_ENCRYPTION_KEY not set in .env. "
+            "Generate with: python -c \"from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())\""
+        )
+    if not config.pat_encryption_key.startswith("gAAAAA"):
+        # For dev: if it's not encrypted format, try to use it as-is for testing
+        logger.warning("PAT_ENCRYPTION_KEY does not appear to be a valid Fernet key")
+
     # Mark stale jobs as failed (older than 1 hour)
     try:
         mark_stale_jobs_failed(age_seconds=3600)

@@ -145,17 +145,12 @@ def agent_08_atdd_expert(state: ForgeState) -> ForgeState:
         else:
             logger.info("Validation PASSED")
 
-        validation_result = {
-            "issue_key": issue_key,
-            "flow_type": flow_type,
-            "validation_pass": validation_pass,
-            "validation_errors": validation_errors,
-            "order_json_status": order_json_status,
-            "scenarios_validated": len(scenarios),
-            "expert_confidence": 1.0 if validation_pass else 0.0
-        }
-
-        state['validation_result'] = validation_result
+        # Write validated scenarios and validation metadata to state
+        state['reviewed_scenarios'] = scenarios
+        state['atdd_issues'] = validation_errors
+        state['atdd_passed'] = validation_pass
+        state['atdd_confidence'] = 1.0 if validation_pass else 0.0
+        state['order_json_status'] = order_json_status
 
         logger.info("=" * 80)
         logger.info("AGENT 08 — COMPLETE")

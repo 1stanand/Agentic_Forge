@@ -5,7 +5,7 @@ Reviews generated .feature file and decides on loop-back to Composer.
 Hard constraint: maximum one loop via is_second_pass flag.
 
 Input: feature_file (from Agent 09)
-Output: critic_review (decision: loop_back true/false, feedback)
+Output: critique (decision: loop_back true/false, feedback)
 """
 
 import json
@@ -124,7 +124,7 @@ Respond with JSON only.
                 "feedback": "LLM unavailable; proceeding to Reporter",
                 "critic_confidence": 0.0
             }
-            state['critic_review'] = review
+            state['critique'] = review
             logger.info("=" * 80)
             logger.info("AGENT 10 — COMPLETE (LLM fallback)")
             logger.info("=" * 80)
@@ -158,7 +158,7 @@ Respond with JSON only.
         decision = "LOOP BACK to Composer" if review.get("loop_back") else "PROCEED to Reporter"
         logger.info(f"Critic decision: {decision} (quality={review.get('quality_score', 0):.2f})")
 
-        state['critic_review'] = review
+        state['critique'] = review
 
         logger.info("=" * 80)
         logger.info("AGENT 10 — COMPLETE")

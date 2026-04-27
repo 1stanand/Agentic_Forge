@@ -13,39 +13,26 @@ security = HTTPBearer()
 
 @router.post("/login", response_model=LoginResponse)
 async def login(request: LoginRequest):
-    print(f"[DEBUG] Login endpoint called")
-    print(f"[DEBUG] Request: {request}")
-    print(f"[DEBUG] Username: {request.username}, Password length: {len(request.password)}")
-
     logger.info(f"Login attempt: username={request.username}")
     conn = get_conn()
-    print(f"[DEBUG] Connection obtained")
 
     try:
         with get_cursor(conn) as cursor:
-            print(f"[DEBUG] Executing query for user: {request.username}")
             cursor.execute(
                 "SELECT id, password_hash, display_name, is_admin FROM users WHERE username = %s AND is_active = TRUE",
                 (request.username,)
             )
             user = cursor.fetchone()
-            print(f"[DEBUG] Query result: {user is not None}")
-            if user:
-                print(f"[DEBUG] User found: {user['id']}, {user['display_name']}")
             logger.info(f"User lookup result: {user is not None}")
 
         if not user:
-            print(f"[DEBUG] User not found!")
             logger.warning(f"User not found or inactive: {request.username}")
             raise HTTPException(status_code=401, detail="Invalid username or password")
 
-        print(f"[DEBUG] Verifying password...")
         is_valid = verify_password(request.password, user['password_hash'])
-        print(f"[DEBUG] Password verification result: {is_valid}")
         logger.info(f"Password verification: {is_valid}")
 
         if not is_valid:
-            print(f"[DEBUG] Password invalid!")
             logger.warning(f"Password verification failed for user: {request.username}")
             raise HTTPException(status_code=401, detail="Invalid username or password")
 

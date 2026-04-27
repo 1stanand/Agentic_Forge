@@ -42,7 +42,8 @@ def release_conn(conn):
 
 @contextmanager
 def get_cursor(conn, dict_cursor=True):
-    """Context manager for database cursors."""
+    """Context manager for database cursors with transaction safety."""
+    cursor = None
     try:
         if dict_cursor:
             cursor = conn.cursor(cursor_factory=RealDictCursor)
@@ -54,7 +55,8 @@ def get_cursor(conn, dict_cursor=True):
         conn.rollback()
         raise
     finally:
-        cursor.close()
+        if cursor:
+            cursor.close()
 
 
 def run_sql_file(file_path: str):

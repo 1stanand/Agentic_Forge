@@ -395,18 +395,17 @@ def fetch_story(
         if not jira_story_id:
             raise ValueError("PAT mode requires jira_story_id")
 
-        # Determine which PAT to use (precedence)
-        pat = jira_pat_override or settings.jira_pat
+        # Determine which PAT to use (only encrypted allowed)
+        pat = jira_pat_override
         if not pat:
-            raise ValueError("No JIRA PAT available (set JIRA_PAT env var or provide jira_pat_override)")
+            raise ValueError("No JIRA PAT provided. Use jira_pat_override with encrypted PAT.")
 
         # Decrypt if it's encrypted
         if pat.startswith("gAAAAA"):  # Fernet encrypted prefix
             try:
                 pat = decrypt_pat(pat)
-            except Exception:
-                # If decrypt fails, assume it's plaintext
-                pass
+            except Exception as e:
+                raise ValueError(f"Failed to decrypt JIRA PAT: {e}")
 
         if not settings.jira_url:
             raise ValueError("JIRA_URL not configured")

@@ -70,12 +70,12 @@ def agent_09_writer(state: ForgeState) -> ForgeState:
     logger.info("=" * 80)
 
     try:
-        composed = state['composed_scenarios'] or {}
-        validation = state['validation_result'] or {}
+        composed = state.get('composed_scenarios') or {}
+        reviewed = state.get('reviewed_scenarios') or []
 
         issue_key = composed.get("issue_key", "UNKNOWN")
         flow_type = composed.get("flow_type", "unordered")
-        scenarios = composed.get("scenarios", [])
+        scenarios = reviewed if reviewed else composed.get("scenarios", [])
 
         logger.info(f"Story: {issue_key}, Flow: {flow_type}, Scenarios: {len(scenarios)}")
 
@@ -99,12 +99,7 @@ def agent_09_writer(state: ForgeState) -> ForgeState:
         # Background (unordered only)
         if flow_type == "unordered" and scenarios:
             lines.append("  Background:")
-            # Collect common Given steps from first scenario as background proxy
-            first_scenario = scenarios[0]
-            first_givens = first_scenario.get("given_steps", [])
-            if first_givens:
-                for given in first_givens[:1]:  # Use first given as background stub
-                    lines.append(f"    Given {_extract_step_text(given)}")
+            lines.append("    Given user is on CAS Login Page")
             lines.append("")
 
         # Scenarios
