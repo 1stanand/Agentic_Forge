@@ -8,6 +8,7 @@ Endpoints:
 """
 
 import asyncio
+import json
 import logging
 from typing import AsyncGenerator, Optional
 
@@ -133,14 +134,16 @@ async def stream_job_progress(
                 # Check timeout
                 elapsed = asyncio.get_event_loop().time() - start_time
                 if elapsed > max_wait:
-                    yield f'data: {{"status": "failed", "reason": "Job timeout after {max_wait}s"}}\n\n'
+                    event = json.dumps({"status": "failed", "reason": f"Job timeout after {max_wait}s"})
+                    yield f'data: {event}\n\n'
                     break
 
                 # Get job status
                 try:
                     status = get_job_status(job_id, user_id)
                 except ValueError:
-                    yield f'data: {{"status": "failed", "reason": "Job not found"}}\n\n'
+                    event = json.dumps({"status": "failed", "reason": "Job not found"})
+                    yield f'data: {event}\n\n'
                     break
 
                 job_status = status["status"]
@@ -150,17 +153,20 @@ async def stream_job_progress(
                 # Emit agent progress events
                 if current_agent > last_agent:
                     for agent_num in range(last_agent + 1, current_agent + 1):
-                        yield f'data: {{"agent": {agent_num}, "elapsed": {elapsed_sec}}}\n\n'
+                        event = json.dumps({"agent": agent_num, "elapsed": elapsed_sec})
+                        yield f'data: {event}\n\n'
                     last_agent = current_agent
 
                 # Check for completion
                 if job_status == "done":
-                    yield f'data: {{"status": "done"}}\n\n'
+                    event = json.dumps({"status": "done"})
+                    yield f'data: {event}\n\n'
                     break
 
                 elif job_status == "failed":
                     error = status.get("error", "Unknown error")
-                    yield f'data: {{"status": "failed", "reason": "{error}"}}\n\n'
+                    event = json.dumps({"status": "failed", "reason": error})
+                    yield f'data: {event}\n\n'
                     break
 
                 # Poll again
@@ -168,7 +174,8 @@ async def stream_job_progress(
 
         except Exception as e:
             logger.error(f"Stream error: {e}")
-            yield f'data: {{"status": "failed", "reason": "{str(e)}"}}\n\n'
+            event = json.dumps({"status": "failed", "reason": str(e)})
+            yield f'data: {event}\n\n'
 
     return StreamingResponse(
         event_generator(),

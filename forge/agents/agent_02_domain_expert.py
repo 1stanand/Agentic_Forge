@@ -174,8 +174,8 @@ def agent_02_domain_expert(state: ForgeState) -> ForgeState:
             logger.info(f"RAG context received ({len(domain_context)} chars)")
 
         except Exception as e:
-            logger.warning(f"RAG engine error: {e} — continuing with limited context")
-            domain_context = f"[RAG unavailable: {str(e)}]"
+            logger.error(f"RAG engine error: {e}")
+            raise ValueError(f"Agent 02: RAG engine failed to retrieve domain context: {e}")
 
         # ─────────────────────────────────────────────────────────────────────────────
         # Prepare LLM Input

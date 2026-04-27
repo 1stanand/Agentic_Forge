@@ -15,9 +15,11 @@ def _get_pool():
     global _pool
     if _pool is None:
         settings = get_settings()
+        # Size pool based on concurrent jobs: 2 connections per job
+        pool_size = max(5, settings.max_concurrent_jobs * 2)
         _pool = ThreadedConnectionPool(
             minconn=1,
-            maxconn=10,
+            maxconn=pool_size,
             database=settings.db_name,
             user=settings.db_user,
             password=settings.db_password,

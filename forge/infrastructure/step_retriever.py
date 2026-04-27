@@ -21,9 +21,9 @@ def get_cross_encoder():
             _cross_encoder = CrossEncoder(str(settings.cross_encoder_model), max_length=512)
             logger.info("Cross-encoder loaded")
         except Exception as e:
-            logger.warning(f"Could not load cross-encoder: {e}")
-            _cross_encoder = False
-    return _cross_encoder if _cross_encoder else None
+            logger.error(f"Failed to load cross-encoder: {e}")
+            raise RuntimeError(f"Cross-encoder initialization failed: {e}") from e
+    return _cross_encoder
 
 
 def retrieve(action_text: str, top_k: int = 20, screen_filter: str = None, stage_hint: str = None, retry_count: int = 0) -> list:

@@ -79,6 +79,17 @@ def agent_09_writer(state: ForgeState) -> ForgeState:
 
         logger.info(f"Story: {issue_key}, Flow: {flow_type}, Scenarios: {len(scenarios)}")
 
+        # Validate Then+And hard ban: max 2 items per Then block
+        for scenario in scenarios:
+            then_steps = scenario.get("then_steps", [])
+            if len(then_steps) > 2:
+                raise ValueError(f"Scenario {scenario.get('title', 'Unknown')}: Then block has {len(then_steps)} items, max 2 allowed")
+            # Also validate "But" keyword hard ban
+            all_steps = scenario.get("given_steps", []) + scenario.get("when_steps", []) + then_steps
+            for step in all_steps:
+                if " But " in step or step.startswith("But "):
+                    raise ValueError(f"Scenario {scenario.get('title', 'Unknown')}: Contains forbidden 'But' keyword: {step}")
+
         # Start feature file
         lines = []
 

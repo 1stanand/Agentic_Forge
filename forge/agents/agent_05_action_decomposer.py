@@ -26,9 +26,11 @@ Your job: Translate each coverage intent into BDD actions using CAS tester vocab
    BAD:  Then X  And Y  And Z
    GOOD: Then X  And Y
 
-2. **Never use "But" keyword.** Period.
-   BAD:  Then X  But Y
-   GOOD: Then X  (remove But, restructure)
+2. **Never use "But" keyword.** Period. NOT EVEN ONCE.
+   - Check every step for " But " or starts with "But "
+   - If found, reject that action sequence
+   - BAD:  Then X  But Y
+   - GOOD: Then X  (remove But, restructure as separate scenario)
 
 3. **For ordered flows:** First Given = exact prerequisite step text from repo.
    Use EXACT step text from previous scenario, do NOT paraphrase.
@@ -124,10 +126,30 @@ Decompose each intent into Given/When/Then actions:
             json_str = response[json_start:json_end]
             action_sequences = json.loads(json_str)
 
-            # Validate hard constraints
+            # Validate hard constraints — hard fail if violations found
             errors = action_sequences.get("validation_errors", [])
             if errors:
-                logger.warning(f"Validation errors detected: {errors}")
+                logger.error(f"Validation errors detected: {errors}")
+                raise ValueError(f"Agent 05: Action decomposition validation failed: {errors}")
+
+            # Validate "But" keyword hard ban
+            for seq_id, seq in action_sequences.get("action_sequences", {}).items():
+                all_steps = seq.get("given_steps", []) + seq.get("when_steps", []) + seq.get("then_steps", [])
+                for step in all_steps:
+                    if " But " in step or step.startswith("But "):
+                        raise ValueError(f"Agent 05: Sequence {seq_id} contains forbidden 'But' keyword: {step}")
+
+            # For ordered flows: prepend mandatory prerequisite step
+            if flow_type == "ordered":
+                for seq_id, seq in action_sequences.get("action_sequences", {}).items():
+                    given_steps = seq.get("given_steps", [])
+                    # Prepend prerequisite if not already present
+                    prerequisite = "Given all prerequisite are performed in previous scenario"
+                    if given_steps and not given_steps[0].startswith("Given all prerequisite"):
+                        seq["given_steps"] = [prerequisite] + given_steps
+                    elif not given_steps:
+                        seq["given_steps"] = [prerequisite]
+                    logger.debug(f"{seq_id}: Prepended prerequisite step")
 
             logger.info(f"Decomposed {len(action_sequences.get('action_sequences', {}))} action sequences")
 

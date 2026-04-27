@@ -118,22 +118,20 @@ def agent_08_atdd_expert(state: ForgeState) -> ForgeState:
                 # If we see repeated Given steps across scenarios, that's a background proxy
                 # For now, log as warning
 
-                # Rule 5: Order.json validation
+                # Rule 5: Order.json validation (hard-fail for ordered flows)
                 try:
                     matching_expr = match_tags(tags)
                     if not matching_expr:
-                        validation_errors.append(
-                            f"{logical_id}: No matching Order.json expression for tags {tags}"
-                        )
+                        error_msg = f"{logical_id}: No matching Order.json expression for tags {tags}"
+                        validation_errors.append(error_msg)
                         order_json_status = "validation_failed"
+                        raise ValueError(f"Agent 08: Ordered flow validation failed: {error_msg}")
                     else:
                         logger.debug(f"{logical_id} → Order.json: {matching_expr}")
                         order_json_status = "validated"
                 except Exception as e:
-                    validation_errors.append(
-                        f"{logical_id}: Order.json validation error: {e}"
-                    )
-                    order_json_status = "validation_failed"
+                    logger.error(f"Agent 08: Order.json validation error: {e}")
+                    raise
 
         # Overall decision
         validation_pass = len(validation_errors) == 0

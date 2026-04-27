@@ -23,6 +23,9 @@ logger = logging.getLogger(__name__)
 _active_jobs: Dict[str, Dict[str, Any]] = {}
 _job_lock = asyncio.Lock()
 
+# 24-hour TTL for in-memory jobs
+_JOB_TTL_SECONDS = 86400  # 24 hours
+
 
 async def submit_generation_job(
     user_id: str,
@@ -318,8 +321,23 @@ def _update_job_in_db(
         release_conn(conn)
 
 
+def _cleanup_expired_jobs():
+    """Remove in-memory jobs older than 24 hours (TTL cleanup)."""
+    global _active_jobs
+    current_time = time.time()
+    expired = [jid for jid, job in _active_jobs.items()
+               if current_time - job.get("start_time", 0) > _JOB_TTL_SECONDS]
+    for jid in expired:
+        del _active_jobs[jid]
+    if expired:
+        logger.info(f"Cleaned up {len(expired)} expired jobs from memory")
+
+
 def mark_stale_jobs_failed(age_seconds: int = 3600):
     """On startup: mark any pending/running jobs older than age_seconds as failed."""
+
+    # Clean in-memory cache first
+    _cleanup_expired_jobs()
 
     conn = get_conn()
     try:

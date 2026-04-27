@@ -1,5 +1,6 @@
 import json
 import logging
+import re
 from pathlib import Path
 
 from forge.core.config import get_settings
@@ -41,28 +42,30 @@ def match_tags(effective_tags: list) -> str:
 
 
 def _match_expression(expr: str, tags: set) -> bool:
-    """Match a single boolean expression against tag set."""
-    # Simple expression matching: @tag, @tag AND @other, @tag AND NOT @other
-    expr_lower = expr.lower()
-
-    # Remove @ symbols for simpler matching
+    """Match a single boolean expression against tag set using proper evaluation."""
+    # Normalize tags: remove @ and lowercase
     tags_normalized = {tag.replace('@', '').lower() for tag in tags}
 
-    # Split on AND and NOT
-    parts = expr_lower.replace(' and ', '|').replace(' not ', '~').split('|')
+    # Build Python-safe expression by replacing tag references with boolean checks
+    expr_eval = expr.lower()
 
-    for part in parts:
-        part = part.strip()
-        if part.startswith('~'):
-            tag = part[1:].strip().replace('@', '')
-            if tag in tags_normalized:
-                return False
-        else:
-            tag = part.strip().replace('@', '')
-            if tag not in tags_normalized:
-                return False
+    # Find all @tags and replace with boolean expressions
+    for tag in re.findall(r'@?\w+', expr):
+        tag_clean = tag.replace('@', '')
+        is_present = tag_clean in tags_normalized
+        expr_eval = re.sub(r'@?' + re.escape(tag_clean) + r'\b', str(is_present), expr_eval, flags=re.IGNORECASE)
 
-    return True
+    # Convert AND/OR/NOT to Python operators
+    expr_eval = re.sub(r'\band\b', ' and ', expr_eval, flags=re.IGNORECASE)
+    expr_eval = re.sub(r'\bor\b', ' or ', expr_eval, flags=re.IGNORECASE)
+    expr_eval = re.sub(r'\bnot\b', ' not ', expr_eval, flags=re.IGNORECASE)
+
+    try:
+        result = eval(expr_eval, {"__builtins__": {}})
+        return bool(result)
+    except Exception as e:
+        logger.warning(f"Failed to evaluate Order.json expression '{expr}': {e}")
+        return False
 
 
 def detect_stage(query: str) -> str:
